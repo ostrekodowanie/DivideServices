@@ -1,3 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.padding {
+  padding-left: 8vw;
+  padding-right: 8vw;
+}
+
+@media all and (min-width: 768px) {
+  .padding {
+    padding-left: 14vw;
+    padding-right: 14vw;
+  }
+}
+
+@media all and (min-width: 1280px) {
+  .padding {
+    padding-left: 18vw;
+    padding-right: 18vw;
+  }
+}
