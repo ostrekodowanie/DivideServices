@@ -22,5 +22,8 @@ urlpatterns = [
     path('', views.index),
     path('services', views.index),
     path('contact', views.index),
+    path('signup', views.index),
+    path('login', views.index),
     path('', include('apps.Product.urls')),
+    path('', include('apps.Auth.urls')),
 ]
