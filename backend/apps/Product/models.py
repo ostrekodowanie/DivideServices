@@ -15,8 +15,8 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='')
     price = models.FloatField()
-    category = models.CharField(max_length=255, choices=CATEGORIES, default='')
     discount = models.IntegerField(default=0)
+    category = models.CharField(max_length=255, choices=CATEGORIES, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
