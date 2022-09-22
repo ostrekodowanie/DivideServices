@@ -1,4 +1,5 @@
 import { useState } from "react"
+import axios from 'axios'
 
 export default function Login() {
     return (
@@ -10,19 +11,28 @@ export default function Login() {
 }
 
 const Form = () => {
+    const [alert, setAlert] = useState('')
     const [cred, setCred] = useState({
-        username: '',
+        email: '',
         password: ''
     })
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
+        const response = await axios.post('/api/login', JSON.stringify(cred), {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if(response.status !== 200) return setAlert(response.data)
     }
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-            <input onChange={e => setCred({...cred, username: e.target.value})} type='text' name='username' placeholder="Username" />
+            <input onChange={e => setCred({...cred, email: e.target.value})} type='email' name='email' placeholder="Email" />
             <input onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
+            <button className="rounded-3xl py-2 px-6 bg-primary text-white" type='submit'>Log in</button>
+            {alert ? <p className="text-red-400">{alert}</p> : <></>}
         </form>
     )
 }
