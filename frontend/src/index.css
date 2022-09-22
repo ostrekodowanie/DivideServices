@@ -23,7 +23,7 @@
   }
 }
 
-@media all and (min-width: 1280px) {
+@media all and (min-width: 1536px) {
   .padding {
     padding-left: 18vw;
     padding-right: 18vw;
