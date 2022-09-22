@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function Header() {
     const [nav, setNav] = useState(false)
     return (
-        <header className="flex items-center justify-between padding min-h-[6rem] fixed top-0 right-0 left-0">
+        <header className="flex items-center justify-between padding min-h-[6rem] fixed z-50 top-0 right-0 left-0">
             <Logo />
             <Burger nav={nav} setNav={setNav} />
             <Navbar nav={nav} />
