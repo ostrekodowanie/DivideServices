@@ -1,6 +1,9 @@
 import { useState } from "react"
 import axios from 'axios'
 import { useNavigate } from "react-router"
+import { useDispatch } from "react-redux"
+import { login } from "../reducers/auth"
+import jwtDecode from "jwt-decode"
 
 export default function Login() {
     return (
@@ -13,6 +16,7 @@ export default function Login() {
 
 const Form = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [alert, setAlert] = useState('')
     const [cred, setCred] = useState({
         email: '',
@@ -27,7 +31,11 @@ const Form = () => {
             }
         })
         if(response.status !== 200) return setAlert(response.data)
-        else navigate('/services')
+        else {
+            console.log(jwtDecode(response.data.access))
+            dispatch(login(jwtDecode(response.data.access)))
+            return navigate('/services')
+        }
     }
 
     return (

@@ -13,7 +13,7 @@ export default function Header() {
     )
 }
 
-const Logo = () => <img className="max-h-8" src={logo} alt='' />
+const Logo = () => <Link to='/'><img className="max-h-8" src={logo} alt='' /></Link>
 
 const Burger = ({ nav, setNav }) => {
     return (
