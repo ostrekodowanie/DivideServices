@@ -30,7 +30,7 @@ const Form = () => {
                 'Content-Type': 'application/json'
             }
         })
-        if(response.status !== 200) return setAlert(response.data)
+        if(response.status !== 200) return setAlert(response.data.detail)
         else {
             console.log(jwtDecode(response.data.access))
             dispatch(login(jwtDecode(response.data.access)))
