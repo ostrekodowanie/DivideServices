@@ -11,7 +11,7 @@ module.exports = {
         secondary: '#AE6EFF'
       },
       gridTemplateColumns: {
-        autoFit: 'repeat(auto-fit, minmax(1in, 1fr)'
+        autoFit: 'repeat(auto-fit, minmax(2in, 1fr))'
       }
     },
   },

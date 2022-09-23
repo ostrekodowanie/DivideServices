@@ -31,24 +31,24 @@ const CTA = () => {
 
 const Stats = () => {
     return (
-        <div className='bg-primary padding py-4 gap-4 grid sm:grid-cols-autoFit'>
+        <div className='bg-primary padding py-12 gap-4 grid sm:grid-cols-autoFit items-center'>
             <div className='grid grid-rows-2'>
-                <div className='bg-secondary rounded-full h-6 w-6 flex items-center justify-center'>
+                <div className='bg-secondary rounded-full h-12 w-12 flex items-center justify-center row-span-2'>
                     <img className='max-w-[60%] max-h-[60%]' src={activeusers} alt="" />
                 </div>
             </div>
             <div className='grid grid-rows-2'>
-                <div className='bg-secondary rounded-full h-6 w-6 flex items-center justify-center'>
+                <div className='bg-secondary rounded-full h-12 w-12 flex items-center justify-center row-span-2'>
                     <img className='max-w-[60%] max-h-[60%]' src={activeusers} alt="" />
                 </div>
             </div>
             <div className='grid grid-rows-2'>
-                <div className='bg-secondary rounded-full h-6 w-6 flex items-center justify-center'>
+                <div className='bg-secondary rounded-full h-12 w-12 flex items-center justify-center row-span-2'>
                     <img className='max-w-[60%] max-h-[60%]' src={activeusers} alt="" />
                 </div>
             </div>
             <div className='grid grid-rows-2'>
-                <div className='bg-secondary rounded-full h-6 w-6 flex items-center justify-center'>
+                <div className='bg-secondary rounded-full h-12 w-12 flex items-center justify-center row-span-2'>
                     <img className='max-w-[60%] max-h-[60%]' src={activeusers} alt="" />
                 </div>
             </div>
