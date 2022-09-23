@@ -18,8 +18,8 @@
 
 @media all and (min-width: 768px) {
   .padding {
-    padding-left: 14vw;
-    padding-right: 14vw;
+    padding-left: 12vw;
+    padding-right: 12vw;
   }
 }
 
@@ -28,4 +28,31 @@
     padding-left: 18vw;
     padding-right: 18vw;
   }
+}
+
+@keyframes clapRight {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(10%);
+  }
+}
+
+
+@keyframes clapLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-10%);
+  }
+}
+
+.clap-right {
+  animation: clapRight 200ms alternate infinite;
+}
+
+.clap-left {
+  animation: clapLeft 200ms alternate infinite;
 }
