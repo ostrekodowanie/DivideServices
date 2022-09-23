@@ -35,7 +35,7 @@ const Navbar = ({ nav }) => {
             <CustomLink className="text-sm" to='/contact'>Contact</CustomLink>
             <div className="flex flex-col sm:flex-row mt-2 sm:mt-0 ml-2 items-center gap-[2vw]">
                 <CustomLink className="text-sm" to='/login'>Login</CustomLink>
-                <CustomLink className="rounded-3xl text-sm py-2 px-6 bg-primary text-white" to='/signup'>Sign up</CustomLink>
+                <Link className="rounded-3xl text-sm py-2 px-6 bg-primary text-white" to='/signup'>Sign up</Link>
             </div>
         </div>
     )
