@@ -6,6 +6,23 @@ from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from .models import User
 from .serializers import SignUpSerializer
+from .token import get_tokens_for_user
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from django.views.generic import View
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        
+        token['username'] = user.username
+        token['email'] = user.email
+
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 class SignUpView(generics.GenericAPIView):
     serializer_class = SignUpSerializer
@@ -34,4 +51,24 @@ class LoginView(APIView):
         if not user.check_password(password):
             raise AuthenticationFailed('Incorrect password')
 
-        return Response(status=status.HTTP_200_OK)
+        tokens = get_tokens_for_user(user)
+
+        response = {'message': 'Login Successfull', 'tokens': tokens}
+        return Response(data=response, status=status.HTTP_200_OK)
+
+class UserView(APIView):
+
+    def get(self, request):
+        token = request.COOKIES.get('jwt')
+
+        if not token:
+            raise AuthenticationFailed('Unauthenticated!')
+        try:
+            payload = get_tokens_for_user.decode(token, 'secret', algorithms=['HS256'])
+        except get_tokens_for_user.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated!')
+
+        user = User.objects.filter(id=payload['id']).first()
+        serializer = SignUpSerializer(user)
+
+        return Response(serializer.data)
