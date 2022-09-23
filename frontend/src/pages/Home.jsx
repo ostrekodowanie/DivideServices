@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { main, arrow, shadow, activeusers } from '../assets/home'
+import { main, arrow, shadow } from '../assets/home'
 
 export default function Home() {
     return (
@@ -15,7 +15,7 @@ export default function Home() {
                     <img className='absolute -bottom-[2in] -z-10 w-[150%]' src={shadow} alt='' />
                 </div>
             </section>
-            <Stats />
+            <div className='bg-primary h-[1.5in]'></div>
         </>
     )
 }
