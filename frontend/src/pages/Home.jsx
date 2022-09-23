@@ -27,8 +27,6 @@ const CTA = () => {
             <Link className='py-2 px-6' to='/contact'>Contact</Link>
         </div>
     )
-<<<<<<< HEAD
-=======
 }
 
 const Stats = () => {
@@ -56,5 +54,4 @@ const Stats = () => {
             </div>
         </div>
     )
->>>>>>> 3c2ed0cddd75ed6e9557813653db17832890fc6b
 }
