@@ -7,7 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#852FF2'
+        primary: '#852FF2',
+        secondary: '#AE6EFF'
+      },
+      gridTemplateColumns: {
+        autoFit: 'repeat(auto-fit, minmax(1in, 1fr)'
       }
     },
   },

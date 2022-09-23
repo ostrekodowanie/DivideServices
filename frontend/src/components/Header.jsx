@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { logo } from "../assets/header"
-import { Link } from 'react-router-dom'
+import { Link, useResolvedPath, useMatch } from 'react-router-dom'
 
 export default function Header() {
     const [nav, setNav] = useState(false)
@@ -30,13 +30,19 @@ const lineStyle = 'h-[3px] w-full bg-primary transition-transform'
 const Navbar = ({ nav }) => {
     return (
         <div className={`flex flex-col items-center justify-center gap-[3vw] absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-white ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
-            <Link className="text-sm" to='/'>Home</Link>
-            <Link className="text-sm" to='/services'>Services</Link>
-            <Link className="text-sm" to='/contact'>Contact</Link>
+            <CustomLink className="text-sm" to='/'>Home</CustomLink>
+            <CustomLink className="text-sm" to='/services'>Services</CustomLink>
+            <CustomLink className="text-sm" to='/contact'>Contact</CustomLink>
             <div className="flex flex-col sm:flex-row mt-2 sm:mt-0 ml-2 items-center gap-[2vw]">
-                <Link className="text-sm" to='/login'>Login</Link>
-                <Link className="rounded-3xl text-sm py-2 px-6 bg-primary text-white" to='/signup'>Sign up</Link>
+                <CustomLink className="text-sm" to='/login'>Login</CustomLink>
+                <CustomLink className="rounded-3xl text-sm py-2 px-6 bg-primary text-white" to='/signup'>Sign up</CustomLink>
             </div>
         </div>
     )
+}
+
+const CustomLink = ({ children, to, className, props}) => {
+    const activePath = useResolvedPath(to)
+    const isActive = useMatch({ path: `${activePath.pathname}/*`, end: true })
+    return <Link {...props} to={to} className={isActive ? `text-primary font-medium transition ${className}` : `hover:text-primary transition ${className}`}>{children}</Link>
 }

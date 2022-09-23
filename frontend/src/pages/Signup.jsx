@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useNavigate } from "react-router"
+import axios from 'axios'
 
 export default function Signup() {
     return (
@@ -10,16 +12,27 @@ export default function Signup() {
 }
 
 const Form = () => {
+    const navigate = useNavigate()
+    const [alert, setAlert] = useState('')
+    const [confPwd, setConfPwd] = useState('')
     const [cred, setCred] = useState({
         username: '',
         email: '',
-        password: '',
-        confPassword: ''
+        password: ''
     })
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
-        if(cred.password !== cred.confPassword) return
+        if(cred.password !== confPwd) return setAlert("Passwords didn't match!")
+        
+        const response = await axios.post('/api/signup', JSON.stringify(cred), {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if(response.status !== 201) return setAlert(response.data)
+        else navigate('/login')
     }
 
     return (
@@ -27,7 +40,9 @@ const Form = () => {
             <input onChange={e => setCred({...cred, username: e.target.value})} type='text' name='username' placeholder="Username" />
             <input onChange={e => setCred({...cred, email: e.target.value})} type='text' name='email' placeholder="Email" />
             <input onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
-            <input onChange={e => setCred({...cred, confPassword: e.target.value})} type='text' name='confPassword' placeholder="Confirm password" />
+            <input onChange={e => setConfPwd(e.target.value)} type='password' name='confPassword' placeholder="Confirm password" />
+            <button className="rounded-3xl py-2 px-6 bg-primary text-white" type='submit'>Sign up</button>
+            {alert ? <p className="text-red-400">{alert}</p> : <></>}
         </form>
     )
 }

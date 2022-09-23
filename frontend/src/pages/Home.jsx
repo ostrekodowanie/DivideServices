@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { main, arrow, shadow } from '../assets/home'
+import { main, arrow, shadow, activeusers } from '../assets/home'
 
 export default function Home() {
     return (
@@ -15,7 +15,7 @@ export default function Home() {
                     <img className='absolute -bottom-[2in] -z-10 w-[150%]' src={shadow} alt='' />
                 </div>
             </section>
-            <div className='bg-primary h-[1.5in]'></div>
+            <Stats />
         </>
     )
 }
@@ -25,6 +25,33 @@ const CTA = () => {
         <div className="flex items-center flex-wrap gap-4 mt-2">
             <Link className='rounded-3xl py-2 px-6 bg-primary text-white flex items-center' to='/services'>Our services <img className='ml-2 max-h-[1em]' src={arrow} alt="" /></Link>
             <Link className='py-2 px-6' to='/contact'>Contact</Link>
+        </div>
+    )
+}
+
+const Stats = () => {
+    return (
+        <div className='bg-primary padding py-4 gap-4 grid sm:grid-cols-autoFit'>
+            <div className='grid grid-rows-2'>
+                <div className='bg-secondary rounded-full h-6 w-6 flex items-center justify-center'>
+                    <img className='max-w-[60%] max-h-[60%]' src={activeusers} alt="" />
+                </div>
+            </div>
+            <div className='grid grid-rows-2'>
+                <div className='bg-secondary rounded-full h-6 w-6 flex items-center justify-center'>
+                    <img className='max-w-[60%] max-h-[60%]' src={activeusers} alt="" />
+                </div>
+            </div>
+            <div className='grid grid-rows-2'>
+                <div className='bg-secondary rounded-full h-6 w-6 flex items-center justify-center'>
+                    <img className='max-w-[60%] max-h-[60%]' src={activeusers} alt="" />
+                </div>
+            </div>
+            <div className='grid grid-rows-2'>
+                <div className='bg-secondary rounded-full h-6 w-6 flex items-center justify-center'>
+                    <img className='max-w-[60%] max-h-[60%]' src={activeusers} alt="" />
+                </div>
+            </div>
         </div>
     )
 }
