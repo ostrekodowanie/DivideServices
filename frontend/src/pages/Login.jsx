@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from 'axios'
+import { useNavigate } from "react-router"
 
 export default function Login() {
     return (
@@ -11,6 +12,7 @@ export default function Login() {
 }
 
 const Form = () => {
+    const navigate = useNavigate()
     const [alert, setAlert] = useState('')
     const [cred, setCred] = useState({
         email: '',
@@ -25,6 +27,7 @@ const Form = () => {
             }
         })
         if(response.status !== 200) return setAlert(response.data)
+        else navigate('/services')
     }
 
     return (
