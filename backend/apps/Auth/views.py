@@ -9,6 +9,7 @@ from .serializers import SignUpSerializer
 from .token import get_tokens_for_user
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework import permissions
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
@@ -23,6 +24,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 class SignUpView(generics.GenericAPIView):
+    permission_classes = [permissions.AllowAny]
     serializer_class = SignUpSerializer
     def post(self, request):
         data = request.data
@@ -36,6 +38,7 @@ class SignUpView(generics.GenericAPIView):
         return Response(user_data, status=status.HTTP_201_CREATED)
         
 class LoginView(APIView):
+    permission_classes = [permissions.AllowAny]
     def post(self, request):
 
         email = request.data['email']
