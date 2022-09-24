@@ -12,15 +12,15 @@ const loginSlice = createSlice({
     },
     reducers: {
         login: (state, action) => {
-            state = {
-                logged: true,
-                info: action.payload
-            }
+            state.logged = true
+            state.info = action.payload
         },
         logout: state => {
-            state = {
-                logged: false,
-                info: {}
+            state.logged = false
+            state.info = {
+                id: '',
+                username: '',
+                email: ''
             }
         }
     }
