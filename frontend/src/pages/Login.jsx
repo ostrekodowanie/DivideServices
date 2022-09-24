@@ -27,7 +27,7 @@ const Form = () => {
     const handleSubmit = async e => {
         e.preventDefault()
         try {
-            const response = await axios.post('/api/login', JSON.stringify(cred), {
+            const response = await axios.post('/api/token', JSON.stringify(cred), {
                 headers: {
                     'Content-Type': 'application/json'
                 }
