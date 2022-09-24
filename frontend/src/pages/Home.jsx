@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { main, arrow, shadow, activeusers } from '../assets/home'
 import Clap from '../components/Clap'
@@ -14,21 +15,7 @@ export default function Home() {
                 <MainImage />
             </section>
             <Stats />
-            <section className='padding py-[1in] xl:py-[1.4in] flex flex-col gap-8 justify-center'>
-                <h2 className='grid grid-cols-auto items-center gap-x-4 font-semibold text-xl'>
-                    <span className='text-6xl text-primary row-[1/3]'>3</span>
-                    <span>Divide your work tasks</span>
-                    <span>into smaller steps</span>
-                </h2>
-                <div className='flex justify-between'>
-                    <div className='grow bg-[#F9F5FE] rounded-md w-4 grid grid-rows-[repeat(3,1fr)]'>
-                        <div className='bg-primary rounded-md'></div>
-                    </div>
-                    <div className='flex flex-col'>
-                        {scrollerSteps.map((step, i) => <Scroller {...step} id={i} key={i} />)}
-                    </div>
-                </div>
-            </section>
+            <Steps />
         </>
     )
 }
@@ -103,10 +90,31 @@ const scrollerSteps = [
 
 const Scroller = props => {
     return (
-        <div className='pl-8 py-6 flex flex-col gap-4'>
+        <div className={`pl-8 py-6 md:py-10 md:pl-20 flex flex-col gap-4 ${props.active === props.id ? 'bg-insideShadowPrimary' : 'bg-insideShadowGray'}`}>
             <h4 className='text-primary'>Step {props.id + 1}</h4>
-            <h3 className='font-semibold text-2xl'>{props.title}</h3>
-            <p className='text-[#4A454F] max-w-md'>{props.p}</p>
+            <h3 className='font-semibold text-2xl md:text-3xl'>{props.title}</h3>
+            <p className='text-[#4A454F] max-w-md leading-relaxed'>{props.p}</p>
         </div>
+    )
+}
+
+const Steps = () => {
+    const [active, setActive] = useState(0)
+    return (
+        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col gap-8 justify-center'>
+            <h2 className='grid grid-cols-auto items-center gap-x-4 md:gap-y-2 md:mb-8 font-semibold text-xl'>
+                <span className='text-6xl md:text-8xl text-primary row-[1/3]'>3</span>
+                <span className='md:text-3xl md:self-end'>Divide your work tasks</span>
+                <span className='md:text-3xl md:self-start'>into smaller steps</span>
+            </h2>
+            <div className='flex'>
+                <div className='bg-[#F9F5FE] rounded-md w-3 justify-self-stretch grid grid-rows-[repeat(3,1fr)]'>
+                    <div className='bg-primary rounded-md'></div>
+                </div>
+                <div className='flex flex-col w-full'>
+                    {scrollerSteps.map((step, i) => <Scroller active={active} {...step} id={i} key={i} />)}
+                </div>
+            </div>
+        </section>
     )
 }
