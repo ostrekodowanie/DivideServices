@@ -35,7 +35,7 @@ const Navbar = ({ nav }) => {
             <CustomLink className="text-sm" to='/contact'>Contact</CustomLink>
             <div className="flex flex-col sm:flex-row mt-2 sm:mt-0 ml-2 items-center gap-[2vw]">
                 <CustomLink className="text-sm" to='/login'>Login</CustomLink>
-                <Link className="rounded-3xl text-sm py-2 px-6 bg-primary text-white" to='/signup'>Sign up</Link>
+                <Link className="rounded-3xl text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/signup'>Sign up</Link>
             </div>
         </div>
     )
@@ -44,5 +44,5 @@ const Navbar = ({ nav }) => {
 const CustomLink = ({children, to, className, props}) => {
     const activePath = useResolvedPath(to)
     const isActive = useMatch({path: `${activePath.pathname}/*`, end: true})
-    return <Link to={to} className={`${className} transition ${isActive ? 'text-primary font-medium' : 'hover:text-primary'}`}>{children}</Link>
+    return <Link to={to} className={`${className} transition ${isActive ? 'text-primary font-semibold' : 'hover:text-primary'}`}>{children}</Link>
 }

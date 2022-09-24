@@ -11,6 +11,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
+body {
+  color: #17131C;
+}
+
 .padding {
   padding-left: 8vw;
   padding-right: 8vw;

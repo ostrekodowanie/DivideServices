@@ -1,7 +1,8 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import axios from 'axios'
 import { useNavigate } from "react-router"
-import { useDispatch } from "react-redux"
+import { useDispatch} from "react-redux"
 import { login } from "../reducers/auth"
 import jwtDecode from "jwt-decode"
 
@@ -25,23 +26,26 @@ const Form = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        const response = await axios.post('/api/login', JSON.stringify(cred), {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        if(response.status !== 200) return setAlert(response.data)
-        else {
-            console.log(jwtDecode(response.data.access))
-            dispatch(login(jwtDecode(response.data.access)))
-            return navigate('/services')
+        try {
+            const response = await axios.post('/api/login', JSON.stringify(cred), {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            console.log(response.data.tokens.access)
+            console.log(jwtDecode(response.data.tokens.access))
+            dispatch(login(jwtDecode(response.data.tokens.access)))
+            
+        } catch(err) {
+            return setAlert(err.response.data.detail)
         }
     }
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-            <input onChange={e => setCred({...cred, email: e.target.value})} type='email' name='email' placeholder="Email" />
-            <input onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
+            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, email: e.target.value})} type='email' name='email' placeholder="Email" />
+            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
+            <Link className='text-primary my-6' to='/login/recovery'>Forgot your password?</Link>
             <button className="rounded-3xl py-2 px-6 bg-primary text-white" type='submit'>Log in</button>
             {alert ? <p className="text-red-400">{alert}</p> : <></>}
         </form>
