@@ -27,14 +27,18 @@ const Form = () => {
     const handleSubmit = async e => {
         e.preventDefault()
         try {
-            const response = await axios.post('/api/token', JSON.stringify(cred), {
+            const response = await axios.post('/api/login', JSON.stringify(cred), {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            console.log(response.data.tokens.access)
-            console.log(jwtDecode(response.data.tokens.access))
-            dispatch(login(jwtDecode(response.data.tokens.access)))
+            let user = jwtDecode(response.data.tokens.access)
+            dispatch(login({
+                id: user.user_id,
+                username: user.username,
+                email: user.email
+            }))
+            return navigate('/services')
             
         } catch(err) {
             return setAlert(err.response.data.detail)

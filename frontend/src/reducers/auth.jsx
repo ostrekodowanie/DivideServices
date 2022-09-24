@@ -4,7 +4,11 @@ const loginSlice = createSlice({
     name: 'login',
     initialState: {
         logged: false,
-        info: {}
+        info: {
+            id: '',
+            username: '',
+            email: ''
+        }
     },
     reducers: {
         login: (state, action) => {

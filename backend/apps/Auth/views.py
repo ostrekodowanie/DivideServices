@@ -49,7 +49,7 @@ class LoginView(APIView):
         if not user.check_password(password):
             raise AuthenticationFailed('Incorrect password')
 
-        tokens = str(MyTokenObtainPairSerializer.get_token())
+        tokens = MyTokenObtainPairSerializer(request.data).validate(request.data)
 
         response = {'message': 'Login Successfull', 'tokens': tokens}
         return Response(data=response, status=status.HTTP_200_OK)
