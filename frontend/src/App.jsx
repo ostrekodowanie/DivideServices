@@ -6,13 +6,23 @@ import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./reducers/auth";
+
+const loginFromLocalStorage = JSON.parse(localStorage.getItem('login'))
 
 export default function App() {
+  const dispatch = useDispatch()
   const { info } = useSelector(state => state.login)
+
   useEffect(() => {
-    console.log(info)
+    if(loginFromLocalStorage) dispatch(login(loginFromLocalStorage))
+  }, [])
+  
+  useEffect(() => {
+    localStorage.setItem('login', JSON.stringify(info))
   }, [info])
+
   return (
     <>
       <Header />

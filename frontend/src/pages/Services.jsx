@@ -4,9 +4,13 @@ import axios from 'axios'
 export default function Services() {
     const [products, setProducts] = useState([])
     useEffect(() => {
-        axios.get('/api/products')
-            .then(res => res.data)
-            .then(data => setProducts(data))
+        axios.get('/api/products', {
+            headers: {
+                'Authorization': 'Bearer'
+            }
+        })
+        .then(res => res.data)
+        .then(data => setProducts(data))
     }, [])
     return (
         <section className="padding pt-[1.4in] xl:pt-[2.2in]">

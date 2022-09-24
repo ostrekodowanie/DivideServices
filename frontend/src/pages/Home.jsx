@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { main, arrow, shadow, activeusers } from '../assets/home'
 import Clap from '../components/Clap'
+import { useSelector } from 'react-redux'
 
 export default function Home() {
     return (
