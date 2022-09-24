@@ -9,12 +9,11 @@ from .serializers import SignUpSerializer
 from .token import get_tokens_for_user
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-from django.views.generic import View
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
-        token = super().get_token(user)
+        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
         
         token['username'] = user.username
         token['email'] = user.email
@@ -39,10 +38,10 @@ class SignUpView(generics.GenericAPIView):
         
 class LoginView(APIView):
     def post(self, request):
+
         email = request.data['email']
         password = request.data['password']
 
-        #user = User.objects.filter(email=email).first()
         user = authenticate(email=email, password=password)
         
         if user is None:
@@ -51,24 +50,7 @@ class LoginView(APIView):
         if not user.check_password(password):
             raise AuthenticationFailed('Incorrect password')
 
-        tokens = get_tokens_for_user(user)
+        tokens = str(MyTokenObtainPairSerializer.get_token())
 
         response = {'message': 'Login Successfull', 'tokens': tokens}
         return Response(data=response, status=status.HTTP_200_OK)
-
-class UserView(APIView):
-
-    def get(self, request):
-        token = request.COOKIES.get('jwt')
-
-        if not token:
-            raise AuthenticationFailed('Unauthenticated!')
-        try:
-            payload = get_tokens_for_user.decode(token, 'secret', algorithms=['HS256'])
-        except get_tokens_for_user.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated!')
-
-        user = User.objects.filter(id=payload['id']).first()
-        serializer = SignUpSerializer(user)
-
-        return Response(serializer.data)

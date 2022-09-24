@@ -19,3 +19,4 @@ class SignUpSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
