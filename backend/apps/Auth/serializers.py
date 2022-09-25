@@ -4,7 +4,7 @@ from rest_framework import serializers
 class SignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
-        fields = '__all__'
+        fields = ['username', 'email', 'password']
         extra_kwargs = {
             'password': {'write_only': True}
         }
