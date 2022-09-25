@@ -9,7 +9,8 @@ const loginSlice = createSlice({
             username: '',
             email: '',
             tokens: {
-                access: ''
+                access: '',
+                refresh: ''
             }
         }
     },

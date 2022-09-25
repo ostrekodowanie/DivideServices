@@ -37,9 +37,7 @@ const Form = () => {
                 id: user.user_id,
                 username: user.username,
                 email: user.email,
-                tokens: {
-                    access: response.data.tokens.access
-                }
+                tokens: response.data.tokens
             }))
             return navigate('/services')
             
