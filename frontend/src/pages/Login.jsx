@@ -36,7 +36,10 @@ const Form = () => {
             dispatch(login({
                 id: user.user_id,
                 username: user.username,
-                email: user.email
+                email: user.email,
+                tokens: {
+                    access: response.data.tokens.access
+                }
             }))
             return navigate('/services')
             
