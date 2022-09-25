@@ -5,10 +5,11 @@ import { useSelector } from "react-redux"
 export default function Services() {
     const [products, setProducts] = useState([])
     const { access } = useSelector(state => state.login.info.tokens)
+    console.log(access)
     useEffect(() => {
         axios.get('/api/products', {
             headers: {
-                'Authorization': 'Bearer' + String(access)
+                'Authorization': 'Bearer ' + String(access)
             }
         })
         .then(res => res.data)
