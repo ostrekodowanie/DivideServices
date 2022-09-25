@@ -8,7 +8,7 @@ export default function Signup() {
     const location = useLocation()
     return (
         <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center">
-            <h1 className="text-4xl font-bold mb-8">Signup</h1>
+            <h1 className="text-4xl font-bold mb-8">Sign Up</h1>
             {location.pathname.includes('token') ? <Verified /> : <Form />}
         </section>
     )
@@ -59,7 +59,7 @@ const Verified = () => {
     return (
         <>
             <h2>Your account has been verified</h2>
-            <Link className="rounded-3xl text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/login'>Log in</Link>
+            <Link className="rounded-3xl py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/login'>Log in</Link>
         </>
     )
 }

@@ -9,7 +9,7 @@ import jwtDecode from "jwt-decode"
 export default function Login() {
     return (
         <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center">
-            <h1 className="text-4xl font-bold mb-8">Login</h1>
+            <h1 className="text-4xl font-bold mb-8">Log In</h1>
             <Form />
         </section>
     )

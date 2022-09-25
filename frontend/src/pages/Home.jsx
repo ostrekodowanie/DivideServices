@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { main, arrow, shadow, activeusers } from '../assets/home'
 import Clap from '../components/Clap'
-import { useSelector } from 'react-redux'
 
 export default function Home() {
     return (
@@ -10,7 +9,7 @@ export default function Home() {
             <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col lg:flex-row justify-between relative min-h-[70vh]">
                 <div className="flex flex-col gap-8">
                     <h1 className="text-4xl lg:text-5xl lg:leading-tight xl:text-[4rem] max-w-[4.2in] xl:leading-tight leading-snug font-semibold"><span className='text-primary'>Divide</span> your business<br /><Clap classes={'top-3'} /> solutions.</h1>
-                    <p className='text-[#4A454F] font-medium xl:text-md max-w-[3.5in]'>Make your work routine become easier and faster</p>
+                    <p className='text-[#4A454F] xl:text-md max-w-[3.5in]'>Make your work routine become easier and faster</p>
                     <CTA />
                 </div>
                 <MainImage />
@@ -89,16 +88,6 @@ const scrollerSteps = [
     },
 ]
 
-const Scroller = props => {
-    return (
-        <div className={`pl-8 py-6 md:py-10 md:pl-20 flex flex-col gap-4 ${props.active === props.id ? 'bg-insideShadowPrimary' : 'bg-insideShadowGray'}`}>
-            <h4 className='text-primary'>Step {props.id + 1}</h4>
-            <h3 className='font-semibold text-2xl md:text-3xl'>{props.title}</h3>
-            <p className='text-[#4A454F] max-w-md leading-relaxed'>{props.p}</p>
-        </div>
-    )
-}
-
 const Steps = () => {
     const [active, setActive] = useState(0)
     return (
@@ -109,7 +98,7 @@ const Steps = () => {
                 <span className='md:text-3xl md:self-start'>into smaller steps</span>
             </h2>
             <div className='flex'>
-                <div className='bg-[#F9F5FE] rounded-md w-3 justify-self-stretch grid grid-rows-[repeat(3,1fr)]'>
+                <div className='bg-[#F9F5FE] rounded-md w-3 justify-self-stretch grid grid-rows-[repeat(3,1fr)] transition-transform ease-in-out' style={{transform: `translateY(100% * ${active})`}}>
                     <div className='bg-primary rounded-md'></div>
                 </div>
                 <div className='flex flex-col w-full'>
@@ -117,5 +106,15 @@ const Steps = () => {
                 </div>
             </div>
         </section>
+    )
+}
+
+const Scroller = props => {
+    return (
+        <div className={`pl-8 py-6 md:py-10 md:pl-20 flex flex-col gap-4 ${props.active === props.id ? 'bg-insideShadowPrimary' : 'bg-insideShadowGray'}`}>
+            <h4 className='text-primary'>Step {props.id + 1}</h4>
+            <h3 className='font-semibold text-2xl md:text-3xl'>{props.title}</h3>
+            <p className='text-[#4A454F] max-w-md leading-relaxed'>{props.p}</p>
+        </div>
     )
 }
