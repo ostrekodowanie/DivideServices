@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-58xg^#iyh87q!$fii2i#r#qzlx_ay-o(1c09oh1rdq*reot51r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'divideservices.up.railway.app']
 
 
 # Application definition
@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
-
     'apps.Product',
     'apps.Auth',
     'apps.Orders',
@@ -51,9 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
     'corsheaders.middleware.CorsMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -146,6 +143,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
+  'https://divideservices.up.railway.app'
 )
 
 REST_FRAMEWORK = {
@@ -155,7 +153,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=10),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
