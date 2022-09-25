@@ -35,17 +35,12 @@ const Navbar = ({ nav }) => {
     const auth = useSelector(state => state.login)
     const { logged } = auth
     const { username } = auth.info
-    const { access } = auth.info.tokens
 
     const handleLogout = async () => {
-        const response = await axios.post('/api/logout', JSON.stringify(access), {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        const response = await axios.post('/api/logout').catch(err => console.log(err))
         if(response.status === 200) return dispatch(logout())
     }
-    
+
     return (
         <div className={`flex flex-col items-center justify-center gap-[3vw] absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-white ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
             <CustomLink className="text-sm" to='/'>Home</CustomLink>
