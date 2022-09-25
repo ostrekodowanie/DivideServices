@@ -3,6 +3,7 @@ import { logo } from "../assets/header"
 import { Link, useResolvedPath, useMatch } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { logout } from "../reducers/auth"
+import axios from "axios"
 
 export default function Header() {
     const [nav, setNav] = useState(false)
@@ -34,6 +35,17 @@ const Navbar = ({ nav }) => {
     const auth = useSelector(state => state.login)
     const { logged } = auth
     const { username } = auth.info
+    const { access } = auth.info.tokens
+
+    const handleLogout = async () => {
+        const response = await axios.post('/api/logout', JSON.stringify(access), {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if(response.status === 200) return dispatch(logout())
+    }
+    
     return (
         <div className={`flex flex-col items-center justify-center gap-[3vw] absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-white ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
             <CustomLink className="text-sm" to='/'>Home</CustomLink>
@@ -42,7 +54,7 @@ const Navbar = ({ nav }) => {
             {!logged ? <div className="flex flex-col sm:flex-row mt-2 sm:mt-0 ml-2 items-center gap-[2vw] lg:gap-[1.5vw]">
                 <CustomLink className="text-sm" to='/login'>Login</CustomLink>
                 <Link className="rounded-3xl text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/signup'>Sign up</Link>
-            </div> : <span className="font-semibold cursor-pointer" onClick={() => dispatch(logout())}>{username}</span>}
+            </div> : <span className="font-semibold cursor-pointer" onClick={handleLogout}>{username}</span>}
         </div>
     )
 }
