@@ -7,7 +7,10 @@ const loginSlice = createSlice({
         info: {
             id: '',
             username: '',
-            email: ''
+            email: '',
+            tokens: {
+                access: ''
+            }
         }
     },
     reducers: {

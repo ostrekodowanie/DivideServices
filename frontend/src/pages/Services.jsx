@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
+import { useSelector } from "react-redux"
 
 export default function Services() {
     const [products, setProducts] = useState([])
+    const { access } = useSelector(state => state.login.info.tokens)
     useEffect(() => {
         axios.get('/api/products', {
             headers: {
-                'Authorization': 'Bearer'
+                'Authorization': 'Bearer' + String(access)
             }
         })
         .then(res => res.data)
