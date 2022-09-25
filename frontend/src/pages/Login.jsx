@@ -32,12 +32,12 @@ const Form = () => {
                     'Content-Type': 'application/json'
                 }
             })
-            let user = jwtDecode(response.data.tokens.access)
+            let user = jwtDecode(response.data.access)
             dispatch(login({
                 id: user.user_id,
                 username: user.username,
                 email: user.email,
-                tokens: response.data.tokens
+                tokens: response.data
             }))
             return navigate('/services')
             
@@ -49,10 +49,10 @@ const Form = () => {
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
             <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, email: e.target.value})} type='email' name='email' placeholder="Email" />
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
-            <Link className='text-primary my-6' to='/login/recovery'>Forgot your password?</Link>
-            <button className="rounded-3xl py-2 px-6 bg-primary text-white" type='submit'>Log in</button>
+            <input className="py-2 px-6 border-b-[1px] mb-3 border-primary outline-none" onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
             {alert ? <p className="text-red-400">{alert}</p> : <></>}
+            <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white" type='submit'>Log in</button>
+            <Link className='text-primary' to='/login/recovery'>Forgot your password?</Link>
         </form>
     )
 }

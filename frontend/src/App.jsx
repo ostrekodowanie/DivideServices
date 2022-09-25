@@ -5,7 +5,7 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "./reducers/auth";
 import axios from "axios";
@@ -15,18 +15,18 @@ const loginFromLocalStorage = JSON.parse(localStorage.getItem('login'))
 
 export default function App() {
   const dispatch = useDispatch()
-  const timer = useRef()
-  const { info } = useSelector(state => state.login)
-  const { refresh } = info.tokens
+  const auth = useSelector(state => state.login)
+  const { info } = auth
+  const { refresh } = info
 
   useEffect(() => {
-    if(loginFromLocalStorage) dispatch(login(loginFromLocalStorage))
+    if(loginFromLocalStorage.id !== '') dispatch(login(loginFromLocalStorage))
   }, [])
   
   useEffect(() => {
     localStorage.setItem('login', JSON.stringify(info))
     if(refresh) {
-      timer.current = setTimeout(() => {
+      setTimeout(() => {
         updateToken()
       }, 10000)
     }

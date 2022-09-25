@@ -24,7 +24,11 @@ const loginSlice = createSlice({
             state.info = {
                 id: '',
                 username: '',
-                email: ''
+                email: '',
+                tokens: {
+                    access: '',
+                    refresh: ''
+                }
             }
         }
     }

@@ -41,7 +41,7 @@ class LoginView(APIView):
         email = request.data['email']
         password = request.data['password']
 
-        user = authenticate(email=email, password=password)
+        user = User.objects.filter(email=email).first()
         
         if user is None:
             raise AuthenticationFailed('User not found')
@@ -51,5 +51,5 @@ class LoginView(APIView):
 
         tokens = MyTokenObtainPairSerializer(request.data).validate(request.data)
 
-        response = {'message': 'Login Successfull', 'tokens': tokens}
+        response = {'message': 'Login Successfull', 'access': tokens['access'], 'refresh': tokens['refresh']}
         return Response(data=response, status=status.HTTP_200_OK)
