@@ -1,7 +1,6 @@
 import Header from "./components/Header";
 import { Route, Routes } from "react-router";
 import Home from "./pages/Home";
-import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -10,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "./reducers/auth";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import Products from "./pages/Products";
+import Footer from "./components/Footer";
 
 const loginFromLocalStorage = JSON.parse(localStorage.getItem('login'))
 
@@ -57,12 +58,13 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/services/*" element={<Services />} />
+          <Route path="/products/*" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/signup/*" element={<Signup />} />
         </Routes>
       </main>
+      <Footer />
     </>
   )
 }

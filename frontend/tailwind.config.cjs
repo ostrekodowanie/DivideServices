@@ -19,7 +19,10 @@ module.exports = {
       },
       backgroundImage: {
         insideShadowPrimary: 'linear-gradient(270deg, rgba(133, 47, 242, 0.05) 0%, rgba(217, 217, 217, 0) 100%, #F6EFFE 100%);', 
-        insideShadowGray: 'linear-gradient(270deg, rgba(204, 202, 206, 0.05) 0%, rgba(217, 217, 217, 0) 100%, #F6EFFE 100%);'
+        insideShadowGray: 'linear-gradient(270deg, rgba(204, 202, 206, 0.05) 0%, rgba(217, 217, 217, 0) 100%, #F6EFFE 100%);',
+      },
+      boxShadow: {
+        outsideShadowPrimary: '0px 4px 60px rgba(179, 126, 242, 0.20);'
       }
     },
   },
