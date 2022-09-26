@@ -153,7 +153,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=10),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=3),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -194,3 +194,5 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'portfoliositeexample@gmail.com'
 EMAIL_HOST_PASSWORD = 'hgsgdpxhmuqrcssx'
 ACCOUNT_SESSION_REMEMBER = None
+
+SESSION_COOKIE_SECURE = False

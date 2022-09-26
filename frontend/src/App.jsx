@@ -28,7 +28,7 @@ export default function App() {
     if(refresh) {
       setTimeout(() => {
         updateToken()
-      }, 10000)
+      }, 180000)
     }
   }, [info])
 
