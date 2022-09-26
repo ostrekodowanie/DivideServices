@@ -4,7 +4,7 @@ import contact from '../assets/contact.png'
 
 export default function Contact() {
     return (
-        <section className="padding pt-[1.4in] xl:pt-[1.8in] flex flex-col xl:flex-row justify-between relative xl:gap-12">
+        <section className="padding pt-[1.4in] xl:pt-[1.8in] flex flex-col xl:flex-row justify-between relative xl:gap-12 min-h-screen">
             <div className='flex flex-col xl:max-w-[45%]'>
                 <div className="flex items-center gap-x-4 mb-8 lg:gap-x-8">
                     <Clap maxH='auto' classes='' />
@@ -19,7 +19,7 @@ export default function Contact() {
 
 const ContactImage = () => {
     return (
-        <div className='xl:max-w-[60%] relative self-end ml-auto mt-8 md:mt-0'>
+        <div className='xl:max-w-[60%] relative xl:self-end mx-auto xl:ml-auto mt-8 xl:mt-0'>
             <img src={contact} alt='' />
             <img className='absolute -bottom-[2in] -z-10 w-[150%]' src={shadow} alt='' />
         </div>

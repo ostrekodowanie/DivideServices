@@ -10,6 +10,7 @@ import { login, logout } from "./reducers/auth";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import Products from "./pages/Products";
+import Footer from "./components/Footer";
 
 const loginFromLocalStorage = JSON.parse(localStorage.getItem('login'))
 
@@ -63,6 +64,7 @@ export default function App() {
           <Route path="/signup/*" element={<Signup />} />
         </Routes>
       </main>
+      <Footer />
     </>
   )
 }
