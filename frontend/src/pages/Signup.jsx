@@ -7,7 +7,7 @@ import axios from 'axios'
 export default function Signup() {
     const location = useLocation()
     return (
-        <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center">
+        <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center min-h-screen">
             <h1 className="text-4xl font-bold mb-8">Sign Up</h1>
             {location.pathname.includes('token') ? <Verified /> : <Form />}
         </section>
@@ -31,15 +31,18 @@ const Form = () => {
         if(cred.password !== confPwd) return setAlert("Passwords didn't match!")
         if(cred.password.length < 8) return setAlert("Password must contain at least 8 characters.")
         if(!PWD_REGEX.test(cred.password)) return setAlert("Password must contain at 1 number.")
-        
-        const response = await axios.post('/api/signup', JSON.stringify(cred), {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
 
-        if(response.status !== 201) return setAlert(response.data)
-        else navigate('/login')
+        try {
+            await axios.post('/api/signup', JSON.stringify(cred), {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            return navigate('/login')
+        } catch(err) {
+            if(err.response.data.email) return setAlert(err.response.data.email)
+            return setAlert(err.response.data.username)
+        }
     }
 
     return (
