@@ -16,10 +16,12 @@ from .models import User
 from .serializers import SignUpSerializer
 from .utils import Util
 from .token import get_tokens_for_user
-from rest_framework_simplejwt.tokens import AccessToken
 
-from rest_framework_simplejwt.tokens import RefreshToken, SlidingToken, UntypedToken
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken, SlidingToken, UntypedToken, AccessToken
 from .models import User
+
+import jwt
 
 def index(request, *args, **kwargs):
     return render(request, 'dist/index.html')
@@ -37,7 +39,6 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 class SignUpView(generics.GenericAPIView):
-    permission_classes = [permissions.AllowAny]
     serializer_class = SignUpSerializer
     def post(self, request):
         data = request.data
@@ -63,24 +64,23 @@ class SignUpView(generics.GenericAPIView):
 
 class VerifyEmailView(generics.GenericAPIView):
     def get(self, request):
-        token = request.COOKIES.get('id')
-        print(token)
-        pass
+        
+        token = request.GET.get('token')
+        
         try:
-            payload = urlsafe_b64decode(token, settings.SECRET_KEY, algorithms=['HS256'])
-            user = User.objects.get(id=payload['user_id'])
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            print(payload)
+            user = User.objects.get(pk=payload['user_id'])
             if not user.is_verified:
                 user.is_verified = True
                 user.save()
-            
             return Response({'Successfully activated'}, status=status.HTTP_200_OK)
-        except get_tokens_for_user.ExpiredSignatureError as identifier:
+        except jwt.ExpiredSignatureError as identifier:
             return Response({'Activation link expired'}, status=status.HTTP_400_BAD_REQUEST)
-        except get_tokens_for_user.exceptions.DecodeError as identifier:
+        except jwt.exceptions.DecodeError as identifier:
             return Response({'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
-    permission_classes = [permissions.AllowAny]
     def post(self, request):
 
         email = request.data['email']
@@ -103,8 +103,39 @@ class LoginView(APIView):
 
         response = Response()
 
-        response.set_cookie(key='jwt', value=access, httponly=True)
+        response.set_cookie(key = 'jwt', 
+                            value = access,
+                            expires = settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+                            httponly = True,
+                            )
         response.data = {'message': 'Login Successfull', 'access': tokens['access'], 'refresh': tokens['refresh']}
         response.status = status.HTTP_200_OK
-        print(response)
+        
         return response
+
+class LogoutView(APIView):
+    def post(self, request):
+        response = Response()
+        response.delete_cookie('jwt')
+        response.data = {
+            'message': 'success'
+        }
+        response.status = status.HTTP_200_OK
+        return response
+
+class UserView(APIView):
+    def get(self, request):
+        token = request.COOKIES.get('jwt')
+
+        if not token:
+            raise AuthenticationFailed('Unauthenticated!')
+        try:
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated!')
+
+        user = User.objects.filter(email=payload['email']).first()
+        serializer = SignUpSerializer(user)
+
+        return Response(serializer.data)
+
