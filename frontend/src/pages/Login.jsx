@@ -78,6 +78,7 @@ const Recovery = () => {
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
             <input className="py-2 px-6 border-b-[1px] border-primary outline-none" required onChange={e => setEmail(e.target.value)} type='email' name='email' placeholder="Email" />
+            {alert ? <p className="text-red-400">{alert}</p> : <></>}
             <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white" type='submit'>Send message</button>
             <Link className='text-primary' to='/login'>Remember your password?</Link>
         </form>
@@ -111,7 +112,7 @@ const ChangePassword = () => {
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
             <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setPassword({...password, password: e.target.value})} type='password' name='password' placeholder="Password" />
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setPassword({...password, confirmPassword: e.target.value})} type='password' name='confirm_password' placeholder="Confirm password" />
+            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setPassword({...password, confPwd: e.target.value})} type='password' name='confirm_password' placeholder="Confirm password" />
             <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white" type='submit'>Change password</button>
             {alert ? <p className={alert === 'Your password has been changed successfully!' ? 'text-green-400' : 'text-red-400'}>{alert}</p> : <></>}
         </form>
