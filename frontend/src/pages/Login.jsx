@@ -59,6 +59,7 @@ const Form = () => {
 }
 
 const Recovery = () => {
+    const [alert, setAlert] = useState('')
     const [email, setEmail] = useState('')
 
     const handleSubmit = async e => {
