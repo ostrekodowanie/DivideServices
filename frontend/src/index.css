@@ -44,7 +44,6 @@ body {
   }
 }
 
-
 @keyframes clapLeft {
   0% {
     transform: translateX(0%);
@@ -54,10 +53,24 @@ body {
   }
 }
 
+@keyframes clapNoise {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-10%, -10%);
+  }
+}
+
 .clap-right {
   animation: clapRight 200ms alternate infinite;
 }
 
 .clap-left {
   animation: clapLeft 200ms alternate infinite;
+}
+
+.clap-noise {
+  animation: clapNoise 200ms alternate infinite ease-out;
 }

@@ -8,7 +8,7 @@ export default function Home() {
         <>
             <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col lg:flex-row justify-between relative min-h-[70vh]">
                 <div className="flex flex-col gap-8">
-                    <h1 className="text-4xl lg:text-5xl lg:leading-tight xl:text-[4rem] max-w-[4.2in] xl:leading-tight leading-snug font-semibold"><span className='text-primary'>Divide</span> your business<br /><Clap classes={'top-3'} /> solutions.</h1>
+                    <h1 className="text-4xl lg:text-5xl lg:leading-tight xl:text-[4rem] max-w-[4.2in] xl:leading-tight leading-snug font-semibold"><span className='text-primary'>Divide</span> your business<br /><Clap maxH='1em' classes='top-3' /> solutions.</h1>
                     <p className='text-[#4A454F] xl:text-md max-w-[3.5in]'>Make your work routine become easier and faster</p>
                     <CTA />
                 </div>
