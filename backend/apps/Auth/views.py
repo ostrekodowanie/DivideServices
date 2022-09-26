@@ -127,7 +127,8 @@ class PasswordResetView(APIView):
     serializer_class = PasswordResetSerializer
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
-        email = request.data['email']
+        print(request.data)
+        email = request.data
         
         if User.objects.filter(email=email).exists():
             user = User.objects.get(email=email)
@@ -135,7 +136,7 @@ class PasswordResetView(APIView):
             token = PasswordResetTokenGenerator().make_token(user)
             current_site = get_current_site(request=request).domain
             relativeLink = reverse('password-reset-confirm', kwargs={'uidb64':uidb64, 'token':token})
-            absurl = 'https://' + current_site + relativeLink
+            absurl = 'http://' + current_site + relativeLink
             email_body = 'Hi ' + user.username + '\nReset password: ' + absurl
             data = {'email_body': email_body, 'to_email': user.email, 'email_subject': 'Reset your password'}
             

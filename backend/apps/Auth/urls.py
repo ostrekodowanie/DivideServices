@@ -13,4 +13,8 @@ urlpatterns = [
     path('api/token', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/logout', views.LogoutView.as_view()),
+    path('login/recovery/<uidb64>/<token>', views.index, name='password-reset-confirm'),
+    path('api/login/recovery/<uidb64>/<token>', views.PasswordTokenCheckAPI.as_view()),
+    path('api/login/recovery/complete', views.NewPasswordAPIView.as_view(), name='complete'),
+    path('api/login/recovery', views.PasswordResetView.as_view(), name='recovery'),
 ]
