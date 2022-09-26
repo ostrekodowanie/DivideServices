@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from django.db import models
 from apps.Auth.models import User
 from apps.Product.models import Product
