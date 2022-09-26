@@ -101,7 +101,7 @@ const Steps = () => {
                 <div className='bg-[#F9F5FE] rounded-md w-3 justify-self-stretch grid grid-rows-[repeat(3,1fr)] transition-transform ease-in-out' style={{transform: `translateY(100% * ${active})`}}>
                     <div className='bg-primary rounded-md'></div>
                 </div>
-                <div className='flex flex-col w-full'>
+                <div className='flex flex-col w-full overflow-hidden rounded-3xl'>
                     {scrollerSteps.map((step, i) => <Scroller active={active} {...step} id={i} key={i} />)}
                 </div>
             </div>

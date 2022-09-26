@@ -9,7 +9,7 @@ import jwtDecode from "jwt-decode"
 export default function Login() {
     const location = useLocation()
     return (
-        <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center">
+        <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center min-h-screen">
             <h1 className="text-4xl font-bold mb-8">{location.pathname.split('/').pop() === 'login' ? 'Log In' : 'Change Password'}</h1>
             {location.pathname.split('/').pop() === 'login' ? <Form /> : location.pathname.split('/').pop() === 'recovery' ? <Recovery /> : <ChangePassword />}
         </section>
@@ -63,7 +63,7 @@ const Recovery = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        const response = await axios.post('/api/login/recovery', JSON.stringify(email), {
+        const response = await axios.post('/api/login/recovery', email, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -71,7 +71,7 @@ const Recovery = () => {
         if(response.status === 200) {
             return setAlert('Message has been sent')
         }
-        return setAlert('Error')
+        return setAlert('User not found')
     }
 
     return (
