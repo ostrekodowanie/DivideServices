@@ -12,7 +12,15 @@ import jwtDecode from "jwt-decode";
 import Products from "./pages/Products";
 import Footer from "./components/Footer";
 
-const loginFromLocalStorage = JSON.parse(localStorage.getItem('login'))
+const loginFromLocalStorage = JSON.parse(localStorage.getItem('login')) ? JSON.parse(localStorage.getItem('login')) : {
+  id: '',
+  username: '',
+  email: '',
+  tokens: {
+      access: '',
+      refresh: ''
+  }
+}
 
 export default function App() {
   const dispatch = useDispatch()
