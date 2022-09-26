@@ -39,7 +39,6 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 class SignUpView(generics.GenericAPIView):
-    permission_classes = [permissions.AllowAny]
     serializer_class = SignUpSerializer
     def post(self, request):
         data = request.data
@@ -82,8 +81,6 @@ class VerifyEmailView(generics.GenericAPIView):
             return Response({'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [permissions.AllowAny]
     def post(self, request):
 
         email = request.data['email']
