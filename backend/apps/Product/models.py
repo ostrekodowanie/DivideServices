@@ -13,6 +13,7 @@ CATEGORIES = [
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
+    desc = models.CharField(max_length=255)
     image = models.ImageField(upload_to='')
     price = models.FloatField()
     discount = models.IntegerField(default=0)

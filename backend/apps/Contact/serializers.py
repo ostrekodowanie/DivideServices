@@ -7,7 +7,7 @@ class ContactSerializer(serializers.Serializer):
     surname = serializers.CharField(max_length=255)
     email = serializers.EmailField(max_length=255)
     phone_number = serializers.CharField(max_length=15)
-    message = serializers.CharField(max_length=255)
+    message = serializers.CharField(min_length=1)
 
     class meta:
         fields = '__all__'

@@ -2,6 +2,7 @@ import Clap from "../components/Clap"
 import { shadow } from '../assets/home'
 import contact from '../assets/contact.png'
 import axios from "axios"
+import { useState } from "react"
 
 export default function Contact() {
     return (

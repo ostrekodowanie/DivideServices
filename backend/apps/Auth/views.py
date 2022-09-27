@@ -65,16 +65,18 @@ class SignUpView(generics.GenericAPIView):
 class VerifyEmailView(generics.GenericAPIView):
     def get(self, request):
         token = request.GET.get('token')
-        
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
-            print(payload)
             user = User.objects.get(pk=payload['user_id'])
             if not user.is_verified:
                 user.is_verified = True
                 user.save()
             return Response({'Successfully activated'}, status=status.HTTP_200_OK)
         except jwt.ExpiredSignatureError as identifier:
+            payload = jwt.decode(token, settings.SECRET_KEY,  algorithms=['HS256'], options={"verify_signature": False})
+            print(User.objects.filter(pk=payload['user_id']).exists())
+            if User.objects.filter(pk=payload['user_id']).exists() == True:
+                User.objects.get(pk=payload['user_id']).delete()
             return Response({'Activation link expired'}, status=status.HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError as identifier:
             return Response({'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
