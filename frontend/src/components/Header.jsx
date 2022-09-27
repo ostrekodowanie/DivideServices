@@ -1,12 +1,19 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { logo } from "../assets/header"
-import { Link, useResolvedPath, useMatch } from 'react-router-dom'
+import { Link, useResolvedPath, useMatch, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { logout } from "../reducers/auth"
 import axios from "axios"
 
 export default function Header() {
     const [nav, setNav] = useState(false)
+    const location = useLocation()
+
+    useEffect(() => {
+        setNav(false)
+        window.scrollTo(0, 0)
+    }, [location])
+
     return (
         <header className="flex items-center justify-between padding min-h-[6rem] xl:min-h-[7rem] fixed z-50 top-0 right-0 left-0 bg-white">
             <Logo />
