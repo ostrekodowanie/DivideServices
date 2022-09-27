@@ -64,7 +64,6 @@ class SignUpView(generics.GenericAPIView):
 
 class VerifyEmailView(generics.GenericAPIView):
     def get(self, request):
-        
         token = request.GET.get('token')
         
         try:
@@ -82,7 +81,6 @@ class VerifyEmailView(generics.GenericAPIView):
 
 class LoginView(APIView):
     def post(self, request):
-
         email = request.data['email']
         password = request.data['password']
 
@@ -90,19 +88,15 @@ class LoginView(APIView):
         
         if user is None:
             raise AuthenticationFailed('User not found')
-
         if not user.check_password(password):
             raise AuthenticationFailed('Incorrect password')
-
         if user.is_verified == False:
             raise AuthenticationFailed('Activate your account')
 
         tokens = MyTokenObtainPairSerializer(request.data).validate(request.data)
-        
         access = tokens['access']
 
         response = Response()
-
         response.set_cookie(key = 'jwt', 
                             value = access,
                             expires = settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
@@ -110,7 +104,6 @@ class LoginView(APIView):
                             )
         response.data = {'message': 'Login Successfull', 'access': tokens['access'], 'refresh': tokens['refresh']}
         response.status = status.HTTP_200_OK
-        
         return response
 
 class LogoutView(APIView):
@@ -127,7 +120,6 @@ class PasswordResetView(APIView):
     serializer_class = PasswordResetSerializer
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
-        print(request.data)
         email = request.data
         
         if User.objects.filter(email=email).exists():
@@ -139,8 +131,8 @@ class PasswordResetView(APIView):
             absurl = 'http://' + current_site + relativeLink
             email_body = 'Hi ' + user.username + '\nReset password: ' + absurl
             data = {'email_body': email_body, 'to_email': user.email, 'email_subject': 'Reset your password'}
-            
             Util.send_email(data)
+            
             return Response({'success':'A reset password link has been sent'}, status=status.HTTP_200_OK)
         return Response({'error':'Account does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
