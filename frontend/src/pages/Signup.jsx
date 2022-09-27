@@ -9,8 +9,10 @@ export default function Signup() {
     const location = useLocation()
     return (
         <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center min-h-screen">
-            <h1 className="text-4xl font-bold mb-8">Sign Up</h1>
-            {location.pathname.split('/').pop() === 'signup' ? <Form /> : <Verified />}
+            <div className="flex flex-col">
+                <h1 className="text-4xl xl:text-[2.5rem] font-semibold mb-8">Sign Up</h1>
+                {location.pathname.split('/').pop() === 'signup' ? <Form /> : <Verified />}
+            </div>
         </section>
     )
 }
@@ -49,22 +51,40 @@ const Form = () => {
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, username: e.target.value})} type='text' name='username' placeholder="Username" />
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, email: e.target.value})} type='text' name='email' placeholder="Email" />
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
-            <input className="py-2 px-6 border-b-[1px] mb-3 border-primary outline-none" onChange={e => setConfPwd(e.target.value)} type='password' name='confPassword' placeholder="Confirm password" />
+            <div className="flex flex-col gap-2">
+                <label className="ml-6" htmlFor="username">Username</label>
+                <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" onChange={e => setCred({...cred, username: e.target.value})} type='text' name='username' id='username' placeholder="exampleusername" />
+            </div>
+            <div className="flex flex-col gap-2">
+                <label className="ml-6" htmlFor="email">Email</label>
+                <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" onChange={e => setCred({...cred, email: e.target.value})} type='text' name='email' id='email' placeholder="examplemail@gmail.com" />
+            </div>
+            <div className="flex flex-col gap-2">
+                <label className="ml-6" htmlFor="password">Password</label>
+                <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' id="password" placeholder="Password" />
+            </div>
+            <div className="flex flex-col gap-2">
+                <label className="ml-6" htmlFor="confPassword">Email</label>
+                <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" onChange={e => setConfPwd(e.target.value)} type='password' name='confPassword' id="confPassword" placeholder="Confirm password" />
+            </div>
+            <span className="text-sm">Already have an account? <Link className="text-primary" to='/login'>Log in.</Link></span>
             {alert && alert !== 'loading' ? <p className="text-red-400">{alert}</p> : <></>}
-            <button className="rounded-3xl py-2 px-6 bg-primary text-white mb-6 mt-3" type='submit'>Sign up</button>
-            <span>Already have an account? <Link className="text-primary" to='/login'>Log in.</Link></span>
+            <button className="rounded-3xl py-2 px-6 bg-primary text-white mb-6 mt-3 max-w-max" type='submit'>Sign up</button>
             {alert === 'loading' ? <Loader /> : <></>}
         </form>
     )
 }
 
 const Verified = () => {
+    const [alert, setAlert] = useState('loading')
+    useEffect(() => {
+        axios.get('/api/signup/activate')
+            .then(res => res.data)
+            .then(data => setAlert(data))
+    }, [])
     return (
         <>
-            <h2>Your account has been verified</h2>
+            {alert && alert === 'loading' ? <Loader /> : <h2>{alert}</h2>}
             <Link className="rounded-3xl py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/login'>Log in</Link>
         </>
     )

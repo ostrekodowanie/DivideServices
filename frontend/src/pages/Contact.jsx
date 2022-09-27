@@ -1,6 +1,7 @@
 import Clap from "../components/Clap"
 import { shadow } from '../assets/home'
 import contact from '../assets/contact.png'
+import { useState } from "react"
 import axios from "axios"
 
 export default function Contact() {
