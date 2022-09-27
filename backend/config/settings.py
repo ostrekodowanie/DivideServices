@@ -145,6 +145,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
   'https://divideservices.up.railway.app',
+  'https://services.divideproject.works',
 )
 
 REST_FRAMEWORK = {
