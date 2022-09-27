@@ -3,13 +3,14 @@ import { useNavigate } from "react-router"
 import { useLocation } from "react-router"
 import { Link } from "react-router-dom"
 import axios from 'axios'
+import Loader from "../components/Loader"
 
 export default function Signup() {
     const location = useLocation()
     return (
         <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center min-h-screen">
             <h1 className="text-4xl font-bold mb-8">Sign Up</h1>
-            {location.pathname.includes('token') ? <Verified /> : <Form />}
+            {location.pathname.split('/').pop() === 'signup' ? <Form /> : <Verified />}
         </section>
     )
 }
@@ -28,6 +29,7 @@ const Form = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
+        setAlert('loading')
         if(cred.password !== confPwd) return setAlert("Passwords didn't match!")
         if(cred.password.length < 8) return setAlert("Password must contain at least 8 characters.")
         if(!PWD_REGEX.test(cred.password)) return setAlert("Password must contain at 1 number.")
@@ -51,9 +53,10 @@ const Form = () => {
             <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, email: e.target.value})} type='text' name='email' placeholder="Email" />
             <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
             <input className="py-2 px-6 border-b-[1px] mb-3 border-primary outline-none" onChange={e => setConfPwd(e.target.value)} type='password' name='confPassword' placeholder="Confirm password" />
-            {alert ? <p className="text-red-400">{alert}</p> : <></>}
+            {alert && alert !== 'loading' ? <p className="text-red-400">{alert}</p> : <></>}
             <button className="rounded-3xl py-2 px-6 bg-primary text-white mb-6 mt-3" type='submit'>Sign up</button>
             <span>Already have an account? <Link className="text-primary" to='/login'>Log in.</Link></span>
+            {alert === 'loading' ? <Loader /> : <></>}
         </form>
     )
 }
