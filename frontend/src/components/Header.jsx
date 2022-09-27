@@ -51,7 +51,7 @@ const Navbar = ({ nav }) => {
     return (
         <div className={`flex flex-col items-center justify-center gap-[3vw] absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-white ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
             <CustomLink className="text-sm" to='/'>Home</CustomLink>
-            <CustomLink className="text-sm" to='/services'>Products</CustomLink>
+            <CustomLink className="text-sm" to='/products'>Products</CustomLink>
             <CustomLink className="text-sm" to='/contact'>Contact</CustomLink>
             {!logged ? <div className="flex flex-col sm:flex-row mt-2 sm:mt-0 ml-2 items-center gap-[2vw] lg:gap-[1.5vw]">
                 <CustomLink className="text-sm" to='/login'>Login</CustomLink>
