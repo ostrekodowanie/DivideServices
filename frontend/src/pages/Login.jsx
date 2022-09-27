@@ -11,8 +11,10 @@ export default function Login() {
     const location = useLocation()
     return (
         <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center min-h-screen">
-            <h1 className="text-4xl font-bold mb-8">{location.pathname.split('/').pop() === 'login' ? 'Log In' : 'Change Password'}</h1>
-            {location.pathname.split('/').pop() === 'login' ? <Form /> : location.pathname.split('/').pop() === 'recovery' ? <Recovery /> : <ChangePassword />}
+            <div className="flex flex-col">
+                <h1 className="text-4xl xl:text-[2.5rem] font-semibold mb-8">{location.pathname.split('/').pop() === 'login' ? 'Log In' : 'Change Password'}</h1>
+                {location.pathname.split('/').pop() === 'login' ? <Form /> : location.pathname.split('/').pop() === 'recovery' ? <Recovery /> : <ChangePassword />}
+            </div>
         </section>
     )
 }
@@ -51,10 +53,16 @@ const Form = () => {
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, email: e.target.value})} type='email' name='email' placeholder="Email" />
-            <input className="py-2 px-6 border-b-[1px] mb-3 border-primary outline-none" onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
+            <div className="flex flex-col gap-2">
+                <label className="ml-6" htmlFor="email">Email</label>
+                <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" required onChange={e => setCred({...cred, email: e.target.value})} type='email' name='email' placeholder="examplemail@mail.com" />
+            </div>
+            <div className="flex flex-col gap-2">
+                <label className="ml-6" htmlFor="password">Password</label>
+                <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" required onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
+            </div>
             {alert && alert !== 'loading' ? <p className="text-red-400">{alert}</p> : <></>}
-            <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white" type='submit'>Log in</button>
+            <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white max-w-max" type='submit'>Log in</button>
             <Link className='text-primary' to='/login/recovery'>Forgot your password?</Link>
             {alert === 'loading' ? <Loader /> : <></>}
         </form>
@@ -81,9 +89,12 @@ const Recovery = () => {
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" required onChange={e => setEmail(e.target.value)} type='email' name='email' placeholder="Email" />
+            <div className="flex flex-col gap-2">
+                <label className="ml-6" htmlFor="email">Email</label>
+                <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" required onChange={e => setEmail(e.target.value)} type='email' name='email' placeholder="examplemail@mail.com" />
+            </div>
             {alert && alert !== 'loading' ? <p className={alert === 'Message has been sent.' ? 'text-green-400' : 'text-red-400'}>{alert}</p> : <></>}
-            <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white" type='submit'>Send message</button>
+            <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white max-w-max" type='submit'>Send message</button>
             <Link className='text-primary' to='/login'>Remember your password?</Link>
             {alert === 'loading' ? <Loader /> : <></>}
         </form>
@@ -123,10 +134,16 @@ const ChangePassword = () => {
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setPassword({...password, pwd: e.target.value})} type='password' name='password' placeholder="Password" />
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setPassword({...password, confPwd: e.target.value})} type='password' name='confirm_password' placeholder="Confirm password" />
+            <div className="flex flex-col gap-2">
+                <label className="ml-6" htmlFor="password">Password</label>
+                <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" required onChange={e => setPassword({...password, pwd: e.target.value})} type='password' name='password' placeholder="Password" />
+            </div>
+            <div className="flex flex-col gap-2">
+                <label className="ml-6" htmlFor="confirm_password">Confirm password</label>
+                <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" required onChange={e => setPassword({...password, confPwd: e.target.value})} type='password' name='confirm_password' placeholder="Confirm password" />
+            </div>
             {alert && alert !== 'loading' ? <p className={alert === 'Your password has been changed successfully!' ? 'text-green-400' : 'text-red-400'}>{alert}</p> : <></>}
-            <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white" type='submit'>Change password</button>
+            <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white max-w-max" type='submit'>Change password</button>
             {alert === 'loading' ? <Loader /> : <></>}
         </form>
     )
