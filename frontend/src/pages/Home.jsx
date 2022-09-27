@@ -23,7 +23,7 @@ export default function Home() {
 const CTA = () => {
     return (
         <div className="flex items-center flex-wrap gap-4 mt-2">
-            <Link className='rounded-3xl py-2 px-6 hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms] bg-primary text-white flex items-center' to='/services'>Our services <img className='ml-2 max-h-[1em]' src={arrow} alt="" /></Link>
+            <Link className='rounded-3xl py-2 px-6 hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms] bg-primary text-white flex items-center' to='/products'>Our services <img className='ml-2 max-h-[1em]' src={arrow} alt="" /></Link>
             <Link className='py-2 px-6 hover:text-primary transition duration-[250ms]' to='/contact'>Contact</Link>
         </div>
     )
