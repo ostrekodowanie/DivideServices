@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router"
 import { useDispatch} from "react-redux"
 import { login } from "../reducers/auth"
 import jwtDecode from "jwt-decode"
+import Loader from "../components/Loader"
 
 export default function Login() {
     const location = useLocation()
@@ -27,6 +28,7 @@ const Form = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
+        setAlert('loading')
         try {
             const response = await axios.post('/api/login', JSON.stringify(cred), {
                 headers: {
@@ -51,9 +53,10 @@ const Form = () => {
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
             <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setCred({...cred, email: e.target.value})} type='email' name='email' placeholder="Email" />
             <input className="py-2 px-6 border-b-[1px] mb-3 border-primary outline-none" onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
-            {alert ? <p className="text-red-400">{alert}</p> : <></>}
+            {alert && alert !== 'loading' ? <p className="text-red-400">{alert}</p> : <></>}
             <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white" type='submit'>Log in</button>
             <Link className='text-primary' to='/login/recovery'>Forgot your password?</Link>
+            {alert === 'loading' ? <Loader /> : <></>}
         </form>
     )
 }
@@ -64,13 +67,14 @@ const Recovery = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
+        setAlert('loading')
         const response = await axios.post('/api/login/recovery', email, {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         if(response.status === 200) {
-            return setAlert('Message has been sent')
+            return setAlert('Message has been sent.')
         }
         return setAlert('User not found')
     }
@@ -78,11 +82,15 @@ const Recovery = () => {
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
             <input className="py-2 px-6 border-b-[1px] border-primary outline-none" required onChange={e => setEmail(e.target.value)} type='email' name='email' placeholder="Email" />
+            {alert && alert !== 'loading' ? <p className={alert === 'Message has been sent.' ? 'text-green-400' : 'text-red-400'}>{alert}</p> : <></>}
             <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white" type='submit'>Send message</button>
             <Link className='text-primary' to='/login'>Remember your password?</Link>
+            {alert === 'loading' ? <Loader /> : <></>}
         </form>
     )
 }
+
+const PWD_REGEX = /(?=.*[a-z])(?=.*[0-9])/
 
 const ChangePassword = () => {
     const [alert, setAlert] = useState('')
@@ -91,29 +99,35 @@ const ChangePassword = () => {
         confPwd: ''
     })
     
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault()
+        setAlert('loading')
         if(password.confPwd !== password.pwd) return setAlert("Passwords didn't match!")
         if(password.pwd.length < 8) return setAlert("Password must contain at least 8 characters.")
         if(!PWD_REGEX.test(password.pwd)) return setAlert("Password must contain at 1 number.")
 
-        const response = await axios.patch('/api/login/recovery/complete', JSON.stringify(password.pwd), {
+        let token = location.pathname.split('/').pop()
+
+        axios.patch('/api/login/recovery/complete', JSON.stringify({
+            password: password.pwd,
+            token: token,
+            uidb64: 'Nw'
+        }), {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-        if(response.status === 200) {
-            setAlert('Your password has been changed successfully!')
-        }
-        return setAlert('Error')
+        .then(() => setAlert('Your password has been changed successfully!'))
+        .catch(err => setAlert(err.data[0]))
     }
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setPassword({...password, password: e.target.value})} type='password' name='password' placeholder="Password" />
-            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setPassword({...password, confirmPassword: e.target.value})} type='password' name='confirm_password' placeholder="Confirm password" />
+            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setPassword({...password, pwd: e.target.value})} type='password' name='password' placeholder="Password" />
+            <input className="py-2 px-6 border-b-[1px] border-primary outline-none" onChange={e => setPassword({...password, confPwd: e.target.value})} type='password' name='confirm_password' placeholder="Confirm password" />
+            {alert && alert !== 'loading' ? <p className={alert === 'Your password has been changed successfully!' ? 'text-green-400' : 'text-red-400'}>{alert}</p> : <></>}
             <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white" type='submit'>Change password</button>
-            {alert ? <p className={alert === 'Your password has been changed successfully!' ? 'text-green-400' : 'text-red-400'}>{alert}</p> : <></>}
+            {alert === 'loading' ? <Loader /> : <></>}
         </form>
     )
 }

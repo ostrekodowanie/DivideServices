@@ -34,6 +34,15 @@ export default function App() {
   
   useEffect(() => {
     if(info.id !== '') localStorage.setItem('login', JSON.stringify(info))
+    else localStorage.setItem('login', JSON.stringify({
+      id: '',
+      username: '',
+      email: '',
+      tokens: {
+          access: '',
+          refresh: ''
+      }
+    }))
     if(refresh) {
       setTimeout(() => {
         updateToken()
