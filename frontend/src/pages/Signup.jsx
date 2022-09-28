@@ -4,6 +4,7 @@ import { useLocation } from "react-router"
 import { Link } from "react-router-dom"
 import axios from 'axios'
 import Loader from "../components/Loader"
+import Clap from "../components/Clap"
 
 export default function Signup() {
     const location = useLocation()
@@ -78,15 +79,31 @@ const Form = () => {
 const Verified = () => {
     const location = useLocation()
     const [alert, setAlert] = useState('loading')
+    const [status, setStatus] = useState('')
     useEffect(() => {
        let token = location.pathname.split('/').pop()
         axios.get(`/api/signup/activate?token=${token}`)
-            .then(res => res.data)
-            .then(data => setAlert(data))
+            .then(res => [res.data, res.status])
+            .then(data => {
+                setAlert(data[0])
+                setStatus(data[1])
+            })
     }, [])
+
+    const Success = () => {
+        return (
+            <div className="flex flex-col">
+                <Clap />
+                <h2 className="font-semibold text-3xl"><span className="text-primary">Success, account verified</span></h2>
+                <p className="text-[#A199AA]">Congratulations! You have verified your account, go ahead and explore our products.</p>
+                <Link className="rounded-3xl py-2 px-6 bg-primary text-white mb-6 mt-3 max-w-max" to='/login'>Log in</Link>
+            </div>
+        )
+    }
+
     return (
         <>
-            {alert && alert === 'loading' ? <Loader /> : <h2>{alert}</h2>}
+            {alert && alert === 'loading' ? <Loader /> : status === 200 ? <Success /> : <h2>{alert}</h2>}
             <Link className="rounded-3xl py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/login'>Log in</Link>
         </>
     )
