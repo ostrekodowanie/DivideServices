@@ -81,7 +81,7 @@ const Verified = () => {
     const [alert, setAlert] = useState('loading')
     const [status, setStatus] = useState('')
     useEffect(() => {
-       let token = location.pathname.split('/').pop()
+       let token = location.pathname.split('=').pop()
         axios.get(`/api/signup/activate?token=${token}`)
             .then(res => [res.data, res.status])
             .then(data => {
