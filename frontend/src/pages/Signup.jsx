@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router"
 import { useLocation } from "react-router"
 import { Link } from "react-router-dom"
@@ -76,11 +76,13 @@ const Form = () => {
 }
 
 const Verified = () => {
+    const location = useLocation()
     const [alert, setAlert] = useState('loading')
     useEffect(() => {
-        axios.get('/api/signup/activate')
+       let token = location.pathname.split('/').pop()
+        axios.get(`/api/signup/activate/${token}`)
             .then(res => res.data)
-            .then(data => setAlert(data))
+            .then(data => setAlert(data[0]))
     }, [])
     return (
         <>
