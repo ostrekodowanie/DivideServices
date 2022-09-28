@@ -4,6 +4,7 @@ import Loader from "../components/Loader"
 import cart from '../assets/cart.svg'
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router"
+import { Link } from "react-router-dom"
 
 export default function Products() {
     const [products, setProducts] = useState([])
@@ -51,9 +52,9 @@ const Product = props => {
     }
 
     return (
-        <div className="flex flex-col gap-4 sm:max-w-[3in]">
+        <Link className="flex flex-col gap-4 sm:max-w-[3in]" to={`/products/${props.id}`}>
             <div className="rounded-2xl relative overflow-hidden">
-                <img src={props.image} alt='' />
+                <img className="shadow-outsideShadowPrimary" src={props.image} alt='' />
                 <div className="bg-productShadow absolute bottom-0 left-0 right-0 top-[40%] z-10" />
                 <button onClick={handlePayment} className='w-12 h-12 bg-primary absolute z-20 bottom-4 right-4 rounded-full flex items-center justify-center'>
                     <img className="max-h-[38%]" src={cart} alt='' />
@@ -61,9 +62,9 @@ const Product = props => {
             </div>
             <div className="flex flex-col gap-2">
                 <h2 className="text-lg font-medium">{props.name}</h2>
-                <p className="text-[#4A454F]">{props.description}</p>
-                <h4 className="text-lg text-primary font-semibold">${props.price}</h4>
+                <p className="text-[#4A454F]">{props.desc}</p>
+                <h4 className="text-xl text-primary font-semibold">${props.price}</h4>
             </div>
-        </div>
+        </Link>
     )
 }

@@ -4,13 +4,14 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "./reducers/auth";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import Products from "./pages/Products";
 import Footer from "./components/Footer";
+import Product from "./components/Product";
 
 const loginFromLocalStorage = JSON.parse(localStorage.getItem('login')) ? JSON.parse(localStorage.getItem('login')) : {
   id: '',
@@ -23,6 +24,7 @@ const loginFromLocalStorage = JSON.parse(localStorage.getItem('login')) ? JSON.p
 }
 
 export default function App() {
+  const [api, setApi] = useState([])
   const dispatch = useDispatch()
   const auth = useSelector(state => state.login)
   const { info } = auth
@@ -30,6 +32,10 @@ export default function App() {
 
   useEffect(() => {
     if(loginFromLocalStorage.id !== '') dispatch(login(loginFromLocalStorage))
+    axios.get('/api/products')
+      .then(res => res.data)
+      .then(data => setApi(data))
+      .catch(err => console.log(err))
   }, [])
   
   useEffect(() => {
@@ -75,10 +81,11 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products/*" element={<Products />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/signup/*" element={<Signup />} />
+          {api.map(product => <Route path={`/products/${product.id}`} element={<Product {...product} key={product.id} />} />)}
         </Routes>
       </main>
       <Footer />
