@@ -80,9 +80,9 @@ const Verified = () => {
     const [alert, setAlert] = useState('loading')
     useEffect(() => {
        let token = location.pathname.split('/').pop()
-        axios.get(`/api/signup/activate/${token}`)
+        axios.get(`/api/signup/activate?token=${token}`)
             .then(res => res.data)
-            .then(data => setAlert(data[0]))
+            .then(data => setAlert(data))
     }, [])
     return (
         <>
