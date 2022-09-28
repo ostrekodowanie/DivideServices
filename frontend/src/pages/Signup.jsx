@@ -92,7 +92,7 @@ const Verified = () => {
 
     const Success = () => {
         return (
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-4">
                 <Clap />
                 <h2 className="font-semibold text-3xl"><span className="text-primary">Success, account verified</span></h2>
                 <p className="text-[#A199AA]">Congratulations! You have verified your account, go ahead and explore our products.</p>
