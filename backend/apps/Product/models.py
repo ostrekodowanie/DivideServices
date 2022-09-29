@@ -48,9 +48,8 @@ TOOLS = [
     (DJANGO, 'Django'),
 ]
 
-
 class ProductToolsUsed(models.Model):
-    image = models.ImageField(upload_to='', blank=True, null=True)
+    image = models.ImageField(upload_to='')
     tool = models.CharField(max_length=255, choices=TOOLS, default='')
 
     def __str__(self):
@@ -59,6 +58,10 @@ class ProductToolsUsed(models.Model):
 class ProductDetail(models.Model):
     short_desc = models.CharField(max_length=255)
     desc = models.TextField()
+    image1 = models.ImageField(upload_to='', blank=True, null=True)
+    image2 = models.ImageField(upload_to='', blank=True, null=True)
+    image3 = models.ImageField(upload_to='', blank=True, null=True)
+    image4 = models.ImageField(upload_to='', blank=True, null=True)
     tools = models.ManyToManyField(ProductToolsUsed)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
