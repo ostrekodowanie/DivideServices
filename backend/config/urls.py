@@ -27,4 +27,5 @@ urlpatterns = [
     path('login/recovery', views.index),
     path('', include('apps.Product.urls')),
     path('', include('apps.Auth.urls')),
+    path('', include('apps.Contact.urls')),
 ]

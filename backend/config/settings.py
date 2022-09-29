@@ -29,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'divideservices.up.railway.app', 'services.divideproject.works']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
     'apps.Product',
     'apps.Auth',
     'apps.Orders',
+    'apps.Contact',
 ]
 
 MIDDLEWARE = [
@@ -154,7 +154,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
-    ),
+    ),    
 }
 
 SIMPLE_JWT = {

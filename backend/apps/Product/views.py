@@ -1,13 +1,20 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from rest_framework import generics
-from .models import Product
-from .serializers import ProductSerializer
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework.viewsets import GenericViewSet
+from .models import Product, ProductDetail, ProductToolsUsed
+from .serializers import ProductSerializer, ProductDetailSerializer, ProductToolsUsedSerializer
+from rest_framework.response import Response
 
 class ProductView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+class ProductDetailView(generics.ListAPIView):
+    queryset = ProductDetail.objects.all()
+    serializer_class = ProductDetailSerializer
+    
+class ProductToolsUsedView(generics.RetrieveAPIView):
+    queryset = ProductToolsUsed.objects.all()
+    serializer_class = ProductToolsUsedSerializer
 
 def ImagesUrls(request, id):
     obj = Product.objects.get(id=id)
