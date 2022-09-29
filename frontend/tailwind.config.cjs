@@ -20,7 +20,7 @@ module.exports = {
       backgroundImage: {
         insideShadowPrimary: 'linear-gradient(270deg, rgba(133, 47, 242, 0.23) 0%, rgba(217, 217, 217, 0) 100%, #F6EFFE 100%);', 
         insideShadowGray: 'linear-gradient(270deg, rgba(204, 202, 206, 0.05) 0%, rgba(217, 217, 217, 0) 100%, #F6EFFE 100%);',
-        productShadow: 'linear-gradient(0deg, rgba(0,0,0,0.15) 0%, rgba(255,255,255,0.15) 100%);'
+        productShadow: 'linear-gradient(179.04deg, rgba(0, 0, 0, 0) 47.11%, rgba(0, 0, 0, 0.1715) 89.53%);'
       },
       boxShadow: {
         outsideShadowPrimary: '0px 4px 60px rgba(179, 126, 242, 0.24);'
