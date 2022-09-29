@@ -97,11 +97,6 @@ class LoginView(APIView):
         access = tokens['access']
 
         response = Response()
-        response.set_cookie(key = 'jwt', 
-                            value = access,
-                            expires = settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
-                            httponly = True,
-                            )
         response.data = {'message': 'Login Successfull', 'access': tokens['access'], 'refresh': tokens['refresh']}
         response.status = status.HTTP_200_OK
         return response
@@ -109,7 +104,7 @@ class LoginView(APIView):
 class LogoutView(APIView):
     def post(self, request):
         try:
-            refresh_token = request.data["refresh_token"]
+            refresh_token = request.data
             token = RefreshToken(refresh_token)
             token.blacklist()
             return Response(status=status.HTTP_200_OK)
@@ -138,7 +133,6 @@ class PasswordResetView(APIView):
 
 class PasswordTokenCheckAPI(generics.GenericAPIView):
     def get(self, request, uidb64, token):
-        
         try:
             id = smart_str(urlsafe_base64_decode(uidb64))
             user = User.objects.get(pk=id)
