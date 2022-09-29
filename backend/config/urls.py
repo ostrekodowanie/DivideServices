@@ -25,6 +25,7 @@ urlpatterns = [
     path('signup', views.index),
     path('login', views.index),
     path('login/recovery', views.index),
+    path('signup/success', views.index),
     path('', include('apps.Product.urls')),
     path('', include('apps.Auth.urls')),
     path('', include('apps.Contact.urls')),

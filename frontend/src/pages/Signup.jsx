@@ -12,7 +12,7 @@ export default function Signup() {
     return (
         <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center min-h-screen">
             <div className="flex flex-col">
-                <h1 className="text-4xl xl:text-[2.5rem] font-semibold mb-8">Sign Up</h1>
+                {url === 'signup' ? <h1 className="text-4xl xl:text-[2.5rem] font-semibold mb-8">Sign Up</h1> : <></>}
                 {url === 'signup' ? <Form /> : url === 'success' ? <Success msg='We have sent you a verification email, please check your mailbox.' title='account created' /> : <Verified />}
             </div>
         </section>

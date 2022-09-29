@@ -37,13 +37,15 @@ export default function Product(props) {
                 </div>
             </section>
             <section className="padding py-8 bg-[#FAF8FC]">
-                <div className="flex flex-col gap-4">
-                    <h3 className="font-medium text-xl">Description</h3>
-                    <p>{details.desc}</p>
-                </div>
-                <div className="flex flex-col gap-4">
-                    <h3 className="font-medium text-xl">Tools used</h3>
-                    <p>{details.id}</p>
+                <div className="flex flex-col lg:flex-row gap-8 justify-between">
+                    <div className="flex flex-col gap-4">
+                        <h3 className="font-medium text-xl">Description</h3>
+                        <p className="text-[#A199AA]">{details.desc}</p>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                        <h3 className="font-medium text-xl">Tools used</h3>
+                        <p className="text-[#A199AA]">{details.id}</p>
+                    </div>
                 </div>
             </section>
             <section className="py-12" />

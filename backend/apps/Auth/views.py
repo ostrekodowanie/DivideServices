@@ -42,7 +42,6 @@ class SignUpView(generics.GenericAPIView):
     serializer_class = SignUpSerializer
     def post(self, request):
         data = request.data
-        print(data)
         serializer = self.serializer_class(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
