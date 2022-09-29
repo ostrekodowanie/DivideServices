@@ -49,12 +49,12 @@ const Navbar = ({ nav }) => {
     }
 
     return (
-        <div className={`flex flex-col items-center justify-center gap-[3vw] absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-white ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
+        <div className={`flex flex-col items-center gap-6 justify-center sm:gap-[min(4vw,3rem)] absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-white ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
             <CustomLink className="text-sm" to='/'>Home</CustomLink>
             <CustomLink className="text-sm" to='/products'>Products</CustomLink>
             <CustomLink className="text-sm" to='/contact'>Contact</CustomLink>
-            {!logged ? <div className="flex flex-col sm:flex-row mt-2 sm:mt-0 ml-2 items-center gap-[2vw] lg:gap-[1.5vw]">
-                <CustomLink className="text-sm" to='/login'>Login</CustomLink>
+            {!logged ? <div className="flex flex-col sm:flex-row mt-8 gap-4 sm:mt-0 ml-2 items-center sm:gap-[2vw] lg:gap-[1vw]">
+                <CustomLink className="rounded-3xl text-sm py-2 px-6 border-[1px] border-primary text-primary hover:scale-105 transition duration-[250ms]" to='/login'>Login</CustomLink>
                 <Link className="rounded-3xl text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/signup'>Sign up</Link>
             </div> : <span className="font-semibold cursor-pointer" onClick={handleLogout}>{username}</span>}
         </div>

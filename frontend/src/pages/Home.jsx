@@ -40,7 +40,7 @@ const MainImage = () => {
 
 const Stats = () => {
     return (
-        <div className='bg-primary padding py-12 md:py-16 xl:py-20 gap-12 flex flex-col md:grid md:grid-cols-2 xl:flex xl:justify-between xl:flex-row items-center'>
+        <div className='bg-primary padding py-12 xl:py-16 gap-12 flex flex-col md:grid md:grid-cols-2 xl:flex xl:justify-between xl:flex-row items-center'>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-[1/3]'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
