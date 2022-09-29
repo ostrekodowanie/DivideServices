@@ -3,6 +3,7 @@ import { shadow } from '../assets/home'
 import contact from '../assets/contact.png'
 import { useState } from "react"
 import axios from "axios"
+import Loader from "../components/Loader"
 
 export default function Contact() {
     return (
@@ -29,6 +30,7 @@ const ContactImage = () => {
 }
 
 const Form = () => {
+    const [alert, setAlert] = useState()
     const [info, setInfo] = useState({
         name: '',
         surname: '',
@@ -39,6 +41,7 @@ const Form = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
+        setAlert('loading')
         const response = await axios.post('/api/contact', JSON.stringify(info), {
             headers: {
                 'Content-Type': 'application/json'
@@ -70,7 +73,9 @@ const Form = () => {
                 <label htmlFor="message">Message</label>
                 <textarea className="rounded-3xl px-6 py-4 shadow-outsideShadowPrimary min-h-[3in] xl:min-h-[2in]" onChange={e => setInfo({...info, message: e.target.value})} name="message" id="message" placeholder="Write your message here..." />
             </div>
-            <button className="rounded-3xl py-2 px-6 max-w-max mt-8 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Send Message</button>
+            {alert && alert !== 'loading' ? <p className={alert === 'Message has been sent!' ? 'text-green-400 col-span-2' : 'text-red-400 col-span-2'}>{alert}</p> : <></>}
+            <button className="rounded-3xl col-span-2 py-2 px-6 max-w-max mt-8 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Send Message</button>
+            {alert === 'loading' ? <Loader /> : <></>}
         </form>
     )
 }

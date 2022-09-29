@@ -44,7 +44,12 @@ const Navbar = ({ nav }) => {
     const { username } = auth.info
 
     const handleLogout = async () => {
-        const response = await axios.post('/api/logout').catch(err => console.log(err))
+        let { refresh } = auth.info.tokens
+        const response = await axios.post('/api/logout', JSON.stringify(refresh), {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         if(response.status === 200) return dispatch(logout())
     }
 
