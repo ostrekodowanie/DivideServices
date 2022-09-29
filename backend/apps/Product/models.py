@@ -50,7 +50,6 @@ TOOLS = [
 
 
 class ProductToolsUsed(models.Model):
-    id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to='', blank=True, null=True)
     tool = models.CharField(max_length=255, choices=TOOLS, default='')
 
@@ -60,6 +59,7 @@ class ProductToolsUsed(models.Model):
 class ProductDetail(models.Model):
     short_desc = models.CharField(max_length=255)
     desc = models.TextField()
+    tools = models.ManyToManyField(ProductToolsUsed)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -76,7 +76,6 @@ class Product(models.Model):
     category = models.CharField(max_length=255, choices=CATEGORIES, default='')
     details_id = models.ForeignKey(
         ProductDetail, on_delete=models.CASCADE)
-    tools = models.ManyToManyField(ProductToolsUsed)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
