@@ -73,7 +73,6 @@ class VerifyEmailView(generics.GenericAPIView):
             return Response({'Successfully activated'}, status=status.HTTP_200_OK)
         except jwt.ExpiredSignatureError as identifier:
             payload = jwt.decode(token, settings.SECRET_KEY,  algorithms=['HS256'], options={"verify_signature": False})
-            print(User.objects.filter(pk=payload['user_id']).exists())
             if User.objects.filter(pk=payload['user_id']).exists() == True:
                 User.objects.get(pk=payload['user_id']).delete()
             return Response({'Activation link expired'}, status=status.HTTP_400_BAD_REQUEST)
@@ -109,13 +108,13 @@ class LoginView(APIView):
 
 class LogoutView(APIView):
     def post(self, request):
-        response = Response()
-        response.delete_cookie('jwt')
-        response.data = {
-            'message': 'success'
-        }
-        response.status = status.HTTP_200_OK
-        return response
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class PasswordResetView(APIView):
     serializer_class = PasswordResetSerializer
