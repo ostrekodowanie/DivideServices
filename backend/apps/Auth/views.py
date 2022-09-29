@@ -42,6 +42,7 @@ class SignUpView(generics.GenericAPIView):
     serializer_class = SignUpSerializer
     def post(self, request):
         data = request.data
+        print(data)
         serializer = self.serializer_class(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -60,7 +61,6 @@ class SignUpView(generics.GenericAPIView):
         Util.send_email(data)
 
         return Response(user_data, status=status.HTTP_201_CREATED)
-
 
 class VerifyEmailView(generics.GenericAPIView):
     def get(self, request):

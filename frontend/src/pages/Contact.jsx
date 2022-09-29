@@ -3,7 +3,6 @@ import { shadow } from '../assets/home'
 import contact from '../assets/contact.png'
 import { useState } from "react"
 import axios from "axios"
-import { useState } from "react"
 
 export default function Contact() {
     return (
