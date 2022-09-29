@@ -28,7 +28,7 @@ export default function App() {
   const dispatch = useDispatch()
   const auth = useSelector(state => state.login)
   const { info } = auth
-  const { refresh } = info
+  const { refresh } = info.tokens
 
   useEffect(() => {
     if(loginFromLocalStorage.id !== '') dispatch(login(loginFromLocalStorage))
@@ -52,7 +52,7 @@ export default function App() {
     if(refresh) {
       setTimeout(() => {
         updateToken()
-      }, 180000)
+      }, 600000)
     }
   }, [info])
 
@@ -61,7 +61,7 @@ export default function App() {
       headers: {
         'Content-Type': 'application/json'
       }
-    })
+    }).catch(() => dispatch(logout()))
     if(response.status === 200) {
       let user = jwtDecode(response.data.access)
       dispatch(login({
@@ -70,8 +70,6 @@ export default function App() {
         email: user.email,
         tokens: response.data
       }))
-    } else {
-      dispatch(logout())
     }
   }
 
