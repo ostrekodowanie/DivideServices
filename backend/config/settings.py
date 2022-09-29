@@ -29,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'divideservices.up.railway.app', 'services.divideproject.works']
 
-
 # Application definition
 
 INSTALLED_APPS = [

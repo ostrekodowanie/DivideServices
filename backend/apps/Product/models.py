@@ -58,12 +58,14 @@ class ProductToolsUsed(models.Model):
         return "{}".format(self.tool)
 
 class ProductDetail(models.Model):
-    id = models.AutoField(primary_key=True)
     short_desc = models.CharField(max_length=255)
     desc = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return "{}".format(self.pk)
+        
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
