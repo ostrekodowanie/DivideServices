@@ -45,7 +45,7 @@ const Navbar = ({ nav }) => {
 
     const handleLogout = async () => {
         let { refresh } = auth.info.tokens
-        const response = await axios.post('/api/logout', JSON.stringify(refresh), {
+        const response = await axios.post('/api/logout', refresh, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -66,7 +66,7 @@ const Navbar = ({ nav }) => {
     )
 }
 
-const CustomLink = ({children, to, className, props}) => {
+const CustomLink = ({children, to, className}) => {
     const activePath = useResolvedPath(to)
     const isActive = useMatch({path: `${activePath.pathname}/*`, end: true})
     return <Link to={to} className={`${className} transition ${isActive ? 'text-primary font-semibold' : 'hover:text-primary'}`}>{children}</Link>

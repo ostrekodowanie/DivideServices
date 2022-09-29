@@ -1,6 +1,8 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { Link, Navigate, useNavigate } from "react-router-dom"
+import arrow from "../assets/arrow_left.svg"
 
 export default function Product(props) {
     const [details, setDetails] = useState({})
@@ -12,13 +14,17 @@ export default function Product(props) {
             .catch(err => console.log(err))
     }, [])
 
+    useEffect(() => {
+        console.log(details)
+    }, [details])
+
     return (
         <>
-            <section className="padding py-[1.4in] gap-8">
-                <Link className="font-medium" to='/products'>Back</Link>
-                <div className="flex flex-col gap-8 mt-8">
+            <section className="padding py-[1.4in] xl:pt-[1.8in] gap-8">
+                <Link className="font-medium flex items-center" to='/products'><img className="max-h-[1em] mr-3" src={arrow} alt='' />Back</Link>
+                <div className="flex flex-col gap-8 lg:gap-12 mt-8 lg:mt-12 lg:flex-row">
                     <div className="flex flex-col">
-                        <img className="shadow-outsideShadowPrimary rounded-xl" src={props.image} alt="" />
+                        <img className="shadow-outsideShadowPrimary rounded-xl lg:max-w-[35vw]" src={props.image} alt="" />
                     </div>
                     <div className="flex flex-col gap-8">
                         <div className="flex flex-col gap-3">
@@ -27,10 +33,10 @@ export default function Product(props) {
                         </div>
                         <div className="flex flex-col gap-3">
                             <h3 className="text-lg font-medium">Short description:</h3>
-                            <p className="text-[#A199AA]">{details.short_desc}</p>
+                            <p className="text-[#A199AA] inter font-medium">{details.short_desc}</p>
                         </div>
                         <div className="flex flex-col gap-4">
-                            <button className="rounded-3xl font-medium py-2 px-6 bg-primary max-w-max text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Add to cart</button>
+                            <PaymentButton {...props} />
                             <p className="flex items-center font-medium text-sm">Share product</p>
                         </div>
                     </div>
@@ -40,7 +46,7 @@ export default function Product(props) {
                 <div className="flex flex-col lg:flex-row gap-8 justify-between">
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Description</h3>
-                        <p className="text-[#A199AA] max-w-[6in]">{details.desc}</p>
+                        <p className="text-[#A199AA] max-w-[6in] font-medium inter">{details.desc}</p>
                     </div>
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Tools used</h3>
@@ -51,4 +57,15 @@ export default function Product(props) {
             <section className="py-12" />
         </>
     )
+}
+
+const PaymentButton = props => {
+    const { logged } = useSelector(state => state.login)
+    const navigate = useNavigate()
+
+    const handlePayment = () => {
+        if(!logged) return navigate('/login')
+    }
+
+    return <button onClick={handlePayment} className="rounded-3xl inter font-medium py-2 px-6 bg-primary max-w-max text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Add to cart</button>
 }
