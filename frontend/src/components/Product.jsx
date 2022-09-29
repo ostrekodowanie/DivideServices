@@ -21,11 +21,11 @@ export default function Product(props) {
                         <img className="shadow-outsideShadowPrimary rounded-xl" src={props.image} alt="" />
                     </div>
                     <div className="flex flex-col gap-8">
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-3">
                             <h2 className="font-medium text-2xl">{props.name}</h2>
                             <p className="text-primary font-semibold text-2xl">${props.price}</p>
                         </div>
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-3">
                             <h3 className="text-lg font-medium">Short description:</h3>
                             <p className="text-[#A199AA]">{details.short_desc}</p>
                         </div>
@@ -36,11 +36,11 @@ export default function Product(props) {
                     </div>
                 </div>
             </section>
-            <section className="padding py-8 bg-[#FAF8FC]">
+            <section className="padding py-8 lg:py-12 bg-[#FAF8FC]">
                 <div className="flex flex-col lg:flex-row gap-8 justify-between">
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Description</h3>
-                        <p className="text-[#A199AA]">{details.desc}</p>
+                        <p className="text-[#A199AA] max-w-[6in]">{details.desc}</p>
                     </div>
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Tools used</h3>
