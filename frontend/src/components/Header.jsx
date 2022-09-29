@@ -15,7 +15,7 @@ export default function Header() {
     }, [location])
 
     return (
-        <header className="flex items-center justify-between padding min-h-[6rem] xl:min-h-[7rem] fixed z-50 top-0 right-0 left-0 bg-white">
+        <header className="flex items-center justify-between padding min-h-[6rem] xl:min-h-[7rem] fixed z-50 top-0 right-0 left-0 bg-background">
             <Logo />
             <Burger nav={nav} setNav={setNav} />
             <Navbar nav={nav} />

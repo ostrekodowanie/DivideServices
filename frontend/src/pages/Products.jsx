@@ -52,7 +52,7 @@ const Product = props => {
     }
 
     return (
-        <Link className="flex flex-col gap-4 sm:max-w-[3in]" to={`/products/${props.id}`}>
+        <Link className="flex flex-col gap-4 sm:max-w-[4in]" to={`/products/${props.id}`}>
             <div className="rounded-2xl relative overflow-hidden shadow-outsideShadowPrimary">
                 <img src={props.image} alt='' />
                 {/* <div className="bg-productShadow absolute inset-0 z-10" /> */}

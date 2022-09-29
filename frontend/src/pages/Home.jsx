@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { main, arrow, shadow, activeusers } from '../assets/home'
+import { main, arrow, shadow, activeusers, fashion, drive, purpleDots, pinkDots } from '../assets/home'
 import Clap from '../components/Clap'
 
 export default function Home() {
@@ -15,6 +15,9 @@ export default function Home() {
                 <MainImage />
             </section>
             <Stats />
+            <Introduction order='right' img={fashion} />
+            <Introduction order='left' img={fashion} />
+            <Opinions />
             <Steps />
         </>
     )
@@ -40,7 +43,7 @@ const MainImage = () => {
 
 const Stats = () => {
     return (
-        <div className='bg-primary padding py-12 xl:py-16 gap-12 flex flex-col md:grid md:grid-cols-2 xl:flex xl:justify-between xl:flex-row items-center'>
+        <div className='bg-primary padding mb-12 py-12 xl:py-16 gap-12 flex flex-col md:grid md:grid-cols-2 xl:flex xl:justify-between xl:flex-row items-center'>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-[1/3]'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
@@ -70,6 +73,57 @@ const Stats = () => {
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>12.000</p>
             </div>
         </div>
+    )
+}
+
+const Introduction = ({ order, img }) => {
+    return (
+        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col'>
+            <div className={`flex flex-col ${order === 'left' ? 'xl:flex-row-reverse' : 'xl:flex-row'} xl:items-center gap-48`}>
+                <div className='flex flex-col gap-6'>
+                    <h2 className='text-4xl leading-normal font-semibold max-w-[6in] xl:max-w-[5in]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+                    <p className='text-[#4A454F] leading-loose max-w-[5.5in] xl:max-w-[4in]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pretium cursus in in sed congue risus. Etiam cursus orci quis neque ac enim morbi. Elit, pulvinar nisl, tortor vel parturient. Placerat consectetur sit gravida tellus lectus amet, ac, id arcu.</p>
+                    <button className="rounded-3xl mt-2 max-w-max text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Get a quote</button>
+                </div>
+                <div className={order === 'left' ? 'xl:ml-[-12vw] 2xl:ml-[-18vw] lg:mr-auto relative' : 'xl:mr-[-12vw] 2xl:mr-[-18vw] lg:ml-auto relative'}>
+                    <img className='shadow-outsideShadowPrimary rounded-3xl relative z-10' src={img} alt="" />
+                    <div className={`${order === 'left' ? 'top-10 left-0 rounded-br-xl w-[60%]' : 'bottom-10 right-0 rounded-tl-xl w-[90%]'} bg-[#852FF2]/10 h-full absolute`} />
+                    <img className={`absolute max-w-[20%] ${order === 'left' ? '-bottom-12 -right-12' : '-bottom-12 -left-12'}`} src={pinkDots} alt="" />
+                    <img className={`absolute max-w-[20%] ${order === 'left' ? '-top-10 left-[50%]' : '-top-14 right-[50%]'}`} src={purpleDots} alt="" />
+                </div>
+            </div>
+        </section>
+    )
+}
+
+const Opinions = () => {
+    return (
+        <section className='padding py-12 xl:py-[1in] flex flex-col gap-16 bg-white mt-16'>
+            <div className='flex items-center gap-8'>
+                <Clap />
+                <div className='flex flex-col gap-2'>
+                    <h2 className='font-semibold text-2xl lg:text-4xl'>Our solutions</h2>
+                    <h3 className='text-[#4A454F] lg:text-lg'>Designed to use on daily basis</h3>
+                </div>
+            </div>
+            <div className='flex flex-col lg:flex-row justify-between gap-12'>
+                <div className='rounded-3xl shadow-outsideGray p-8 flex flex-col gap-4'>
+                    <div className='w-24 h-24 bg-[#FAFAFA] rounded-full' />
+                    <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
+                    <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
+                </div>
+                <div className='rounded-3xl shadow-outsideGray p-8 flex flex-col gap-4'>
+                    <div className='w-24 h-24 bg-[#FAFAFA] rounded-full' /> 
+                    <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
+                    <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
+                </div>
+                <div className='rounded-3xl shadow-outsideGray p-8 flex flex-col gap-4'>
+                    <div className='w-24 h-24 bg-[#FAFAFA] rounded-full' />
+                    <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
+                    <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
+                </div>
+            </div> 
+        </section>
     )
 }
 
