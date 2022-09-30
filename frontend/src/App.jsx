@@ -12,6 +12,7 @@ import jwtDecode from "jwt-decode";
 import Products from "./pages/Products";
 import Footer from "./components/Footer";
 import Product from "./components/Product";
+import Payment from "./pages/Payment";
 
 const loginFromLocalStorage = JSON.parse(localStorage.getItem('login')) ? JSON.parse(localStorage.getItem('login')) : {
   id: '',
@@ -80,6 +81,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/products/payment" element={<Payment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/signup/*" element={<Signup />} />

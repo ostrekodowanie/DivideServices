@@ -65,6 +65,7 @@ const PaymentButton = props => {
 
     const handlePayment = () => {
         if(!logged) return navigate('/login')
+        return navigate(`/products/payment`)
     }
 
     return <button onClick={handlePayment} className="rounded-3xl inter font-medium py-2 px-6 bg-primary max-w-max text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Add to cart</button>

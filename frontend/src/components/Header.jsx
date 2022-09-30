@@ -54,7 +54,7 @@ const Navbar = ({ nav }) => {
     }
 
     return (
-        <div className={`flex flex-col items-center gap-6 justify-center sm:gap-[min(4vw,3rem)] absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-white ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
+        <div className={`flex flex-col items-center gap-6 justify-center sm:gap-[min(4vw,3rem)] absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-background ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
             <CustomLink className="text-sm" to='/'>Home</CustomLink>
             <CustomLink className="text-sm" to='/products'>Products</CustomLink>
             <CustomLink className="text-sm" to='/contact'>Contact</CustomLink>
