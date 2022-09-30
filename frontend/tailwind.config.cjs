@@ -8,7 +8,8 @@ module.exports = {
     extend: {
       colors: {
         primary: '#852FF2',
-        secondary: '#AE6EFF'
+        secondary: '#AE6EFF',
+        background: '#FCFBFD'
       },
       gridTemplateColumns: {
         autoFit: 'repeat(auto-fit, minmax(2in, 1fr))',
@@ -23,7 +24,8 @@ module.exports = {
         productShadow: 'linear-gradient(179.04deg, rgba(0, 0, 0, 0) 47.11%, rgba(0, 0, 0, 0.1715) 89.53%);'
       },
       boxShadow: {
-        outsideShadowPrimary: '0px 4px 60px rgba(179, 126, 242, 0.24);'
+        outsideShadowPrimary: '0px 4px 60px rgba(179, 126, 242, 0.24);',
+        outsideGray: '0px 4px 97px rgba(168, 102, 246, 0.08);'
       }
     },
   },

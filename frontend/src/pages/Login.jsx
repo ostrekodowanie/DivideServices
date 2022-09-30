@@ -44,7 +44,7 @@ const Form = () => {
                 email: user.email,
                 tokens: response.data
             }))
-            return navigate('/services')
+            return navigate('/products')
             
         } catch(err) {
             return setAlert(err.response.data.detail)
