@@ -1,21 +1,25 @@
 import { PayPalButtons } from "@paypal/react-paypal-js"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate, useLocation } from "react-router"
 import Loader from "../components/Loader"
 import { Success } from "../components/Success"
 
 export default function Payment() {
-    const purchaseItem = useSelector(state => state.purchase)
+    const purchaseItem = useSelector(state => state.purchase.value)
 
     const location = useLocation()
     let url = location.pathname.split('/').pop()
+
+    useEffect(() => {
+        console.log(purchaseItem)
+    }, [purchaseItem])
 
     return (
         <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center min-h-screen">
             <div className="flex flex-col">
                 {url === 'success' || url === 'cancel' ? <></> : <h1 className="text-4xl xl:text-[2.5rem] font-semibold mb-8">{url === 'shipping' ? 'Shipping' : 'Payment'}</h1>}
-                {url === 'shipping' ? <Form /> : url === 'proceed' ? <PayPalForm price={purchaseItem.price} /> : url === 'success' ?  <Success msg='Your order has been successfully proceeded, you have now access to the product' title='order complete' /> : <></>}
+                {url === 'shipping' ? <Form /> : url === 'proceed' ? <PayPalForm item={purchaseItem} /> : url === 'success' ?  <Success msg='Your order has been successfully proceeded, you have now access to the product' title='order complete' /> : <></>}
             </div>
         </section>
     )
@@ -63,7 +67,7 @@ const Form = () => {
     )
 }
 
-const PayPalForm = props => {
+const PayPalForm = ({ item }) => {
     const navigate = useNavigate()
 
     const handleApprove = () => {
@@ -71,12 +75,20 @@ const PayPalForm = props => {
     }
 
     return (
-        <div className="shadow-outsideShadowPrimary p-4 min-w-[4in] rounded-xl mb-8 relative z-0">
+        <div className="shadow-outsideShadowPrimary p-4 min-w-[4in] rounded-xl mb-8 relative z-0 flex flex-col gap-12">
+            <div className="flex items-center justify-between gap-6">
+                <img className='shadow-outsideShadowPrimary max-w-[2in]' src={item.image} alt="" />
+                <div className="flex flex-col gap-1">
+                    <h3 className="text-lg font-semibold">{item.name}</h3>
+                    <p className="text-[#4A454F]">{item.desc}</p>
+                </div>
+                <h3 className="text-primary text-2xl font-semibold">${item.price}</h3>
+            </div>
             <PayPalButtons createOrder={(data, actions) => {
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: props.price
+                            value: item.price
                         }
                     }]
                 })

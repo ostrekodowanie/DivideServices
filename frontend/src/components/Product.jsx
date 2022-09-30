@@ -3,7 +3,6 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import arrow from "../assets/arrow_left.svg"
-import Payment from "../pages/Payment"
 import { add } from "../reducers/purchase"
 
 export default function Product(props) {
@@ -15,10 +14,6 @@ export default function Product(props) {
             .then(data => setDetails(data))
             .catch(err => console.log(err))
     }, [])
-
-    useEffect(() => {
-        console.log(details)
-    }, [details])
 
     return (
         <>
@@ -70,7 +65,10 @@ const PaymentButton = props => {
         if(!logged) return navigate('/login')
         dispatch(add({
             id: props.id,
-            price: props.discount ? props.price *= (props.discount / 100) : props.price
+            name: props.name,
+            desc: props.desc,
+            image: props.image,
+            price: props.price
         }))
         return navigate('/payment/shipping')
     }
