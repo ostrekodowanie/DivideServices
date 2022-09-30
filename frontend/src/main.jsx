@@ -4,12 +4,14 @@ import App from './App'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { configureStore } from '@reduxjs/toolkit';
 import loginReducer from './reducers/auth';
+import purchaseReducer from './reducers/purchase'
 import { Provider } from 'react-redux'
 import './index.css'
 
 const store = configureStore({
   reducer: {
-    login: loginReducer
+    login: loginReducer,
+    purchase: purchaseReducer
   }
 })
 

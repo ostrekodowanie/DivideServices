@@ -1,8 +1,10 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import arrow from "../assets/arrow_left.svg"
+import Payment from "../pages/Payment"
+import { add } from "../reducers/purchase"
 
 export default function Product(props) {
     const [details, setDetails] = useState({})
@@ -24,7 +26,7 @@ export default function Product(props) {
                 <Link className="font-medium flex items-center" to='/products'><img className="max-h-[1em] mr-3" src={arrow} alt='' />Back</Link>
                 <div className="flex flex-col gap-8 lg:gap-12 mt-8 lg:mt-12 lg:flex-row">
                     <div className="flex flex-col">
-                        <img className="shadow-outsideShadowPrimary rounded-xl lg:max-w-[35vw]" src={props.image} alt="" />
+                        <img className="shadow-outsideShadowPrimary rounded-xl lg:max-w-[40vw]" src={props.image} alt="" />
                     </div>
                     <div className="flex flex-col gap-8">
                         <div className="flex flex-col gap-3">
@@ -60,12 +62,17 @@ export default function Product(props) {
 }
 
 const PaymentButton = props => {
+    const dispatch = useDispatch()
     const { logged } = useSelector(state => state.login)
     const navigate = useNavigate()
 
     const handlePayment = () => {
         if(!logged) return navigate('/login')
-        return navigate(`/products/payment`)
+        dispatch(add({
+            id: props.id,
+            price: props.discount ? props.price *= (props.discount / 100) : props.price
+        }))
+        return navigate('/payment/shipping')
     }
 
     return <button onClick={handlePayment} className="rounded-3xl inter font-medium py-2 px-6 bg-primary max-w-max text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Add to cart</button>
