@@ -74,6 +74,9 @@ class VerifyEmailView(generics.GenericAPIView):
         except jwt.ExpiredSignatureError as identifier:
             payload = jwt.decode(token, settings.SECRET_KEY,  algorithms=['HS256'], options={"verify_signature": False})
             if User.objects.filter(pk=payload['user_id']).exists() == True:
+                user = User.objects.get(pk=payload['user_id'])
+                if user.is_verified:
+                    return Response({'User is already verified'}, status=status.HTTP_400_BAD_REQUEST)
                 User.objects.get(pk=payload['user_id']).delete()
             return Response({'Activation link expired'}, status=status.HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError as identifier:
@@ -94,7 +97,6 @@ class LoginView(APIView):
             raise AuthenticationFailed('Activate your account')
 
         tokens = MyTokenObtainPairSerializer(request.data).validate(request.data)
-        access = tokens['access']
 
         response = Response()
         response.data = {'message': 'Login Successfull', 'access': tokens['access'], 'refresh': tokens['refresh']}

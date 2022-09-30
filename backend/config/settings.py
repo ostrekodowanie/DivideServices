@@ -142,6 +142,10 @@ MEDIA_URL = 'images/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://services.divideproject.works',
+]
+
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
   'https://divideservices.up.railway.app',
@@ -195,4 +199,8 @@ EMAIL_HOST_USER = 'portfoliositeexample@gmail.com'
 EMAIL_HOST_PASSWORD = 'hgsgdpxhmuqrcssx'
 ACCOUNT_SESSION_REMEMBER = None
 
-SESSION_COOKIE_SECURE = False
+SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
+
+PAYPAL_RECEIVER_EMAIL = 'se6359@gmail.com'
+
+PAYPAL_TEST = True

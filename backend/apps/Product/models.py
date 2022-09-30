@@ -70,7 +70,6 @@ class ProductDetail(models.Model):
         return "{}".format(self.pk)
         
 class Product(models.Model):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     desc = models.CharField(max_length=255)
     image = models.ImageField(upload_to='')
@@ -83,5 +82,5 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return "{} - {}".format(self.id,
+        return "{} - {}".format(self.pk,
                                 self.name)
