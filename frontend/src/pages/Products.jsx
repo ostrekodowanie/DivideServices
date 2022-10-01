@@ -18,10 +18,6 @@ export default function Products() {
         return setLoading(false)
     }, [])
 
-    useEffect(() => {
-        console.log(products)
-    }, [products])
-
     return (
         <section className="padding pt-[1.4in] xl:pt-[1.8in] min-h-screen flex flex-col gap-8">
             {loading ? <Loader /> : <></>}
