@@ -91,11 +91,11 @@ DATABASES = {
     #}
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'PGSD38Y1FzXNBBSymzja',
-        'HOST': 'containers-us-west-40.railway.app',
-        'PORT': '7581',
+        'NAME': 'viaxdkwq',
+        'USER': 'viaxdkwq',
+        'PASSWORD': '0XGESLoPnRIBS00U4omhu1lRmbJTHi4D',
+        'HOST': 'lucky.db.elephantsql.com',
+        'PORT': '',
     }
 }
 
