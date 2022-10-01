@@ -3,17 +3,26 @@ import { createSlice } from "@reduxjs/toolkit";
 const purchaseSlice = createSlice({
     name: 'purchase',
     initialState: {
-        id: '',
-        price: ''
+        value: {
+            id: '',
+            name: '',
+            desc: '',
+            image: '',
+            price: ''
+        }
     },
     reducers: {
         add: (state, action) => {
-            state.id = action.payload.id
-            state.price = action.payload.price
+            state.value = action.payload
         },
         remove: state => {
-            state.id = ''
-            state.price = ''
+            state.value = {
+                id: '',
+                name: '',
+                desc: '',
+                image: '',
+                price: ''
+            }
         }
     }
 })

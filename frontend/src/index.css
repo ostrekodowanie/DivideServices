@@ -30,20 +30,6 @@ body {
   padding-right: 8vw;
 }
 
-@media all and (min-width: 768px) {
-  .padding {
-    padding-left: 12vw;
-    padding-right: 12vw;
-  }
-}
-
-@media all and (min-width: 1536px) {
-  .padding {
-    padding-left: 18vw;
-    padding-right: 18vw;
-  }
-}
-
 @keyframes clapRight {
   0% {
     transform: translateX(0%);
@@ -82,4 +68,19 @@ body {
 
 .clap-noise {
   animation: clapNoise 200ms alternate infinite ease-out;
+}
+
+
+@media all and (min-width: 768px) {
+  .padding {
+    padding-left: 12vw;
+    padding-right: 12vw;
+  }
+}
+
+@media all and (min-width: 1536px) {
+  .padding {
+    padding-left: 18vw;
+    padding-right: 18vw;
+  }
 }
