@@ -91,11 +91,11 @@ DATABASES = {
     #}
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DivideServicesDB',
-        'USER': os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'PGSD38Y1FzXNBBSymzja',
+        'HOST': 'containers-us-west-40.railway.app',
+        'PORT': '7581',
     }
 }
 
