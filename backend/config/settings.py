@@ -91,10 +91,10 @@ DATABASES = {
     #}
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'viaxdkwq',
-        'USER': 'viaxdkwq',
-        'PASSWORD': '0XGESLoPnRIBS00U4omhu1lRmbJTHi4D',
-        'HOST': 'lucky.db.elephantsql.com',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'ZsKq4EPyTbD8v5P1',
+        'HOST': 'db.qikigizdlsejmicslggd.supabase.co',
         'PORT': '',
     }
 }
