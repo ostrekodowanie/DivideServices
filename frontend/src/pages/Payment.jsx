@@ -33,7 +33,7 @@ const Form = () => {
     })
 
     useEffect(() => {
-        axios.post(`/api/orders/token`, JSON.stringify({'user_id': id}), {
+        axios.post(`/api/orders/token`, id, {
             headers: {
                 "Content-Type": 'application/json'
             }

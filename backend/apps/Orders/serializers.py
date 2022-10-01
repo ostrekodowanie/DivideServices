@@ -10,4 +10,4 @@ class OrderSerializer(serializers.ModelSerializer):
 class OrderUserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'phone_number']
+        fields = ['name', 'surname', 'phone_number']
