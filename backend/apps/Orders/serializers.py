@@ -1,12 +1,13 @@
 from rest_framework import serializers
-from .models import Order, Order_items
+from .models import Order
+from apps.Auth.models import User
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
 
-class Order_itemsSerializer(serializers.ModelSerializer):
+class OrderUserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Order_items
-        fields = '__all__'
+        model = User
+        fields = ['first_name', 'last_name', 'phone_number']
