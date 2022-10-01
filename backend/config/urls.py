@@ -26,7 +26,12 @@ urlpatterns = [
     path('login', views.index),
     path('login/recovery', views.index),
     path('signup/success', views.index),
+    path('payment/shipping', views.index),
+    path('payment/proceed', views.index),
+    path('payment/success', views.index),
+    path('payment/cancel', views.index),
     path('', include('apps.Product.urls')),
     path('', include('apps.Auth.urls')),
     path('', include('apps.Contact.urls')),
+    path('', include('apps.Orders.urls')),
 ]
