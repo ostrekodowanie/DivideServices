@@ -33,21 +33,15 @@ const Form = () => {
     })
 
     useEffect(() => {
-<<<<<<< HEAD
-        axios.post(`/api/orders/token`, JSON.stringify({'id': id}), {
-=======
-        axios.post(`/api/orders/token`, id, {
->>>>>>> 95067c4b9300007d897d75ae83751a9f20e6a5ad
-            headers: {
-                "Content-Type": 'application/json'
-            }
-        }).then(res => res.data)
-        .then(data => setShipping(data))
-        .catch(err => setAlert(err))
-    }, [])
-
-    useEffect(() => {
-        console.log(id)
+        if(id) {
+            axios.post(`/api/orders/user`, id, {
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            }).then(res => res.data)
+            .then(data => setShipping(data))
+            .catch(err => setAlert(err))
+        }
     }, [id])
 
     const handleSubmit = async e => {
