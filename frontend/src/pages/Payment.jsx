@@ -33,7 +33,7 @@ const Form = () => {
     })
 
     useEffect(() => {
-        axios.post(`/api/orders/token`, JSON.stringify({'user_id': id}), {
+        axios.post(`/api/orders/token`, JSON.stringify({'id': id}), {
             headers: {
                 "Content-Type": 'application/json'
             }
@@ -41,6 +41,10 @@ const Form = () => {
         .then(data => setShipping(data))
         .catch(err => setAlert(err))
     }, [])
+
+    useEffect(() => {
+        console.log(id)
+    }, [id])
 
     const handleSubmit = async e => {
         e.preventDefault()
