@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'divideservices.up.railway.app', 'services.divideproject.works']
+ALLOWED_HOSTS = ['127.0.0.1', 'services.divideproject.works']
 
 # Application definition
 
@@ -156,7 +156,6 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
-  'https://divideservices.up.railway.app',
   'https://services.divideproject.works',
 )
 
@@ -164,7 +163,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
 }
 
 SIMPLE_JWT = {
@@ -201,8 +202,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'portfoliositeexample@gmail.com'
-EMAIL_HOST_PASSWORD = 'hgsgdpxhmuqrcssx'
+EMAIL_HOST_USER = os.environ.get('EMAIL')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 ACCOUNT_SESSION_REMEMBER = None
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'

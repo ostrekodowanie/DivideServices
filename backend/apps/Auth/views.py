@@ -50,13 +50,13 @@ class SignUpView(generics.GenericAPIView):
         user_data = serializer.data
 
         user = User.objects.get(email=user_data['email'])
-             
+        print(user.email)
         token = RefreshToken.for_user(user).access_token
         current_site = get_current_site(request).domain
         relativeLink = reverse('activate-account')
         absurl = 'http://' + current_site + relativeLink + '?token=' + str(token)
         email_body = 'Hi ' + user.username + '\nActivate your account: ' + absurl
-        data = {'email_body': email_body, 'to_email': user.email, 'email_subject': 'Activate your account'}
+        data = {'email_body': email_body, 'to_email': '"'+user.email+'"', 'email_subject': 'Activate your account'}
         Util.send_email(data)
 
         return Response(user_data, status=status.HTTP_201_CREATED)
@@ -127,7 +127,7 @@ class PasswordResetView(APIView):
             relativeLink = reverse('password-reset-confirm', kwargs={'uidb64':uidb64, 'token':token})
             absurl = 'http://' + current_site + relativeLink
             email_body = 'Hi ' + user.username + '\nReset password: ' + absurl
-            data = {'email_body': email_body, 'to_email': user.email, 'email_subject': 'Reset your password'}
+            data = {'email_body': email_body, 'to_email': '"'+user.email+'"', 'email_subject': 'Reset your password'}
             Util.send_email(data)
             
             return Response({'success':'A reset password link has been sent'}, status=status.HTTP_200_OK)
