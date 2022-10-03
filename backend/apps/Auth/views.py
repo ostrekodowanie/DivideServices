@@ -149,7 +149,6 @@ class PasswordTokenCheckAPI(generics.GenericAPIView):
 
 class NewPasswordAPIView(generics.GenericAPIView):
     serializer_class = NewPasswordSerializer
-
     def patch(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
