@@ -4,7 +4,6 @@ from apps.Auth.models import User
 from .serializers import OrderSerializer, OrderUserDetailsSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
-# Create your views here.
 
 class OrderView(generics.ListCreateAPIView):
     queryset = Order.objects.all()

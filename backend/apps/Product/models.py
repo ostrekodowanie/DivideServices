@@ -1,4 +1,3 @@
-from ctypes import c_ssize_t
 from django.db import models
 
 #Categories

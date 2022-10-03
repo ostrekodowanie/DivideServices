@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'divideservices.up.railway.app', 'services.divideproject.works']
+ALLOWED_HOSTS = ['127.0.0.1', 'services.divideproject.works']
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
+    'django_cleanup.apps.CleanupConfig',
     'apps.Product',
     'apps.Auth',
     'apps.Orders',
@@ -91,10 +92,10 @@ DATABASES = {
     #}
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DivideServicesDB',
-        'USER': os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD'),
-        'HOST': 'localhost',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'tF7YTBCSvNGNkJVg',
+        'HOST': 'db.scaymtxfzkrebfjjzcbv.supabase.co',
         'PORT': '',
     }
 }
@@ -150,22 +151,16 @@ MEDIA_URL = 'images/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://services.divideproject.works',
-]
-
-CORS_ORIGIN_WHITELIST = (
-  'http://localhost:8000',
-  'https://divideservices.up.railway.app',
-  'https://services.divideproject.works',
-)
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
 }
+
+AUTH_USER_MODEL = 'Auth.User'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
@@ -194,15 +189,22 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-AUTH_USER_MODEL = 'Auth.User'
+CSRF_TRUSTED_ORIGINS = [
+    'https://services.divideproject.works',
+]
+
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:8000',
+  'https://services.divideproject.works',
+)
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'portfoliositeexample@gmail.com'
-EMAIL_HOST_PASSWORD = 'hgsgdpxhmuqrcssx'
+EMAIL_HOST_USER = os.environ.get('EMAIL')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 ACCOUNT_SESSION_REMEMBER = None
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
