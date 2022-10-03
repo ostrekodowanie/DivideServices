@@ -16,7 +16,7 @@ class ProductToolsUsedView(generics.RetrieveAPIView):
     serializer_class = ProductToolsUsedSerializer
 
 def ImagesUrls(request, id):
-    obj = Product.objects.get(id=id)
+    obj = Product.objects.get(pk=id)
     context= {
         'object': obj
     }

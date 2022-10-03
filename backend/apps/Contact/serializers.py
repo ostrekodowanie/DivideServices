@@ -1,5 +1,3 @@
-from posixpath import supports_unicode_filenames
-from unicodedata import name
 from rest_framework import serializers
 
 class ContactSerializer(serializers.Serializer):

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
+    'django_cleanup.apps.CleanupConfig',
     'apps.Product',
     'apps.Auth',
     'apps.Orders',
@@ -150,15 +151,6 @@ MEDIA_URL = 'images/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://services.divideproject.works',
-]
-
-CORS_ORIGIN_WHITELIST = (
-  'http://localhost:8000',
-  'https://services.divideproject.works',
-)
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -167,6 +159,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
 }
+
+AUTH_USER_MODEL = 'Auth.User'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
@@ -195,7 +189,14 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-AUTH_USER_MODEL = 'Auth.User'
+CSRF_TRUSTED_ORIGINS = [
+    'https://services.divideproject.works',
+]
+
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:8000',
+  'https://services.divideproject.works',
+)
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

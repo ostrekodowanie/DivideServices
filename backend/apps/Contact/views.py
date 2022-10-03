@@ -1,8 +1,6 @@
-from django.shortcuts import render
 from .serializers import ContactSerializer
 from rest_framework.generics import GenericAPIView
 from apps.Auth.utils import Util
-from django.contrib.sites.shortcuts import get_current_site
 from rest_framework.response import Response
 from rest_framework import status
 
