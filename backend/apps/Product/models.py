@@ -54,7 +54,8 @@ class ProductToolsUsed(models.Model):
     tool = models.CharField(max_length=255, choices=TOOLS)
 
     def __str__(self):
-        return "{}".format(self.tool)
+        return "{} - {}".format(self.tool,
+                                self.image)
 
 class ProductDetail(models.Model):
     short_desc = models.CharField(max_length=255)
