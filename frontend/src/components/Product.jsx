@@ -4,20 +4,24 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import arrow from "../assets/arrow_left.svg"
 import { add } from "../reducers/purchase"
+import Loader from "./Loader"
 
 export default function Product(props) {
     const [details, setDetails] = useState({})
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         axios.get(`/api/products/${props.details_id}`)
             .then(res => res.data)
             .then(data => setDetails(data))
+            .finally(() => setLoading(false))
             .catch(err => console.log(err))
     }, [])
 
     return (
         <>
-            <section className="padding py-[1.4in] xl:pt-[1.8in] gap-8">
+            <section className='padding py-[1.4in] xl:pt-[1.8in] gap-8 relative'>
+                {loading ? <Loader /> : <></>}
                 <Link className="font-medium flex items-center" to='/products'><img className="max-h-[1em] mr-3" src={arrow} alt='' />Back</Link>
                 <div className="flex flex-col gap-8 lg:gap-12 mt-8 lg:mt-12 lg:flex-row">
                     <div className="flex flex-col">
