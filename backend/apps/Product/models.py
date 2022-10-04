@@ -51,7 +51,7 @@ TOOLS = [
 
 class ProductToolsUsed(models.Model):
     image = models.ImageField(upload_to='')
-    tool = models.CharField(max_length=255, choices=TOOLS, default='')
+    tool = models.CharField(max_length=255, choices=TOOLS)
 
     def __str__(self):
         return "{}".format(self.tool)
@@ -76,7 +76,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='')
     price = models.FloatField()
     discount = models.IntegerField(default=0)
-    category = models.CharField(max_length=255, choices=CATEGORIES, default='')
+    category = models.CharField(max_length=255, choices=CATEGORIES)
     details_id = models.ForeignKey(
         ProductDetail, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

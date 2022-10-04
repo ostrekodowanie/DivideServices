@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Product, ProductDetail, ProductToolsUsed
-from .serializers import ProductSerializer, ProductDetailSerializer, ProductToolsUsedSerializer
+from .models import Product, ProductDetail
+from .serializers import ProductSerializer, ProductDetailSerializer
 
 class ProductView(generics.ListAPIView):
     queryset = Product.objects.all()
@@ -10,10 +10,6 @@ class ProductView(generics.ListAPIView):
 class ProductDetailView(generics.RetrieveAPIView):
     queryset = ProductDetail.objects.all()
     serializer_class = ProductDetailSerializer
-    
-class ProductToolsUsedView(generics.RetrieveAPIView):
-    queryset = ProductToolsUsed.objects.all()
-    serializer_class = ProductToolsUsedSerializer
 
 def ImagesUrls(request, id):
     obj = Product.objects.get(pk=id)
