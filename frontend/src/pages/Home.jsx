@@ -6,10 +6,10 @@ import Clap from '../components/Clap'
 export default function Home() {
     return (
         <>
-            <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col lg:flex-row justify-between relative min-h-[70vh]">
-                <div className="flex flex-col gap-8">
+            <section className="padding pt-[1.4in] xl:pt-[1.6in] flex flex-col lg:flex-row justify-between relative">
+                <div className="flex flex-col xl:my-12 gap-6">
                     <h1 className="text-4xl lg:text-5xl lg:leading-tight xl:text-[4rem] max-w-[4.2in] xl:leading-tight leading-snug font-semibold"><span className='text-primary'>Divide</span> your business<br /><Clap maxH='1em' classes='top-3' /> solutions.</h1>
-                    <p className='text-[#4A454F] xl:text-md max-w-[3.5in]'>Make your work routine become easier and faster</p>
+                    <p className='text-[#4A454F] xl:text-md'>Make your work routine become easier and faster</p>
                     <CTA />
                 </div>
                 <MainImage />
@@ -25,16 +25,16 @@ export default function Home() {
 
 const CTA = () => {
     return (
-        <div className="flex items-center flex-wrap gap-4 mt-2">
+        <div className="flex items-center flex-wrap gap-7 mt-2">
             <Link className='rounded-3xl py-2 px-6 hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms] bg-primary text-white flex items-center' to='/products'>Our services <img className='ml-2 max-h-[1em]' src={arrow} alt="" /></Link>
-            <Link className='py-2 px-6 hover:text-primary transition duration-[250ms]' to='/contact'>Contact</Link>
+            <Link className='py-2 hover:text-primary transition duration-[250ms]' to='/contact'>Contact</Link>
         </div>
     )
 }
 
 const MainImage = () => {
     return (
-        <div className='lg:max-w-[60%] relative self-end ml-auto mt-8 md:mt-0'>
+        <div className='lg:max-w-[58%] relative self-end ml-auto mt-8 md:mt-0'>
             <img src={main} alt='' />
             <img className='absolute -bottom-[2in] -z-10 w-[150%]' src={shadow} alt='' />
         </div>
@@ -43,33 +43,33 @@ const MainImage = () => {
 
 const Stats = () => {
     return (
-        <div className='bg-primary padding mb-12 py-12 xl:py-16 gap-12 flex flex-col md:grid md:grid-cols-2 xl:flex xl:justify-between xl:flex-row items-center'>
+        <div className='bg-primary padding xl:mb-12 py-12 xl:py-16 gap-12 flex flex-col md:grid md:grid-cols-2 xl:flex xl:justify-between xl:flex-row items-center'>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-[1/3]'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
-                <h3 className='text-[#FAFAFA]/60'>Clients</h3>
+                <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>941</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
-                <h3 className='text-[#FAFAFA]/60'>Projects</h3>
+                <h3 className='text-[#FAFAFA]/60 font-medium'>Projects</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>187</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
-                <h3 className='text-[#FAFAFA]/60'>Clients</h3>
+                <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>12.000</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
-                <h3 className='text-[#FAFAFA]/60'>Clients</h3>
+                <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>12.000</p>
             </div>
         </div>
@@ -79,7 +79,7 @@ const Stats = () => {
 const Introduction = ({ order, img }) => {
     return (
         <section className='padding py-[1in] xl:py-[1.4in] flex flex-col'>
-            <div className={`flex flex-col ${order === 'left' ? 'xl:flex-row-reverse' : 'xl:flex-row'} xl:items-center gap-48`}>
+            <div className={`flex flex-col ${order === 'left' ? 'xl:flex-row-reverse' : 'xl:flex-row'} xl:items-center gap-28 md:gap-36 xl:gap-48`}>
                 <div className='flex flex-col gap-6'>
                     <h2 className='text-4xl leading-normal font-semibold max-w-[6in] xl:max-w-[5in]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
                     <p className='text-[#4A454F] leading-loose max-w-[5.5in] xl:max-w-[4in]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pretium cursus in in sed congue risus. Etiam cursus orci quis neque ac enim morbi. Elit, pulvinar nisl, tortor vel parturient. Placerat consectetur sit gravida tellus lectus amet, ac, id arcu.</p>
@@ -87,9 +87,9 @@ const Introduction = ({ order, img }) => {
                 </div>
                 <div className={order === 'left' ? 'xl:ml-[-12vw] 2xl:ml-[-18vw] lg:mr-auto relative' : 'xl:mr-[-12vw] 2xl:mr-[-18vw] lg:ml-auto relative'}>
                     <img className='shadow-outsideShadowPrimary rounded-3xl relative z-10' src={img} alt="" />
-                    <div className={`${order === 'left' ? 'top-10 left-0 rounded-br-xl w-[60%]' : 'bottom-10 right-0 rounded-tl-xl w-[90%]'} bg-[#852FF2]/10 h-full absolute`} />
-                    <img className={`absolute max-w-[20%] ${order === 'left' ? '-bottom-12 -right-12' : '-bottom-12 -left-12'}`} src={pinkDots} alt="" />
-                    <img className={`absolute max-w-[20%] ${order === 'left' ? '-top-10 left-[50%]' : '-top-14 right-[50%]'}`} src={purpleDots} alt="" />
+                    <div className={`${order === 'left' ? 'top-6 md:top-10 left-0 rounded-xl xl:rounded-br-xl w-[60%]' : 'bottom-4 md:bottom-10 right-0 rounded-xl xl:rounded-tl-xl w-[90%]'} bg-[#852FF2]/10 h-full absolute`} />
+                    <img className={`absolute max-w-[20%] ${order === 'left' ? '-bottom-4 -right-4 md:-bottom-12 md:-right-12' : '-left-4 -bottom-4 md:-bottom-12 md:-left-12'}`} src={pinkDots} alt="" />
+                    <img className={`absolute max-w-[20%] ${order === 'left' ? '-top-4 md:-top-10 left-[50%]' : '-top-6 md:-top-14 right-[50%]'}`} src={purpleDots} alt="" />
                 </div>
             </div>
         </section>
