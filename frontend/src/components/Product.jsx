@@ -7,7 +7,9 @@ import { add } from "../reducers/purchase"
 import Loader from "./Loader"
 
 export default function Product(props) {
-    const [details, setDetails] = useState({})
+    const [details, setDetails] = useState({
+        tools: []
+    })
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
