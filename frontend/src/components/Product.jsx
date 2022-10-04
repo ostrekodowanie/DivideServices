@@ -34,7 +34,7 @@ export default function Product(props) {
                         </div>
                         <div className="flex flex-col gap-3">
                             <h3 className="text-lg font-medium">Short description:</h3>
-                            <p className="text-[#A199AA] inter font-medium">{details.short_desc}</p>
+                            <p className="text-[#A199AA] inter">{details.short_desc}</p>
                         </div>
                         <div className="flex flex-col gap-4">
                             <PaymentButton {...props} />
@@ -47,11 +47,11 @@ export default function Product(props) {
                 <div className="flex flex-col lg:flex-row gap-8 justify-between">
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Description</h3>
-                        <p className="text-[#A199AA] max-w-[6in] font-medium inter">{details.desc}</p>
+                        <p className="text-[#A199AA] max-w-[6in] inter">{details.desc}</p>
                     </div>
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Tools used</h3>
-                        <p className="text-[#A199AA]">{details.id}</p>
+                        <p className="text-[#A199AA]">{details.tools.map((tool, i) => <span>{i === details.tools.length - 1 ? tool : tool + ', '}</span>)}</p>
                     </div>
                 </div>
             </section>
