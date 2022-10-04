@@ -7,17 +7,13 @@ class Order(models.Model):
         User, on_delete=models.CASCADE)
     product_id = models.ForeignKey(
         Product, on_delete=models.CASCADE)
+    value = models.FloatField
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{} - {} - {} - {} - {}".format(self.pk,
                                                self.user_id,
-                                               self.total,
+                                               self.value,
                                                self.created_at,
                                                self.updated_at)
-
-class PaymentDetails(models.Model):
-    order_id = models.ForeignKey(
-        Order, on_delete=models.CASCADE)
-    amount = models.IntegerField

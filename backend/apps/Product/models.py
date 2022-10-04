@@ -28,6 +28,7 @@ VITE = 'Vite'
 NEXTJS = 'Nextjs'
 TYPESCRIPT = 'Typescript'
 DJANGO = 'Django'
+POSTGRESQL = 'Postgresql'
 TOOLS = [
     (FIGMA, 'Figma'),
     (PHOTOSHOP, 'Photoshop'),
@@ -45,6 +46,7 @@ TOOLS = [
     (NEXTJS, 'Nextjs'),
     (TYPESCRIPT, 'Typescript'),
     (DJANGO, 'Django'),
+    (POSTGRESQL, 'Postgresql'),
 ]
 
 class ProductToolsUsed(models.Model):
