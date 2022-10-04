@@ -78,7 +78,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className="min-h-screen bg-background">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />

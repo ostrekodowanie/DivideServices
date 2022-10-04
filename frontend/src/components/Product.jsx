@@ -4,20 +4,26 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import arrow from "../assets/arrow_left.svg"
 import { add } from "../reducers/purchase"
+import Loader from "./Loader"
 
 export default function Product(props) {
-    const [details, setDetails] = useState({})
+    const [details, setDetails] = useState({
+        tools: []
+    })
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         axios.get(`/api/products/${props.details_id}`)
             .then(res => res.data)
             .then(data => setDetails(data))
+            .finally(() => setLoading(false))
             .catch(err => console.log(err))
     }, [])
 
     return (
         <>
-            <section className="padding py-[1.4in] xl:pt-[1.8in] gap-8">
+            <section className='padding py-[1.4in] xl:pt-[1.8in] gap-8 relative'>
+                {loading ? <Loader /> : <></>}
                 <Link className="font-medium flex items-center" to='/products'><img className="max-h-[1em] mr-3" src={arrow} alt='' />Back</Link>
                 <div className="flex flex-col gap-8 lg:gap-12 mt-8 lg:mt-12 lg:flex-row">
                     <div className="flex flex-col">
@@ -30,7 +36,7 @@ export default function Product(props) {
                         </div>
                         <div className="flex flex-col gap-3">
                             <h3 className="text-lg font-medium">Short description:</h3>
-                            <p className="text-[#A199AA] inter font-medium">{details.short_desc}</p>
+                            <p className="text-[#A199AA] inter">{details.short_desc}</p>
                         </div>
                         <div className="flex flex-col gap-4">
                             <PaymentButton {...props} />
@@ -43,11 +49,11 @@ export default function Product(props) {
                 <div className="flex flex-col lg:flex-row gap-8 justify-between">
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Description</h3>
-                        <p className="text-[#A199AA] max-w-[6in] font-medium inter">{details.desc}</p>
+                        <p className="text-[#A199AA] max-w-[6in] inter">{details.desc}</p>
                     </div>
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Tools used</h3>
-                        <p className="text-[#A199AA]">{details.id}</p>
+                        <p className="text-[#A199AA]">{details.tools.map((tool, i) => <span>{i === details.tools.length - 1 ? tool : tool + ', '}</span>)}</p>
                     </div>
                 </div>
             </section>

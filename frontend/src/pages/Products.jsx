@@ -15,7 +15,7 @@ export default function Products() {
         axios.get('/api/products')
             .then(res => res.data)
             .then(data => setProducts(data))
-        return setLoading(false)
+            .finally(() => setLoading(false))
     }, [])
 
     return (
@@ -36,7 +36,7 @@ export default function Products() {
             <div className="flex flex-col gap-6">
                 <h2 className="text-3xl font-semibold">Courses</h2>
                 <div className="flex flex-col sm:grid grid-cols-autoFit">
-                    <p className="text-red-400 font-medium">Nothing's here yet!</p>
+                    <p className="text-primary font-medium">Comming soon!</p>
                 </div>
             </div>
         </section>
