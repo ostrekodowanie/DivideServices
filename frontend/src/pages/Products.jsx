@@ -19,24 +19,24 @@ export default function Products() {
     }, [])
 
     return (
-        <section className="padding pt-[1.4in] xl:pt-[1.8in] min-h-screen flex flex-col gap-8">
+        <section className="padding pt-[1.4in] xl:pt-[1.8in] min-h-screen flex flex-col gap-16">
             {loading ? <Loader /> : <></>}
             <div className="flex flex-col gap-8">
-                <h2 className="text-2xl font-semibold">Templates</h2>
+                <h2 className="text-3xl font-semibold">Templates</h2>
                 <div className="flex flex-col sm:grid grid-cols-autoFit">
                     {products.filter(product => product.category === 'templates').map(product => <Product {...product} key={product} />)}
                 </div>
             </div>
             <div className="flex flex-col gap-8">
-                <h2 className="text-2xl font-semibold">Applications</h2>
+                <h2 className="text-3xl font-semibold">Applications</h2>
                 <div className="flex flex-col sm:grid grid-cols-autoFit">
                     {products.filter(product => product.category === 'apps').map(product => <Product {...product} key={product} />)}
                 </div>
             </div>
-            <div className="flex flex-col gap-8">
-                <h2 className="text-2xl font-semibold">Courses</h2>
+            <div className="flex flex-col gap-6">
+                <h2 className="text-3xl font-semibold">Courses</h2>
                 <div className="flex flex-col sm:grid grid-cols-autoFit">
-                    {products.filter(product => product.category === 'courses').map(product => <Product {...product} key={product} />)}
+                    <p className="text-red-400 font-medium">Nothing's here yet!</p>
                 </div>
             </div>
         </section>

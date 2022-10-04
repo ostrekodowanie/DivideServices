@@ -77,9 +77,19 @@ const Form = () => {
 
 const PayPalForm = ({ item }) => {
     const navigate = useNavigate()
+    const { id } = useSelector(state => state.login.info)
 
-    const handleApprove = () => {
-        return navigate('/payment/success')
+    const handleApprove = async () => {
+        const response = await axios.post('/api/orders', {
+            user_id: id,
+            product_id: item.id,
+            value: item.price
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if(response.status === 200) return navigate('/payment/success')
     }
 
     return (
