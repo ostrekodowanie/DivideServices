@@ -22,7 +22,7 @@ export default function Product(props) {
 
     return (
         <>
-            <section className='padding py-[1.4in] xl:pt-[1.8in] gap-8 relative'>
+            <section className='padding py-[1.4in] xl:pt-[1.8in] gap-8'>
                 <Link className="font-medium flex items-center" to='/products'><img className="max-h-[1em] mr-3" src={arrow} alt='' />Back</Link>
                 <div className="flex flex-col gap-8 lg:gap-12 mt-8 lg:mt-12 lg:flex-row">
                     <div className="flex flex-col">
@@ -44,7 +44,7 @@ export default function Product(props) {
                     </div>
                 </div>
             </section>
-            <section className="padding py-8 lg:py-12 bg-[#FAF8FC]">
+            <section className="padding py-8 lg:py-12 bg-[#FAF8FC] relative">
                 {loading && <Loader />}
                 <div className="flex flex-col lg:flex-row gap-8 justify-between">
                     <div className="flex flex-col gap-4">

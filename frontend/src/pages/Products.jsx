@@ -35,7 +35,7 @@ export default function Products() {
             <div className="flex flex-col gap-6">
                 <h2 className="text-3xl font-semibold">Courses</h2>
                 <div className="flex flex-col sm:grid grid-cols-autoFit">
-                    <p className="text-primary font-medium">Comming soon!</p>
+                    <p className="text-primary font-medium">Coming soon!</p>
                 </div>
             </div>
         </section>
