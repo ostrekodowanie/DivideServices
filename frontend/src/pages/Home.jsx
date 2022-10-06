@@ -27,7 +27,7 @@ const CTA = () => {
     return (
         <div className="flex items-center flex-wrap gap-7 mt-2">
             <Link className='rounded-3xl py-2 px-6 hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms] bg-primary text-white flex items-center' to='/products'>Our services <img className='ml-2 max-h-[1em]' src={arrow} alt="" /></Link>
-            <Link className='py-2 hover:text-primary transition duration-[250ms]' to='/contact'>Contact</Link>
+            <Link className='py-2 hover:text-primary transition duration-[250ms]' to='/support'>Contact</Link>
         </div>
     )
 }

@@ -5,7 +5,7 @@ import { useState } from "react"
 import axios from "axios"
 import Loader from "../components/Loader"
 
-export default function Contact() {
+export default function Support() {
     return (
         <section className="padding pt-[1.4in] xl:pt-[1.8in] flex flex-col xl:flex-row justify-between relative xl:gap-12 min-h-screen">
             <div className='flex flex-col xl:max-w-[45%]'>
