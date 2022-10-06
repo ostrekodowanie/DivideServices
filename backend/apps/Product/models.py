@@ -13,40 +13,38 @@ CATEGORIES = [
 
 #Tools
 FIGMA = 'Figma'
-PHOTOSHOP = 'Photoshop'
-ILLUSTRATOR = 'Illustrator'
-INVISION = 'Invision'
-FIGJAM = 'Figjam'
-HTML = 'Html'
-CSS = 'Css'
-JS = 'Js'
+ADOBE_PHOTOSHOP = 'Adobe Photoshop'
+ADOBE_ILLUSTRATOR = 'Adobe Illustrator'
+INVISION = 'InVision'
+HTML = 'HTML'
+CSS = 'CSS'
+JAVASCRIPT = 'JavaScript'
 SASS = 'Sass'
-AXIOS = 'Axios'
 REACT = 'React'
-TAILWIND = 'Tailwind'
+TAILWIND_CSS = 'Tailwind CSS'
 VITE = 'Vite'
-NEXTJS = 'Nextjs'
-TYPESCRIPT = 'Typescript'
+NEXTJS = 'NextJs'
+TYPESCRIPT = 'TypeScript'
 DJANGO = 'Django'
-POSTGRESQL = 'Postgresql'
+JWT = 'JWT'
+POSTGRESQL = 'PostgreSQL'
 TOOLS = [
     (FIGMA, 'Figma'),
-    (PHOTOSHOP, 'Photoshop'),
-    (ILLUSTRATOR, 'Illustrator'),
-    (INVISION, 'Invision'),
-    (FIGJAM, 'Figjam'),
-    (HTML, 'Html'),
-    (CSS, 'Css'),
-    (JS, 'Js'),
+    (ADOBE_PHOTOSHOP, 'Adobe Photoshop'),
+    (ADOBE_ILLUSTRATOR, 'Adobe Illustrator'),
+    (INVISION, 'InVision'),
+    (HTML, 'HTML'),
+    (CSS, 'CSS'),
+    (JAVASCRIPT, 'JavaScript'),
     (SASS, 'Sass'),
-    (AXIOS, 'Axios'),
     (REACT, 'React'),
-    (TAILWIND, 'Tailwind'),
+    (TAILWIND_CSS, 'Tailwind CSS'),
     (VITE, 'Vite'),
-    (NEXTJS, 'Nextjs'),
-    (TYPESCRIPT, 'Typescript'),
+    (NEXTJS, 'NextJs'),
+    (TYPESCRIPT, 'TypeScript'),
     (DJANGO, 'Django'),
-    (POSTGRESQL, 'Postgresql'),
+    (JWT, 'JWT'),
+    (POSTGRESQL, 'PostgreSQL'),
 ]
 
 class ProductToolsUsed(models.Model):
