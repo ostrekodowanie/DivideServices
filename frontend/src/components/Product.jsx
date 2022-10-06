@@ -55,7 +55,7 @@ export default function Product(props) {
                         <h3 className="font-medium text-xl">Tools used</h3>
                         <p className="text-[#A199AA] font-medium">{details.tools.map((tool, i) => <span>{i === details.tools.length - 1 ? tool.split(" | ")[0] : tool.split(" | ")[0] + ', '}</span>)}</p>
                         <div className="flex items-center gap-4">
-                            {details.tools.map(tool => <img src={`https://services.divideproject.works/images/${tool.split(" | ").pop()}`} alt={tool.split(" | ")[0]} />)}
+                            {details.tools.map(tool => <img src={`/images/${tool.split(" | ").pop()}`} alt={tool.split(" | ")[0]} />)}
                         </div>
                     </div>
                 </div>
