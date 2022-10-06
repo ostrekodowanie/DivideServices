@@ -54,7 +54,7 @@ const Product = props => {
     return (
         <Link className="flex flex-col gap-4 sm:max-w-[4in]" to={`/products/${props.id}`}>
             <div className="rounded-2xl relative overflow-hidden shadow-outsideShadowPrimary">
-                <img src={props.image} alt='' />
+                <img src={`/images/${props.image.split("/").pop()}`} alt='' />
                 {/* <div className="bg-productShadow absolute inset-0 z-10" /> */}
                 <button onClick={handlePayment} className='w-12 h-12 bg-primary absolute z-20 bottom-4 right-4 rounded-full flex items-center justify-center'>
                     <img className="max-h-[38%]" src={cart} alt='' />
