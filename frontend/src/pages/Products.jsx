@@ -8,19 +8,18 @@ import { Link } from "react-router-dom"
 
 export default function Products() {
     const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        setLoading(true)
         axios.get('/api/products')
             .then(res => res.data)
             .then(data => setProducts(data))
-            .finally(() => setLoading(false))
+            .then(() => setLoading(false))
     }, [])
 
     return (
         <section className="padding pt-[1.4in] xl:pt-[1.8in] min-h-screen flex flex-col gap-16">
-            {loading ? <Loader /> : <></>}
+            {loading && <Loader />}
             <div className="flex flex-col gap-8">
                 <h2 className="text-3xl font-semibold">Templates</h2>
                 <div className="flex flex-col sm:grid grid-cols-autoFit">
@@ -56,7 +55,7 @@ const Product = props => {
             <div className="rounded-2xl relative overflow-hidden shadow-outsideShadowPrimary">
                 <img src={`/images/${props.image.split("/").pop()}`} alt='' />
                 {/* <div className="bg-productShadow absolute inset-0 z-10" /> */}
-                <button onClick={handlePayment} className='w-12 h-12 bg-primary absolute z-20 bottom-4 right-4 rounded-full flex items-center justify-center'>
+                <button onClick={handlePayment} className='w-12 h-12 bg-primary hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms] absolute z-20 bottom-4 right-4 rounded-full flex items-center justify-center'>
                     <img className="max-h-[38%]" src={cart} alt='' />
                 </button>
             </div>

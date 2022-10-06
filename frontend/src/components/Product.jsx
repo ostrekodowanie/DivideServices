@@ -16,18 +16,17 @@ export default function Product(props) {
         axios.get(`/api/products/${props.details_id}`)
             .then(res => res.data)
             .then(data => setDetails(data))
-            .finally(() => setLoading(false))
+            .then(() => setLoading(false))
             .catch(err => console.log(err))
     }, [])
 
     return (
         <>
             <section className='padding py-[1.4in] xl:pt-[1.8in] gap-8 relative'>
-                {loading ? <Loader /> : <></>}
                 <Link className="font-medium flex items-center" to='/products'><img className="max-h-[1em] mr-3" src={arrow} alt='' />Back</Link>
                 <div className="flex flex-col gap-8 lg:gap-12 mt-8 lg:mt-12 lg:flex-row">
                     <div className="flex flex-col">
-                        <img className="shadow-outsideShadowPrimary rounded-xl lg:max-w-[40vw]" src={props.image} alt="" />
+                        <img className="shadow-outsideShadowPrimary rounded-xl lg:max-w-[40vw]" src={`/images/${props.image.split("/").pop()}`} alt="" />
                     </div>
                     <div className="flex flex-col gap-8">
                         <div className="flex flex-col gap-3">
@@ -46,6 +45,7 @@ export default function Product(props) {
                 </div>
             </section>
             <section className="padding py-8 lg:py-12 bg-[#FAF8FC]">
+                {loading && <Loader />}
                 <div className="flex flex-col lg:flex-row gap-8 justify-between">
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Description</h3>
