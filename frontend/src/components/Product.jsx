@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom"
 import arrow from "../assets/arrow_left.svg"
 import { add } from "../reducers/purchase"
 import Loader from "./Loader"
+import { FacebookShareButton, LinkedinShareButton } from 'react-share'
+import { fb, ig, linkedin } from "../assets/products"
 
 export default function Product(props) {
     const [details, setDetails] = useState({
@@ -39,7 +41,19 @@ export default function Product(props) {
                         </div>
                         <div className="flex flex-col gap-4">
                             <PaymentButton {...props} />
-                            <p className="flex items-center font-medium text-sm">Share product</p>
+                            <p className="flex items-center gap-4 font-medium text-sm">
+                                Share product
+                                <div className="flex items-center gap-2">
+                                    <div className="relative">
+                                        <img src={fb} alt="" />
+                                        <FacebookShareButton url={`https://services.divideproject.works/products/${props.id}`} className='absolute top-0 left-0 w-full h-full'/>
+                                    </div>
+                                    <div className="relative">
+                                        <img src={linkedin} alt="" />
+                                        <LinkedinShareButton url={`https://services.divideproject.works/products/${props.id}`} className='absolute top-0 left-0 w-full h-full' />
+                                    </div>
+                                </div>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -82,5 +96,5 @@ const PaymentButton = props => {
         return navigate('/payment/shipping')
     }
 
-    return <button onClick={handlePayment} className="rounded-3xl inter font-medium py-2 px-6 bg-primary max-w-max text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Add to cart</button>
+    return <button onClick={handlePayment} className="rounded-3xl inter font-medium py-2 px-6 bg-primary max-w-max text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Buy now</button>
 }

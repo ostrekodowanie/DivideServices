@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
@@ -28,7 +28,6 @@ const loginFromLocalStorage = JSON.parse(localStorage.getItem('login')) ? JSON.p
 
 export default function App() {
   const [api, setApi] = useState([])
-  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
   const auth = useSelector(state => state.login)
   const { info } = auth
@@ -39,7 +38,6 @@ export default function App() {
     axios.get('/api/products')
       .then(res => res.data)
       .then(data => setApi(data))
-      .then(() => setLoading(false))
       .catch(err => console.log(err))
   }, [])
   
@@ -89,10 +87,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/signup/*" element={<Signup />} />
-          {api.map(product => <Route path={`/products/${product.id}`} element={<>
-            {loading && <Loader />}
-            <Product {...product} key={product.id} />
-          </>} />)}
+          {api.map(product => <Route path={`/products/${product.id}`} element={<Product {...product} key={product.id} />} />)}
         </Routes>
       </main>
       <Footer />
