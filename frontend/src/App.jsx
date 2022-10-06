@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import Product from "./components/Product";
 import Payment from "./pages/Payment";
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
+import Loader from "./components/Loader";
 
 const loginFromLocalStorage = JSON.parse(localStorage.getItem('login')) ? JSON.parse(localStorage.getItem('login')) : {
   id: '',
@@ -27,6 +28,7 @@ const loginFromLocalStorage = JSON.parse(localStorage.getItem('login')) ? JSON.p
 
 export default function App() {
   const [api, setApi] = useState([])
+  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
   const auth = useSelector(state => state.login)
   const { info } = auth
@@ -37,6 +39,7 @@ export default function App() {
     axios.get('/api/products')
       .then(res => res.data)
       .then(data => setApi(data))
+      .then(() => setLoading(false))
       .catch(err => console.log(err))
   }, [])
   
@@ -78,7 +81,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-background relative">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
@@ -86,7 +89,10 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/signup/*" element={<Signup />} />
-          {api.map(product => <Route path={`/products/${product.id}`} element={<Product {...product} key={product.id} />} />)}
+          {api.map(product => <Route path={`/products/${product.id}`} element={<>
+            {loading && <Loader />}
+            <Product {...product} key={product.id} />
+          </>} />)}
         </Routes>
       </main>
       <Footer />
