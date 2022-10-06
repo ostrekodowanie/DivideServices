@@ -26,7 +26,7 @@ export default function Product(props) {
                 <Link className="font-medium flex items-center" to='/products'><img className="max-h-[1em] mr-3" src={arrow} alt='' />Back</Link>
                 <div className="flex flex-col gap-8 lg:gap-12 mt-8 lg:mt-12 lg:flex-row">
                     <div className="flex flex-col">
-                        <img className="shadow-outsideShadowPrimary rounded-xl lg:max-w-[40vw]" src={`https://services.divideproject.works/images/${props.image.split("/").pop()}`} alt="" />
+                        <img className="shadow-outsideShadowPrimary rounded-xl lg:max-w-[40vw]" src={`/images/${props.image.split("/").pop()}`} alt="" />
                     </div>
                     <div className="flex flex-col gap-8">
                         <div className="flex flex-col gap-3">
