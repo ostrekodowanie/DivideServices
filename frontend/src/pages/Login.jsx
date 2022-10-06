@@ -61,10 +61,10 @@ const Form = () => {
                 <label className="ml-6" htmlFor="password">Password</label>
                 <input className="rounded-3xl px-6 py-2 shadow-outsideShadowPrimary" required onChange={e => setCred({...cred, password: e.target.value})} type='password' name='password' placeholder="Password" />
             </div>
-            {alert && alert !== 'loading' ? <p className="text-red-400">{alert}</p> : <></>}
+            {alert && alert !== 'loading' && <p className="text-red-400">{alert}</p>}
             <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white max-w-max" type='submit'>Log in</button>
             <Link className='text-primary' to='/login/recovery'>Forgot your password?</Link>
-            {alert === 'loading' ? <Loader /> : <></>}
+            {alert === 'loading' && <Loader />}
         </form>
     )
 }
@@ -96,7 +96,7 @@ const Recovery = () => {
             {alert && alert !== 'loading' ? <p className={alert === 'Message has been sent.' ? 'text-green-400' : 'text-red-400'}>{alert}</p> : <></>}
             <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white max-w-max" type='submit'>Send message</button>
             <Link className='text-primary' to='/login'>Remember your password?</Link>
-            {alert === 'loading' ? <Loader /> : <></>}
+            {alert === 'loading' && <Loader />}
         </form>
     )
 }
@@ -144,7 +144,7 @@ const ChangePassword = () => {
             </div>
             {alert && alert !== 'loading' ? <p className={alert === 'Your password has been changed successfully!' ? 'text-green-400' : 'text-red-400'}>{alert}</p> : <></>}
             <button className="rounded-3xl py-2 px-6 bg-primary mb-6 mt-3 text-white max-w-max" type='submit'>Change password</button>
-            {alert === 'loading' ? <Loader /> : <></>}
+            {alert === 'loading' && <Loader />}
         </form>
     )
 }

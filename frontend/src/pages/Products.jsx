@@ -18,7 +18,7 @@ export default function Products() {
     }, [])
 
     return (
-        <section className="padding pt-[1.4in] xl:pt-[1.8in] min-h-screen flex flex-col gap-16">
+        <section className="padding py-[1.4in] xl:pt-[1.8in] min-h-screen flex flex-col gap-16">
             {loading && <Loader />}
             <div className="flex flex-col gap-8">
                 <h2 className="text-3xl font-semibold">Templates</h2>
