@@ -57,7 +57,7 @@ const Navbar = ({ nav }) => {
         <div className={`flex flex-col items-center gap-4 justify-center sm:gap-8 absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-background ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
             <CustomLink className="text-sm" to='/'>Home</CustomLink>
             <CustomLink className="text-sm" to='/products'>Products</CustomLink>
-            <CustomLink className="text-sm" to='/contact'>Support</CustomLink>
+            <CustomLink className="text-sm" to='/support'>Support</CustomLink>
             {!logged ? <div className="flex flex-col sm:flex-row mt-8 gap-4 sm:mt-0 ml-2 items-center">
                 <Link className="rounded-3xl text-sm font-medium py-2 px-6 border-[1px] border-primary text-primary hover:scale-105 transition duration-[250ms]" to='/login'>Login</Link>
                 <Link className="rounded-3xl text-sm font-medium py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/signup'>Sign up</Link>
