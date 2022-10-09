@@ -195,7 +195,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
-  'http://localhost:5173',
+  'https://invoicegenerate.netlify.app',
   'https://services.divideproject.works',
 )
 
