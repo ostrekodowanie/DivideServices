@@ -194,9 +194,10 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-  'http://localhost:8000',
-  'https://invoicegenerate.netlify.app',
-  'https://services.divideproject.works',
+    'http://localhost:5173',
+    'http://localhost:8000',
+    'https://invoicegenerate.netlify.app',
+    'https://services.divideproject.works',
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
