@@ -7,7 +7,7 @@ class Order(models.Model):
         User, on_delete=models.CASCADE)
     product_id = models.ForeignKey(
         Product, on_delete=models.CASCADE)
-    value = models.FloatField
+    value = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
