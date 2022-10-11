@@ -155,9 +155,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    ),
+
 }
 
 AUTH_USER_MODEL = 'Auth.User'
@@ -196,7 +194,7 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:5173',
     'http://localhost:8000',
-    'https://invoicegenerate.netlify.app',
+    'https://appsservices.netlify.app',
     'https://services.divideproject.works',
 )
 

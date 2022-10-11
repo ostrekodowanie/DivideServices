@@ -1,7 +1,8 @@
 from rest_framework import generics
 from .models import Order
 from apps.Auth.models import User
-from .serializers import OrderSerializer, OrderUserDetailsSerializer, UserOrdersSerializer
+from apps.Product.models import Product
+from .serializers import OrderSerializer, OrderUserDetailsSerializer, UserAppsSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -19,12 +20,26 @@ class UserOrdersView(APIView):
         user = User.objects.get(pk=id)
         return Response({'name': user.name, 'surname': user.surname, 'phone_number': user.phone_number})
 
-class OrdersUserView(generics.GenericAPIView):
-    serializer_class = UserOrdersSerializer
+class UserAppsView(generics.GenericAPIView):
+    queryset = Order.objects.all()
+    serializer_class = UserAppsSerializer
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        orders = Order.objects.filter(user_id=serializer.data['user_id']).values()
+        orders = Order.objects.filter(user=serializer.data['user_id']).values()
+        products = Product.objects.filter(category='apps').values()
+        
+        product_id = []
 
-        return Response(orders)
+        for x in range(len(orders)):
+            product_id.append(orders[x]['product_id'])
+
+        user_apps = []
+
+        for x in range(len(products)):
+            for y in range(len(product_id)):
+                if products[x]['id'] == product_id[y]:
+                    user_apps.append(products[x])
+
+        return Response(user_apps)
 
