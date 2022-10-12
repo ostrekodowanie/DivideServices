@@ -26,20 +26,7 @@ class UserAppsView(generics.GenericAPIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        orders = Order.objects.filter(user=serializer.data['user_id']).values()
-        products = Product.objects.filter(category='apps').values()
-        
-        product_id = []
+        apps = Product.objects.filter(category='apps').filter(order__user=serializer.data['user_id']).values()
 
-        for x in range(len(orders)):
-            product_id.append(orders[x]['product_id'])
-
-        user_apps = []
-
-        for x in range(len(products)):
-            for y in range(len(product_id)):
-                if products[x]['id'] == product_id[y]:
-                    user_apps.append(products[x])
-
-        return Response(user_apps)
+        return Response(apps)
 
