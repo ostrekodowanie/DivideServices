@@ -9,7 +9,9 @@ export default function MyProducts() {
 
     useEffect(() => {
         if(id) {
-            axios.post('/api/user/products', id, {
+            axios.post('/api/user/products', JSON.stringify({
+                user_id: id
+            }), {
                 headers: {
                     'Content-Type': 'application/json'
                 }
