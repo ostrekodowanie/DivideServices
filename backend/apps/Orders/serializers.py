@@ -11,6 +11,7 @@ class OrderUserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['name', 'surname', 'phone_number']
+        read_only_fields = ['phone_number']
 
 class UserAppsSerializer(serializers.Serializer):
     user_id = serializers.IntegerField(default=0)

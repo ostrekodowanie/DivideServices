@@ -21,7 +21,6 @@ class UserOrdersView(APIView):
         return Response({'name': user.name, 'surname': user.surname, 'phone_number': user.phone_number})
 
 class UserAppsView(generics.GenericAPIView):
-    queryset = Order.objects.all()
     serializer_class = UserAppsSerializer
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
