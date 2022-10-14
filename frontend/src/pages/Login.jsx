@@ -11,7 +11,7 @@ import contact from '../assets/contact.svg'
 export default function Login() {
     const location = useLocation()
     return (
-        <section className="padding pt-[1.4in] flex flex-col lg:flex-row items-center justify-between gap-8 min-h-screen">
+        <section className="padding flex flex-col lg:flex-row items-center justify-between gap-8 min-h-screen">
             <div className="flex flex-col">
                 <h1 className="text-4xl xl:text-[2.5rem] font-semibold mb-8">{location.pathname.split('/').pop() === 'login' ? 'Log In' : 'Change Password'}</h1>
                 {location.pathname.split('/').pop() === 'login' ? <Form /> : location.pathname.split('/').pop() === 'recovery' ? <Recovery /> : <ChangePassword />}
@@ -23,7 +23,7 @@ export default function Login() {
 
 const ContactImage = () => {
     return (
-        <div className='xl:max-w-[70%] relative xl:self-end xl:ml-auto mt-8 xl:mt-0'>
+        <div className='relative xl:self-end xl:ml-auto mt-8 xl:mt-0'>
             <img src={contact} alt='' />
         </div>
     )

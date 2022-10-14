@@ -6,7 +6,7 @@ import arrow from "../assets/arrow_left.svg"
 import { add } from "../reducers/purchase"
 import Loader from "./Loader"
 import { FacebookShareButton, LinkedinShareButton } from 'react-share'
-import { fb, ig, linkedin } from "../assets/products"
+import { fb, linkedin } from "../assets/products"
 
 export default function Product(props) {
     const [details, setDetails] = useState({
