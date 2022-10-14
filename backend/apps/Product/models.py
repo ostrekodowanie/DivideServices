@@ -76,7 +76,7 @@ class Product(models.Model):
     price = models.FloatField()
     discount = models.IntegerField(default=0)
     category = models.CharField(max_length=255, choices=CATEGORIES)
-    details_id = models.ForeignKey(
+    details = models.ForeignKey(
         ProductDetail, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

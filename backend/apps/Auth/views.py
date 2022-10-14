@@ -114,9 +114,7 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class PasswordResetView(APIView):
-    serializer_class = PasswordResetSerializer
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
         email = request.data
         
         if User.objects.filter(email=email).exists():
