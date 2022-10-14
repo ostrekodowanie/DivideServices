@@ -3,7 +3,7 @@ import { useState } from "react"
 
 export default function Account({ title }) {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col lg:p-8 gap-8">
             <Password />
             <Email />
         </div>
@@ -24,9 +24,10 @@ const Password = () => {
     }
 
     return (
-        <div className="bg-white flex flex-col">
-            <h2 className="font-medium w-full h-full py-4 padding bg-[#F7F5FA]">Password</h2>
-            <form onSubmit={handleSubmit} className="flex flex-col padding py-6 gap-4">
+        <div className="bg-white flex flex-col rounded-xl">
+            <h2 className="font-medium w-full h-full py-4 px-[8vw] md:px-[12vw] lg:px-6 bg-[#F7F5FA] lg:hidden">Password</h2>
+            <form onSubmit={handleSubmit} className="flex flex-col px-[8vw] md:px-[12vw] lg:px-6 py-6 gap-4">
+                <h2 className="font-medium hidden lg:block mb-2 text-xl">Password</h2>
                 <div className="flex flex-col gap-2">
                     <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="password">Current Password</label>
                     <input className={inputStyles} required autoComplete="off" type="password" id="password" name='password' />
@@ -46,9 +47,10 @@ const Password = () => {
 
 const Email = () => {
     return (
-        <div className="bg-white flex flex-col">
-            <h2 className="font-medium padding py-4 w-full h-full bg-[#F7F5FA]">Email</h2>
-            <form className="flex flex-col py-6 gap-4 padding">
+        <div className="bg-white flex flex-col rounded-xl">
+            <h2 className="font-medium px-[8vw] md:px-[12vw] lg:px-6 py-4 w-full h-full bg-[#F7F5FA] lg:hidden">Email</h2>
+            <form className="flex flex-col py-6 gap-4 px-[8vw] md:px-[12vw] lg:px-6">
+                <h2 className="font-medium hidden lg:block mb-2 text-xl">Email</h2>
                 <div className="flex flex-col gap-2">
                     <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="newEmail">New Email</label>
                     <input className={inputStyles} required autoComplete="off" type="email" id="newEmail" name='newEmail' />
