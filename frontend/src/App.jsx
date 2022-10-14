@@ -14,6 +14,7 @@ import Product from "./components/Product";
 import Payment from "./pages/Payment";
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import Support from "./pages/Support";
+import Profile from "./pages/Profile";
 
 const loginFromLocalStorage = JSON.parse(localStorage.getItem('login')) ? JSON.parse(localStorage.getItem('login')) : {
   id: '',
@@ -86,6 +87,7 @@ export default function App() {
           <Route path="/support" element={<Support />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/signup/*" element={<Signup />} />
+          <Route path="/profile" element={<Profile />} />
           {api.map(product => <Route path={`/products/${product.id}`} element={<Product {...product} key={product.id} />} />)}
         </Routes>
       </main>
