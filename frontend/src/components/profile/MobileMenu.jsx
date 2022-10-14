@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { AccountIcon, ProductsIcon } from "../../assets/profile"
 import { pages } from "../../pages/Profile"
 
 export default function MobileMenu ({ page, setPage }) {
@@ -10,9 +10,8 @@ export default function MobileMenu ({ page, setPage }) {
 }
 
 const MobileMenuLink = props => {
-    
     return <li className={`text-sm flex transition-colors flex-col items-center gap-2 ${props.page === props.title ? 'text-primary' : 'hover:text-primary'} cursor-pointer font-medium`} key={props.title} onClick={() => props.setPage(props.title)}>
-        {props.PageIcon}
+        {props.title === 'My Products' ? <ProductsIcon fill={props.page === props.title ? "#852FF2" : "#17131C"} /> : <AccountIcon fill={props.page === props.title ? "#852FF2" : "#17131C"} /> }
         {props.mobileTitle}
     </li>
 }

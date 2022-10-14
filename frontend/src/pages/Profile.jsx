@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { ReactComponent as ProductsIcon } from '../assets/products.svg'
-import { ReactComponent as AccountIcon } from '../assets/account.svg'
+import { ProductsIcon, AccountIcon } from "../assets/profile"
 import Account from "../components/profile/Account"
 import MobileMenu from "../components/profile/MobileMenu"
 import MyProducts from "../components/profile/MyProducts"
@@ -10,14 +9,14 @@ export const pages = [
     {
         title: 'My Products',
         mobileTitle: 'Products',
-        PageIcon: <ProductsIcon />,
+        PageIcon: <ProductsIcon fill="#17131C"/>,
         component: <MyProducts />
     },
     {
         title: 'Account Details',
         mobileTitle: 'Account',
-        PageIcon: <AccountIcon />,
-        component: <Account />
+        PageIcon: <AccountIcon fill="#17131C" />,
+        component: <Account className='hover:fill-primary' />
     }
 ]
 
