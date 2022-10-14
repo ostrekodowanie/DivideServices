@@ -16,7 +16,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import User
-from .serializers import SignUpSerializer, PasswordResetSerializer, NewPasswordSerializer
+from .serializers import SignUpSerializer, NewPasswordSerializer
 from .utils import Util
 
 from rest_framework_simplejwt.tokens import RefreshToken

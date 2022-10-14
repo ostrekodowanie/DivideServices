@@ -24,12 +24,6 @@ class SignUpSerializer(serializers.ModelSerializer):
 
         return instance
 
-class PasswordResetSerializer(serializers.Serializer):
-    email = serializers.EmailField(max_length=255)
-
-    class Meta:
-        fields = ['email']
-
 class NewPasswordSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=255, write_only=True)
     token = serializers.CharField(max_length=255, write_only=True)
