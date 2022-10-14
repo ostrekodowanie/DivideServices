@@ -13,7 +13,8 @@ module.exports = {
       },
       gridTemplateColumns: {
         autoFit: 'repeat(auto-fit, minmax(2in, 1fr))',
-        auto: 'auto 1fr'
+        auto: 'auto 1fr',
+        profile: '2.5in 1fr'
       },
       gridTemplateRows: {
         auto: 'repeat(2, auto)'

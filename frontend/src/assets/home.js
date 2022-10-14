@@ -6,6 +6,7 @@ import fashion from './fashion.png'
 import drive from './homeapp.png'
 import pinkDots from './pink_dots.svg'
 import purpleDots from './purple_dots.svg'
+import phone from './phone.png'
 
 export {
     main,
@@ -15,5 +16,6 @@ export {
     fashion,
     drive,
     pinkDots,
-    purpleDots
+    purpleDots,
+    phone
 }

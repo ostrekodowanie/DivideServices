@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { main, arrow, shadow, activeusers, fashion, purpleDots, pinkDots } from '../assets/home'
+import { main, arrow, shadow, activeusers, fashion, purpleDots, pinkDots, phone } from '../assets/home'
 import Clap from '../components/Clap'
 
 export default function Home() {
@@ -143,32 +143,38 @@ const scrollerSteps = [
 ]
 
 const Steps = () => {
-    const [active, setActive] = useState(0)
     return (
-        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col gap-8 justify-center'>
-            <h2 className='grid grid-cols-auto items-center gap-x-4 md:gap-y-2 md:mb-8 font-semibold text-xl'>
-                <span className='text-6xl md:text-8xl text-primary row-[1/3]'>3</span>
-                <span className='md:text-3xl md:self-end'>Divide your work tasks</span>
-                <span className='md:text-3xl md:self-start'>into smaller steps</span>
-            </h2>
-            <div className='flex'>
-                <div className='bg-[#F9F5FE] rounded-md w-3 justify-self-stretch grid grid-rows-[repeat(3,1fr)] transition-transform ease-in-out' style={{transform: `translateY(100% * ${active})`}}>
-                    <div className='bg-primary rounded-md'></div>
-                </div>
-                <div className='flex flex-col w-full overflow-hidden rounded-3xl'>
-                    {scrollerSteps.map((step, i) => <Scroller active={active} {...step} id={i} key={i} />)}
+        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col xl:flex-row gap-8 xl:gap-[2.5in] justify-center'>
+            <div className='flex flex-col gap-8'>
+                <h2 className='flex flex-col font-semibold mb-6 xl:mb-12 md:gap-3 text-3xl'>
+                    <span className='md:text-4xl'>Divide your tasks</span>
+                    <span className='md:text-4xl'>into <span className='text-primary'>smaller steps</span></span>
+                </h2>
+                <div className='bg-[#E9E6ED] h-[3in] xl:h-[4in] w-[0.35rem] items-center rounded-full flex flex-col justify-between'>
+                    <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
+                        <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
+                            <h3 className='font-medium text-lg xl:text-2xl'>Business step</h3>
+                            <p className='w-[3in] max-w-full text-sm text-[#A1A1A1] leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, enim illo. Quod quos, dicta harum consequuntur minima.</p>
+                        </div>
+                    </div>
+                    <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
+                        <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
+                            <h3 className='font-medium text-lg xl:text-2xl'>Business step</h3>
+                            <p className='w-[3in] max-w-full text-sm text-[#A1A1A1] leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, enim illo. Quod quos, dicta harum consequuntur minima.</p>
+                        </div>
+                    </div>
+                    <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
+                        <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
+                            <h3 className='font-medium text-lg xl:text-2xl'>Business step</h3>
+                            <p className='w-[3in] max-w-full text-sm text-[#A1A1A1] leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, enim illo. Quod quos, dicta harum consequuntur minima.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div className="relative bg-transparent">
+                <img className='absolute -bottom-8 -left-8' src={purpleDots} alt="" />
+                <img className='max-h-[8in] relative z-10 shadow-outsideShadowPrimary' src={phone} alt="" />
+             </div>
         </section>
-    )
-}
-
-const Scroller = props => {
-    return (
-        <div className={`pl-8 py-6 md:py-10 md:pl-20 flex flex-col gap-4 ${props.active === props.id ? 'bg-insideShadowPrimary' : 'bg-insideShadowGray'}`}>
-            <h4 className='text-primary'>Step {props.id + 1}</h4>
-            <h3 className='font-semibold text-2xl md:text-3xl'>{props.title}</h3>
-            <p className='text-[#4A454F] max-w-md leading-relaxed'>{props.p}</p>
-        </div>
     )
 }
