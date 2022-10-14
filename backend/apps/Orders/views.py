@@ -2,7 +2,7 @@ from rest_framework import generics
 from .models import Order
 from apps.Auth.models import User
 from apps.Product.models import Product
-from .serializers import OrderSerializer, OrderUserDetailsSerializer, UserAppsSerializer, UserProductsSerializer
+from .serializers import OrderSerializer, OrderUserDetailsSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -20,20 +20,14 @@ class UserOrdersView(APIView):
         user = User.objects.get(pk=id)
         return Response({'name': user.name, 'surname': user.surname, 'phone_number': user.phone_number})
 
-class UserAppsView(generics.GenericAPIView):
-    serializer_class = UserAppsSerializer
+class UserAppsView(APIView):
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        apps = Product.objects.filter(category='apps').filter(order__user=serializer.data['user_id']).values()
+        id = request.data
+        return Response(Product.objects.filter(category='apps').filter(order__user=id).values())
 
-        return Response(apps)
-
-class UserProductsView(generics.GenericAPIView):
-    serializer_class = UserProductsSerializer
+class UserProductsView(APIView):
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        id = request.data
     
-        return Response(Order.objects.filter(user=serializer.data['user_id']).values())
+        return Response(Order.objects.filter(user=id).values())
 
