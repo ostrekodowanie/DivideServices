@@ -2,20 +2,30 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import axios from 'axios'
 import { useLocation, useNavigate } from "react-router"
-import { useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
 import { login } from "../reducers/auth"
 import jwtDecode from "jwt-decode"
 import Loader from "../components/Loader"
+import contact from '../assets/contact.svg'
 
 export default function Login() {
     const location = useLocation()
     return (
-        <section className="padding pt-[1.4in] xl:pt-[2.2in] flex flex-col items-center min-h-screen">
+        <section className="padding pt-[1.4in] flex flex-col lg:flex-row items-center justify-between gap-8 min-h-screen">
             <div className="flex flex-col">
                 <h1 className="text-4xl xl:text-[2.5rem] font-semibold mb-8">{location.pathname.split('/').pop() === 'login' ? 'Log In' : 'Change Password'}</h1>
                 {location.pathname.split('/').pop() === 'login' ? <Form /> : location.pathname.split('/').pop() === 'recovery' ? <Recovery /> : <ChangePassword />}
             </div>
+            <ContactImage />
         </section>
+    )
+}
+
+const ContactImage = () => {
+    return (
+        <div className='xl:max-w-[70%] relative xl:self-end xl:ml-auto mt-8 xl:mt-0'>
+            <img src={contact} alt='' />
+        </div>
     )
 }
 
