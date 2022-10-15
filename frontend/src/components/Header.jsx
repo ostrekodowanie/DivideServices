@@ -62,7 +62,6 @@ const ProfileMenu = ({ dispatch }) => {
     const auth = useSelector(state => state.login)
     const location = useLocation()
     const { username } = auth.info
-    const { id } = auth.info
 
     useEffect(() => {
         setActive(false)
@@ -82,7 +81,7 @@ const ProfileMenu = ({ dispatch }) => {
         <div className="relative flex flex-col items-center">
             <span onClick={() => setActive(prev => !prev)} className="font-semibold cursor-pointer flex items-center gap-2">{username} <img className={`rotate-180 transition-transform ${active ? '-rotate-90' : ''}`} src={arrowLeft} alt="" /></span>
             {active && <div className="profile-menu flex flex-col shadow-outsideShadowPrimary bg-white font-medium rounded-xl overflow-hidden absolute top-[150%] text-sm">
-                <a className="py-3 px-5 hover:text-primary border-b-[1px] border-[#E6E6E6]" href={`https://apps.divideproject.works/${id}`}>My Apps</a>
+                <a className="py-3 px-5 hover:text-primary border-b-[1px] border-[#E6E6E6]" href='https://apps.divideproject.works'>My Apps</a>
                 <CustomLink className="py-3 px-5 border-b-[1px] border-[#E6E6E6]" to='/profile'>Preferences</CustomLink>
                 <span onClick={handleLogout} className="text-red-400 cursor-pointer py-3 px-5">Log out</span>
             </div>}
