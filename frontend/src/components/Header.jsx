@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { logo } from "../assets/header"
+import { arrowLeft, logo } from "../assets/header"
 import { Link, useResolvedPath, useMatch, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { logout } from "../reducers/auth"
@@ -41,7 +41,31 @@ const Navbar = ({ nav }) => {
     const dispatch = useDispatch()
     const auth = useSelector(state => state.login)
     const { logged } = auth
+
+    
+
+    return (
+        <div className={`flex flex-col items-center gap-4 justify-center sm:gap-8 absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-background ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
+            <CustomLink className="text-sm" to='/'>Home</CustomLink>
+            <CustomLink className="text-sm" to='/products'>Products</CustomLink>
+            <CustomLink className="text-sm" to='/support'>Support</CustomLink>
+            {!logged ? <div className="flex flex-col sm:flex-row mt-8 gap-4 sm:mt-0 ml-2 items-center">
+                <Link className="rounded-3xl text-sm font-medium py-2 px-6 border-[1px] border-primary text-primary hover:scale-105 transition duration-[250ms]" to='/login'>Login</Link>
+                <Link className="rounded-3xl text-sm font-medium py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/signup'>Sign up</Link>
+            </div> : <ProfileMenu dispatch={dispatch} />}
+        </div>
+    )
+}
+
+const ProfileMenu = ({ dispatch }) => {
+    const [active, setActive] = useState(false)
+    const auth = useSelector(state => state.login)
+    const location = useLocation()
     const { username } = auth.info
+
+    useEffect(() => {
+        setActive(false)
+    }, [location])
 
     const handleLogout = async () => {
         let { refresh } = auth.info.tokens
@@ -54,14 +78,13 @@ const Navbar = ({ nav }) => {
     }
 
     return (
-        <div className={`flex flex-col items-center gap-4 justify-center sm:gap-8 absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-background ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
-            <CustomLink className="text-sm" to='/'>Home</CustomLink>
-            <CustomLink className="text-sm" to='/products'>Products</CustomLink>
-            <CustomLink className="text-sm" to='/support'>Support</CustomLink>
-            {!logged ? <div className="flex flex-col sm:flex-row mt-8 gap-4 sm:mt-0 ml-2 items-center">
-                <Link className="rounded-3xl text-sm font-medium py-2 px-6 border-[1px] border-primary text-primary hover:scale-105 transition duration-[250ms]" to='/login'>Login</Link>
-                <Link className="rounded-3xl text-sm font-medium py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]" to='/signup'>Sign up</Link>
-            </div> : <CustomLink to='/profile' className="font-semibold cursor-pointer">{username}</CustomLink>}
+        <div className="relative flex flex-col items-center">
+            <span onClick={() => setActive(prev => !prev)} className="font-semibold cursor-pointer flex items-center gap-2">{username} <img className={`rotate-180 transition-transform ${active ? '-rotate-90' : ''}`} src={arrowLeft} alt="" /></span>
+            {active && <div className="flex flex-col shadow-outsideShadowPrimary bg-white font-medium rounded-xl overflow-hidden absolute top-[140%] text-sm">
+                <a className="py-3 px-5 hover:text-primary border-b-[1px] border-[#E6E6E6]" href="https://apps.divideproject.works">My Apps</a>
+                <CustomLink className="py-3 px-5 border-b-[1px] border-[#E6E6E6]" to='/profile'>Preferences</CustomLink>
+                <span onClick={handleLogout} className="text-red-400 cursor-pointer py-3 px-5">Log out</span>
+            </div>}
         </div>
     )
 }

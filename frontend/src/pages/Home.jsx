@@ -97,7 +97,7 @@ const Introduction = ({ order, img }) => {
 
 const Opinions = () => {
     return (
-        <section className='padding py-12 xl:py-[1in] flex flex-col gap-16 bg-white mt-16'>
+        <section className='padding py-12 xl:py-[1in] flex flex-col gap-16 bg-[#F7F5FA] mt-16'>
             <div className='flex items-center gap-8'>
                 <Clap />
                 <div className='flex flex-col gap-2'>
@@ -106,18 +106,18 @@ const Opinions = () => {
                 </div>
             </div>
             <div className='flex flex-col lg:flex-row justify-between gap-12'>
-                <div className='rounded-3xl shadow-outsideGray p-8 flex flex-col gap-4'>
-                    <div className='w-24 h-24 bg-[#FAFAFA] rounded-full' />
+                <div className='rounded-3xl shadow-outsideShadowPrimary p-8 flex flex-col gap-4'>
+                    <div className='w-24 h-24 bg-white rounded-full' />
                     <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
                     <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
                 </div>
-                <div className='rounded-3xl shadow-outsideGray p-8 flex flex-col gap-4'>
-                    <div className='w-24 h-24 bg-[#FAFAFA] rounded-full' /> 
+                <div className='rounded-3xl shadow-outsideShadowPrimary p-8 flex flex-col gap-4'>
+                    <div className='w-24 h-24 bg-white rounded-full' /> 
                     <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
                     <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
                 </div>
-                <div className='rounded-3xl shadow-outsideGray p-8 flex flex-col gap-4'>
-                    <div className='w-24 h-24 bg-[#FAFAFA] rounded-full' />
+                <div className='rounded-3xl shadow-outsideShadowPrimary p-8 flex flex-col gap-4'>
+                    <div className='w-24 h-24 bg-white rounded-full' />
                     <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
                     <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
                 </div>
@@ -128,36 +128,36 @@ const Opinions = () => {
 
 const Steps = () => {
     return (
-        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col xl:flex-row gap-8 xl:gap-[2.5in] justify-center'>
+        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col xl:flex-row gap-8 xl:gap-[1.6in] justify-center'>
             <div className='flex flex-col gap-8'>
-                <h2 className='flex flex-col font-semibold mb-6 xl:mb-12 md:gap-3 text-3xl'>
-                    <span className='md:text-4xl'>Divide your tasks</span>
-                    <span className='md:text-4xl'>into <span className='bg-primary bg-clip-text text-transparent'>smaller steps</span></span>
+                <h2 className='flex flex-col font-semibold mb-6 xl:mb-12 md:gap-4 text-3xl md:text-[2.6rem]'>
+                    <span>Divide your tasks</span>
+                    <span>into <span className='bg-primary bg-clip-text text-transparent'>smaller steps</span></span>
                 </h2>
-                <div className='bg-[#E9E6ED] h-[3in] xl:h-[4in] w-[0.35rem] items-center rounded-full flex flex-col justify-between'>
+                <div className='bg-[#E9E6ED] h-[2.5in] xl:h-[3.5in] w-[0.35rem] items-center rounded-full flex flex-col justify-between'>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
                         <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
-                            <h3 className='font-medium text-lg xl:text-2xl'>Business step</h3>
-                            <p className='w-[3in] max-w-full text-sm text-[#A1A1A1] leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, enim illo. Quod quos, dicta harum consequuntur minima.</p>
+                            <h3 className='font-medium text-lg xl:text-2xl'>Discover our product</h3>
+                            <p className='sm:w-[3in] w-[2.5in] text-sm xl:text-base text-[#A1A1A1] leading-relaxed'>Choose from products designed to help you maximize your results.</p>
                         </div>
                     </div>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
                         <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
-                            <h3 className='font-medium text-lg xl:text-2xl'>Business step</h3>
-                            <p className='w-[3in] max-w-full text-sm text-[#A1A1A1] leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, enim illo. Quod quos, dicta harum consequuntur minima.</p>
+                            <h3 className='font-medium text-lg xl:text-2xl'>Learn to use</h3>
+                            <p className='sm:w-[3in] w-[2.5in] text-sm xl:text-base text-[#A1A1A1] leading-relaxed'>Easy to use products allow you to use them always the same way.</p>
                         </div>
                     </div>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
                         <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
-                            <h3 className='font-medium text-lg xl:text-2xl'>Business step</h3>
-                            <p className='w-[3in] max-w-full text-sm text-[#A1A1A1] leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, enim illo. Quod quos, dicta harum consequuntur minima.</p>
+                            <h3 className='font-medium text-lg xl:text-2xl'>Make your work easier</h3>
+                            <p className='sm:w-[3in] w-[2.5in] text-sm xl:text-base text-[#A1A1A1] leading-relaxed'>As far as you purchase one of our products, you will always have a tool making it easier.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="relative bg-transparent">
+            <div className="relative bg-transparent mt-20 xl:mt-0">
                 <img className='absolute -bottom-8 -left-8' src={purpleDots} alt="" />
-                <img className='max-h-[8in] relative z-10 shadow-outsideShadowPrimary' src={phone} alt="" />
+                <img className='max-h-[7in] border-[5px] border-[#ECECEC]/30 rounded-2xl relative z-10 shadow-outsideShadowPrimary' src={phone} alt="" />
              </div>
         </section>
     )
