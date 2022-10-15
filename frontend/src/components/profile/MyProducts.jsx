@@ -40,7 +40,7 @@ const Product = props => {
             <div className="flex flex-col gap-1 lg:gap-2">
                 <h3 className="font-medium lg:text-lg">{props.product__name}</h3>
                 <h3 className="flex items-center text-sm lg:text-base font-medium text-[#9C9C9C]"><img className="mr-3 max-h-[1.2em]" src={profileDate} alt="" />{props.created_at.split("T")[0]}</h3>
-                <h3 className="flex items-center text-sm lg:text-base font-medium text-[#9C9C9C]"><img className="mr-3 max-h-[1.2em]" src={profileValue} alt="" />{props.value}</h3>
+                <h3 className="flex items-center text-sm lg:text-base font-medium text-[#9C9C9C]"><img className="mr-3 max-h-[1.2em]" src={profileValue} alt="" />${props.value}</h3>
             </div>
         </div>
     )

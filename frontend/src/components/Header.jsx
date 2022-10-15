@@ -62,6 +62,7 @@ const ProfileMenu = ({ dispatch }) => {
     const auth = useSelector(state => state.login)
     const location = useLocation()
     const { username } = auth.info
+    const { id } = auth.info
 
     useEffect(() => {
         setActive(false)
@@ -80,8 +81,8 @@ const ProfileMenu = ({ dispatch }) => {
     return (
         <div className="relative flex flex-col items-center">
             <span onClick={() => setActive(prev => !prev)} className="font-semibold cursor-pointer flex items-center gap-2">{username} <img className={`rotate-180 transition-transform ${active ? '-rotate-90' : ''}`} src={arrowLeft} alt="" /></span>
-            {active && <div className="flex flex-col shadow-outsideShadowPrimary bg-white font-medium rounded-xl overflow-hidden absolute top-[140%] text-sm">
-                <a className="py-3 px-5 hover:text-primary border-b-[1px] border-[#E6E6E6]" href="https://apps.divideproject.works">My Apps</a>
+            {active && <div className="profile-menu flex flex-col shadow-outsideShadowPrimary bg-white font-medium rounded-xl overflow-hidden absolute top-[150%] text-sm">
+                <a className="py-3 px-5 hover:text-primary border-b-[1px] border-[#E6E6E6]" href={`https://apps.divideproject.works/${id}`}>My Apps</a>
                 <CustomLink className="py-3 px-5 border-b-[1px] border-[#E6E6E6]" to='/profile'>Preferences</CustomLink>
                 <span onClick={handleLogout} className="text-red-400 cursor-pointer py-3 px-5">Log out</span>
             </div>}
@@ -92,5 +93,5 @@ const ProfileMenu = ({ dispatch }) => {
 const CustomLink = ({children, to, className}) => {
     const activePath = useResolvedPath(to)
     const isActive = useMatch({path: `${activePath.pathname}/*`, end: true})
-    return <Link to={to} className={`${className} transition ${isActive ? 'font-semibold text-primary' : 'hover:text-primary'}`}>{children}</Link>
+    return <Link to={to} className={`${className} transition-colors font-medium ${isActive ? 'text-primary' : 'hover:text-primary'}`}>{children}</Link>
 }

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { main, arrow, shadow, activeusers, fashion, purpleDots, pinkDots, phone } from '../assets/home'
 import Clap from '../components/Clap'
@@ -18,6 +19,8 @@ export default function Home() {
             <Introduction order='left' img={fashion} />
             <Opinions />
             <Steps />
+            <Stats />
+            <Questions />
         </>
     )
 }
@@ -134,21 +137,21 @@ const Steps = () => {
                     <span>Divide your tasks</span>
                     <span>into <span className='bg-primary bg-clip-text text-transparent'>smaller steps</span></span>
                 </h2>
-                <div className='bg-[#E9E6ED] h-[2.5in] xl:h-[3.5in] w-[0.35rem] items-center rounded-full flex flex-col justify-between'>
+                <div className='bg-transparent h-[2.5in] xl:h-[3.5in] w-[0.35rem] items-center rounded-full flex flex-col justify-between'>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
-                        <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
+                        <div className='absolute left-12 xl:left-[0.6in] -mt-2 flex flex-col gap-2'>
                             <h3 className='font-medium text-lg xl:text-2xl'>Discover our product</h3>
                             <p className='sm:w-[3in] w-[2.5in] text-sm xl:text-base text-[#A1A1A1] leading-relaxed'>Choose from products designed to help you maximize your results.</p>
                         </div>
                     </div>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
-                        <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
+                        <div className='absolute left-12 xl:left-[0.6in] -mt-2 flex flex-col gap-2'>
                             <h3 className='font-medium text-lg xl:text-2xl'>Learn to use</h3>
                             <p className='sm:w-[3in] w-[2.5in] text-sm xl:text-base text-[#A1A1A1] leading-relaxed'>Easy to use products allow you to use them always the same way.</p>
                         </div>
                     </div>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
-                        <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
+                        <div className='absolute left-12 xl:left-[0.6in] -mt-2 flex flex-col gap-2'>
                             <h3 className='font-medium text-lg xl:text-2xl'>Make your work easier</h3>
                             <p className='sm:w-[3in] w-[2.5in] text-sm xl:text-base text-[#A1A1A1] leading-relaxed'>As far as you purchase one of our products, you will always have a tool making it easier.</p>
                         </div>
@@ -160,5 +163,54 @@ const Steps = () => {
                 <img className='max-h-[7in] border-[5px] border-[#ECECEC]/30 rounded-2xl relative z-10 shadow-outsideShadowPrimary' src={phone} alt="" />
              </div>
         </section>
+    )
+}
+
+const questions = [
+    {
+        question: 'How much time do I have to wait to get the access to the purchased app?',
+        answer: "Usually you'll get your product instantly after you pay for it, but in some instances there can be some delay between purchase and access."
+    },
+    {
+        question: 'How much time do I have to wait to get the access to the purchased app?',
+        answer: "Usually you'll get your product instantly after you pay for it, but in some instances there can be some delay between purchase and access."
+    },
+    {
+        question: 'How much time do I have to wait to get the access to the purchased app?',
+        answer: "Usually you'll get your product instantly after you pay for it, but in some instances there can be some delay between purchase and access."
+    },
+    {
+        question: 'How much time do I have to wait to get the access to the purchased app?',
+        answer: "Usually you'll get your product instantly after you pay for it, but in some instances there can be some delay between purchase and access."
+    },
+]
+
+const Questions = () => {
+    const [active, setActive] = useState(null)
+
+    return (
+        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col bg-background'>
+            <h2 className='text-2xl lg:text-4xl font-semibold mb-8'>Frequently Asked Questions</h2>
+            <div className='rounded-3xl overflow-hidden'>
+                {questions.map((question, i) => <Question {...question} i={i} active={i === active ? true : false} setActive={setActive} key={i}/>)}
+            </div>
+        </section>
+    )
+}
+
+const Question = props => {
+    return (
+        <div className={`flex flex-col gap-3 transition relative ${props.active ? 'bg-white shadow-outsideShadowPrimary z-10 p-8': 'bg-background py-4 px-8'}`}>
+            <div className='flex items-center justify-between'>
+                <h3 className={`${props.active ? 'text-black font-medium' : 'text-[#17131C]/40'} text-xl transition`}>{props.question}</h3>
+                <button className='h-12 w-12 text-primary text-xl font-medium rounded-full bg-[#E9DAFC]' onClick={() => props.active ? props.setActive(null) : props.setActive(props.i)}>
+                    {props.active ? '-' : '+'}
+                </button>
+            </div>
+            {props.active && <div className='flex gap-4 profile-menu'>
+                <div className='w-4 mt-4 h-[2px] bg-primary' />
+                <p className='inter font-medium text-[#4A454F] max-w-[5in] leading-loose'>{props.answer}</p>    
+            </div>}
+        </div>
     )
 }
