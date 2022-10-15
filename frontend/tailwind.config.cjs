@@ -20,6 +20,7 @@ module.exports = {
         auto: 'repeat(2, auto)'
       },
       backgroundImage: {
+        primary: 'linear-gradient(180deg, #3734E5 0%, #862FF2 107.07%)',
         insideShadowPrimary: 'linear-gradient(270deg, rgba(133, 47, 242, 0.23) 0%, rgba(217, 217, 217, 0) 100%, #F6EFFE 100%);', 
         insideShadowGray: 'linear-gradient(270deg, rgba(204, 202, 206, 0.05) 0%, rgba(217, 217, 217, 0) 100%, #F6EFFE 100%);',
         productShadow: 'linear-gradient(179.04deg, rgba(0, 0, 0, 0) 47.11%, rgba(0, 0, 0, 0.1715) 89.53%);'

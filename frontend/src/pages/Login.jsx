@@ -132,7 +132,7 @@ const ChangePassword = () => {
         axios.patch('/api/login/recovery/complete', JSON.stringify({
             password: password.pwd,
             token: token,
-            uidb64: 'Nw'
+            uidb64: 'MQ'
         }), {
             headers: {
                 'Content-Type': 'application/json'

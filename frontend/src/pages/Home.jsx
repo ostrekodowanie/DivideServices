@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { main, arrow, shadow, activeusers, fashion, purpleDots, pinkDots, phone } from '../assets/home'
 import Clap from '../components/Clap'
@@ -8,7 +7,7 @@ export default function Home() {
         <>
             <section className="padding pt-[1.4in] xl:pt-[1.6in] flex flex-col lg:flex-row justify-between relative min-h-[75vh]">
                 <div className="flex flex-col xl:my-12 gap-6">
-                    <h1 className="text-4xl lg:text-5xl lg:leading-tight xl:text-[4rem] max-w-[4.2in] xl:leading-tight leading-snug font-semibold"><span className='text-primary'>Divide</span> your business<br /><Clap maxH='1em' classes='top-3' /> solutions.</h1>
+                    <h1 className="text-4xl lg:text-5xl lg:leading-tight xl:text-[4rem] max-w-[4.2in] xl:leading-tight leading-snug font-semibold"><span className='bg-primary bg-clip-text text-transparent'>Divide</span> your business<br /><Clap maxH='1em' classes='top-3' /> solutions.</h1>
                     <p className='text-[#4A454F] xl:text-md'>Make your work routine become easier and faster</p>
                     <CTA />
                 </div>
@@ -45,28 +44,28 @@ const Stats = () => {
     return (
         <div className='bg-primary padding xl:mb-12 py-12 xl:py-16 gap-12 flex flex-col md:grid md:grid-cols-2 xl:flex xl:justify-between xl:flex-row items-center'>
             <div className='grid grid-cols-auto max-w-max'>
-                <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-[1/3]'>
+                <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-[1/3]'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>941</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
-                <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
+                <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Projects</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>187</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
-                <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
+                <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>12.000</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
-                <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
+                <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
@@ -127,28 +126,13 @@ const Opinions = () => {
     )
 }
 
-const scrollerSteps = [
-    {
-        title: 'Headline Name',
-        p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum purus massa venenatis, gravida. Cursus scelerisque adipiscing venenatis et integer duis a eu viverra. Scelerisque non pharetra pharetra, blandit.'
-    },
-    {
-        title: 'Headline Name',
-        p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum purus massa venenatis, gravida. Cursus scelerisque adipiscing venenatis et integer duis a eu viverra. Scelerisque non pharetra pharetra, blandit.'
-    },
-    {
-        title: 'Headline Name',
-        p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum purus massa venenatis, gravida. Cursus scelerisque adipiscing venenatis et integer duis a eu viverra. Scelerisque non pharetra pharetra, blandit.'
-    },
-]
-
 const Steps = () => {
     return (
         <section className='padding py-[1in] xl:py-[1.4in] flex flex-col xl:flex-row gap-8 xl:gap-[2.5in] justify-center'>
             <div className='flex flex-col gap-8'>
                 <h2 className='flex flex-col font-semibold mb-6 xl:mb-12 md:gap-3 text-3xl'>
                     <span className='md:text-4xl'>Divide your tasks</span>
-                    <span className='md:text-4xl'>into <span className='text-primary'>smaller steps</span></span>
+                    <span className='md:text-4xl'>into <span className='bg-primary bg-clip-text text-transparent'>smaller steps</span></span>
                 </h2>
                 <div className='bg-[#E9E6ED] h-[3in] xl:h-[4in] w-[0.35rem] items-center rounded-full flex flex-col justify-between'>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>

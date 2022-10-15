@@ -69,5 +69,5 @@ const Navbar = ({ nav }) => {
 const CustomLink = ({children, to, className}) => {
     const activePath = useResolvedPath(to)
     const isActive = useMatch({path: `${activePath.pathname}/*`, end: true})
-    return <Link to={to} className={`${className} transition ${isActive ? 'text-primary font-semibold' : 'hover:text-primary'}`}>{children}</Link>
+    return <Link to={to} className={`${className} transition ${isActive ? 'font-semibold text-primary' : 'hover:text-primary'}`}>{children}</Link>
 }
