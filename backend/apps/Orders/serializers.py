@@ -12,4 +12,3 @@ class OrderUserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['name', 'surname', 'phone_number']
-        read_only_fields = ['phone_number']

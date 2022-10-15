@@ -154,8 +154,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    
+    ),    
 }
 
 AUTH_USER_MODEL = 'Auth.User'
@@ -194,7 +193,7 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:5173',
     'http://localhost:8000',
-    'https://appsservices.netlify.app',
+    'https://apps.divideproject.works',
     'https://services.divideproject.works',
 )
 
