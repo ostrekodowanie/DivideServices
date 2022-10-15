@@ -3,6 +3,7 @@ from .models import Order
 from apps.Auth.models import User
 
 class OrderSerializer(serializers.ModelSerializer):
+    product = serializers.StringRelatedField(many=True, read_only=True)
     class Meta:
         model = Order
         fields = '__all__'
