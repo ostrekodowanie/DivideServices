@@ -11,7 +11,7 @@ export default function Header() {
 
     useEffect(() => {
         setNav(false)
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }, [location])
 
     return (

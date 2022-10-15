@@ -189,8 +189,10 @@ const Questions = () => {
     const [active, setActive] = useState(null)
 
     return (
-        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col bg-background'>
+        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col bg-background relative'>
             <h2 className='text-2xl lg:text-4xl font-semibold mb-8'>Frequently Asked Questions</h2>
+            <img className='absolute right-[7vw] md:right-[10vw] 2xl:right-[15vw] bottom-12 xl:bottom-24' src={purpleDots} alt="" />
+            <img className='absolute left-[6vw] md:left-[9vw] 2xl:left-[14vw] top-[2.6in]' src={purpleDots} alt="" />
             <div className='rounded-3xl overflow-hidden'>
                 {questions.map((question, i) => <Question {...question} i={i} active={i === active ? true : false} setActive={setActive} key={i}/>)}
             </div>
