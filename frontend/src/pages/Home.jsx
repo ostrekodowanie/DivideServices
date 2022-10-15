@@ -8,7 +8,7 @@ export default function Home() {
         <>
             <section className="padding pt-[1.4in] xl:pt-[1.6in] flex flex-col lg:flex-row justify-between relative min-h-[75vh]">
                 <div className="flex flex-col xl:my-12 gap-6">
-                    <h1 className="text-4xl lg:text-5xl lg:leading-tight xl:text-[4rem] max-w-[4.2in] xl:leading-tight leading-snug font-semibold"><span className='text-primary'>Divide</span> your business<br /><Clap maxH='1em' classes='top-3' /> solutions.</h1>
+                    <h1 className="text-4xl lg:text-5xl lg:leading-tight xl:text-[4rem] max-w-[4.2in] xl:leading-tight leading-snug font-semibold"><span className='bg-primary bg-clip-text text-transparent'>Divide</span> your business<br /><Clap maxH='1em' classes='top-3' /> solutions.</h1>
                     <p className='text-[#4A454F] xl:text-md'>Make your work routine become easier and faster</p>
                     <CTA />
                 </div>
@@ -19,6 +19,8 @@ export default function Home() {
             <Introduction order='left' img={fashion} />
             <Opinions />
             <Steps />
+            <Stats />
+            <Questions />
         </>
     )
 }
@@ -45,28 +47,28 @@ const Stats = () => {
     return (
         <div className='bg-primary padding xl:mb-12 py-12 xl:py-16 gap-12 flex flex-col md:grid md:grid-cols-2 xl:flex xl:justify-between xl:flex-row items-center'>
             <div className='grid grid-cols-auto max-w-max'>
-                <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-[1/3]'>
+                <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-[1/3]'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>941</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
-                <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
+                <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Projects</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>187</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
-                <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
+                <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
                 <p className='text-[#FAFAFA] font-semibold text-2xl'>12.000</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
-                <div className='bg-secondary rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
+                <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
@@ -98,7 +100,7 @@ const Introduction = ({ order, img }) => {
 
 const Opinions = () => {
     return (
-        <section className='padding py-12 xl:py-[1in] flex flex-col gap-16 bg-white mt-16'>
+        <section className='padding py-12 xl:py-[1in] flex flex-col gap-16 bg-[#F7F5FA] mt-16'>
             <div className='flex items-center gap-8'>
                 <Clap />
                 <div className='flex flex-col gap-2'>
@@ -107,18 +109,18 @@ const Opinions = () => {
                 </div>
             </div>
             <div className='flex flex-col lg:flex-row justify-between gap-12'>
-                <div className='rounded-3xl shadow-outsideGray p-8 flex flex-col gap-4'>
-                    <div className='w-24 h-24 bg-[#FAFAFA] rounded-full' />
+                <div className='rounded-3xl shadow-outsideShadowPrimary p-8 flex flex-col gap-4'>
+                    <div className='w-24 h-24 bg-white rounded-full' />
                     <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
                     <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
                 </div>
-                <div className='rounded-3xl shadow-outsideGray p-8 flex flex-col gap-4'>
-                    <div className='w-24 h-24 bg-[#FAFAFA] rounded-full' /> 
+                <div className='rounded-3xl shadow-outsideShadowPrimary p-8 flex flex-col gap-4'>
+                    <div className='w-24 h-24 bg-white rounded-full' /> 
                     <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
                     <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
                 </div>
-                <div className='rounded-3xl shadow-outsideGray p-8 flex flex-col gap-4'>
-                    <div className='w-24 h-24 bg-[#FAFAFA] rounded-full' />
+                <div className='rounded-3xl shadow-outsideShadowPrimary p-8 flex flex-col gap-4'>
+                    <div className='w-24 h-24 bg-white rounded-full' />
                     <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
                     <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
                 </div>
@@ -127,54 +129,90 @@ const Opinions = () => {
     )
 }
 
-const scrollerSteps = [
-    {
-        title: 'Headline Name',
-        p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum purus massa venenatis, gravida. Cursus scelerisque adipiscing venenatis et integer duis a eu viverra. Scelerisque non pharetra pharetra, blandit.'
-    },
-    {
-        title: 'Headline Name',
-        p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum purus massa venenatis, gravida. Cursus scelerisque adipiscing venenatis et integer duis a eu viverra. Scelerisque non pharetra pharetra, blandit.'
-    },
-    {
-        title: 'Headline Name',
-        p: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum purus massa venenatis, gravida. Cursus scelerisque adipiscing venenatis et integer duis a eu viverra. Scelerisque non pharetra pharetra, blandit.'
-    },
-]
-
 const Steps = () => {
     return (
-        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col xl:flex-row gap-8 xl:gap-[2.5in] justify-center'>
+        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col xl:flex-row gap-8 xl:gap-[1.6in] justify-center'>
             <div className='flex flex-col gap-8'>
-                <h2 className='flex flex-col font-semibold mb-6 xl:mb-12 md:gap-3 text-3xl'>
-                    <span className='md:text-4xl'>Divide your tasks</span>
-                    <span className='md:text-4xl'>into <span className='text-primary'>smaller steps</span></span>
+                <h2 className='flex flex-col font-semibold mb-6 xl:mb-12 md:gap-4 text-3xl md:text-[2.6rem]'>
+                    <span>Divide your tasks</span>
+                    <span>into <span className='bg-primary bg-clip-text text-transparent'>smaller steps</span></span>
                 </h2>
-                <div className='bg-[#E9E6ED] h-[3in] xl:h-[4in] w-[0.35rem] items-center rounded-full flex flex-col justify-between'>
+                <div className='bg-transparent h-[2.5in] xl:h-[3.5in] w-[0.35rem] items-center rounded-full flex flex-col justify-between'>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
-                        <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
-                            <h3 className='font-medium text-lg xl:text-2xl'>Business step</h3>
-                            <p className='w-[3in] max-w-full text-sm text-[#A1A1A1] leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, enim illo. Quod quos, dicta harum consequuntur minima.</p>
+                        <div className='absolute left-12 xl:left-[0.6in] -mt-2 flex flex-col gap-2'>
+                            <h3 className='font-medium text-lg xl:text-2xl'>Discover our product</h3>
+                            <p className='sm:w-[3in] w-[2.5in] text-sm xl:text-base text-[#A1A1A1] leading-relaxed'>Choose from products designed to help you maximize your results.</p>
                         </div>
                     </div>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
-                        <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
-                            <h3 className='font-medium text-lg xl:text-2xl'>Business step</h3>
-                            <p className='w-[3in] max-w-full text-sm text-[#A1A1A1] leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, enim illo. Quod quos, dicta harum consequuntur minima.</p>
+                        <div className='absolute left-12 xl:left-[0.6in] -mt-2 flex flex-col gap-2'>
+                            <h3 className='font-medium text-lg xl:text-2xl'>Learn to use</h3>
+                            <p className='sm:w-[3in] w-[2.5in] text-sm xl:text-base text-[#A1A1A1] leading-relaxed'>Easy to use products allow you to use them always the same way.</p>
                         </div>
                     </div>
                     <div className='relative bg-primary rounded-full flex h-5 w-5 border-[2px] shadow-[0px_10px_28px_rgba(43,40,239,0.5)] border-white'>
-                        <div className='absolute left-12 xl:left-[0.8in] -mt-2 flex flex-col gap-2'>
-                            <h3 className='font-medium text-lg xl:text-2xl'>Business step</h3>
-                            <p className='w-[3in] max-w-full text-sm text-[#A1A1A1] leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, enim illo. Quod quos, dicta harum consequuntur minima.</p>
+                        <div className='absolute left-12 xl:left-[0.6in] -mt-2 flex flex-col gap-2'>
+                            <h3 className='font-medium text-lg xl:text-2xl'>Make your work easier</h3>
+                            <p className='sm:w-[3in] w-[2.5in] text-sm xl:text-base text-[#A1A1A1] leading-relaxed'>As far as you purchase one of our products, you will always have a tool making it easier.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="relative bg-transparent">
+            <div className="relative bg-transparent mt-20 xl:mt-0">
                 <img className='absolute -bottom-8 -left-8' src={purpleDots} alt="" />
-                <img className='max-h-[8in] relative z-10 shadow-outsideShadowPrimary' src={phone} alt="" />
+                <img className='max-h-[7in] border-[5px] border-[#ECECEC]/30 rounded-2xl relative z-10 shadow-outsideShadowPrimary' src={phone} alt="" />
              </div>
         </section>
+    )
+}
+
+const questions = [
+    {
+        question: 'How much time do I have to wait to get the access to the purchased app?',
+        answer: "Usually you'll get your product instantly after you pay for it, but in some instances there can be some delay between purchase and access."
+    },
+    {
+        question: 'How much time do I have to wait to get the access to the purchased app?',
+        answer: "Usually you'll get your product instantly after you pay for it, but in some instances there can be some delay between purchase and access."
+    },
+    {
+        question: 'How much time do I have to wait to get the access to the purchased app?',
+        answer: "Usually you'll get your product instantly after you pay for it, but in some instances there can be some delay between purchase and access."
+    },
+    {
+        question: 'How much time do I have to wait to get the access to the purchased app?',
+        answer: "Usually you'll get your product instantly after you pay for it, but in some instances there can be some delay between purchase and access."
+    },
+]
+
+const Questions = () => {
+    const [active, setActive] = useState(null)
+
+    return (
+        <section className='padding py-[1in] xl:py-[1.4in] flex flex-col bg-background relative'>
+            <h2 className='text-2xl lg:text-4xl font-semibold mb-8'>Frequently Asked Questions</h2>
+            <img className='absolute right-[7vw] md:right-[10vw] 2xl:right-[15vw] bottom-12 xl:bottom-24' src={purpleDots} alt="" />
+            <img className='absolute left-[6vw] md:left-[9vw] 2xl:left-[14vw] top-[2.6in]' src={purpleDots} alt="" />
+            <div className='rounded-3xl overflow-hidden'>
+                {questions.map((question, i) => <Question {...question} i={i} active={i === active ? true : false} setActive={setActive} key={i}/>)}
+            </div>
+        </section>
+    )
+}
+
+const Question = props => {
+    return (
+        <div className={`flex flex-col gap-3 transition relative ${props.active ? 'bg-white shadow-outsideShadowPrimary z-10 p-8': 'bg-background py-4 px-8'}`}>
+            <div className='flex items-center justify-between'>
+                <h3 className={`${props.active ? 'text-black font-medium' : 'text-[#17131C]/40'} text-xl transition`}>{props.question}</h3>
+                <button className='h-12 w-12 text-primary text-xl font-medium rounded-full bg-[#E9DAFC]' onClick={() => props.active ? props.setActive(null) : props.setActive(props.i)}>
+                    {props.active ? '-' : '+'}
+                </button>
+            </div>
+            {props.active && <div className='flex gap-4 profile-menu'>
+                <div className='w-4 mt-4 h-[2px] bg-primary' />
+                <p className='inter font-medium text-[#4A454F] max-w-[5in] leading-loose'>{props.answer}</p>    
+            </div>}
+        </div>
     )
 }

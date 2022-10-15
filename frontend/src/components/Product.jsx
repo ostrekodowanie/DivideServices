@@ -15,7 +15,7 @@ export default function Product(props) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(`/api/products/${props.details_id}`)
+        axios.get(`/api/products/${props.details}`)
             .then(res => res.data)
             .then(data => setDetails(data))
             .then(() => setLoading(false))
@@ -67,7 +67,7 @@ export default function Product(props) {
                     </div>
                     <div className="flex flex-col gap-4">
                         <h3 className="font-medium text-xl">Tools used</h3>
-                        <p className="text-[#A199AA] font-medium">{details.tools.map((tool, i) => <span>{i === details.tools.length - 1 ? tool.split(" | ")[0] : tool.split(" | ")[0] + ', '}</span>)}</p>
+                        <p className="text-[#A199AA]">{details.tools.map((tool, i) => <span>{i === details.tools.length - 1 ? tool.split(" | ")[0] : tool.split(" | ")[0] + ', '}</span>)}</p>
                         <div className="flex items-center gap-4">
                             {details.tools.map(tool => <img src={`/images/${tool.split(" | ").pop()}`} alt={tool.split(" | ")[0]} />)}
                         </div>
