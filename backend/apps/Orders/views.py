@@ -28,5 +28,7 @@ class UserAppsView(APIView):
 class UserProductsView(APIView):
     def post(self, request):
         id = request.data
-        return Response(Order.objects.filter(user=id).values())
+        products = Order.objects.filter(user=id).values('product__name', 'product__image', 'value', 'created_at')
+        return Response(products)
+        
 
