@@ -15,8 +15,8 @@ export default function Home() {
                 <MainImage />
             </section>
             <Stats />
-            <Introduction order='right' img={fashion} />
-            <Introduction order='left' img={fashion} />
+            <Introduction order='right' img={fashion} title='Gain the most profits with our accessible and reliable products.' p='Our products are designed to help you improve your incomes and create a workspace for your ideas. You can either buy product from our store or order one specifically filling your needs.' />
+            <Introduction order='left' img={fashion} title='Let us improve your productivity by increasing your speed.' p='We can help you with many things related to our field, anything between changing the color of the button to programming a website modified specifically for your expactations.' />
             <Opinions />
             <Steps />
             <Stats />
@@ -78,14 +78,14 @@ const Stats = () => {
     )
 }
 
-const Introduction = ({ order, img }) => {
+const Introduction = ({ order, img, title, p }) => {
     return (
         <section className='padding py-[1in] xl:py-[1.4in] flex flex-col'>
             <div className={`flex flex-col ${order === 'left' ? 'xl:flex-row-reverse' : 'xl:flex-row'} xl:items-center gap-28 md:gap-36 xl:gap-48`}>
                 <div className='flex flex-col gap-6'>
-                    <h2 className='text-4xl leading-normal font-semibold max-w-[6in] xl:max-w-[5in]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-                    <p className='text-[#4A454F] leading-loose max-w-[5.5in] xl:max-w-[4in]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At pretium cursus in in sed congue risus. Etiam cursus orci quis neque ac enim morbi. Elit, pulvinar nisl, tortor vel parturient. Placerat consectetur sit gravida tellus lectus amet, ac, id arcu.</p>
-                    <button className="rounded-3xl mt-2 max-w-max text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Get a quote</button>
+                    <h2 className='text-4xl leading-normal font-semibold max-w-[6in] xl:max-w-[5in]'>{title}</h2>
+                    <p className='text-[#4A454F] leading-loose max-w-[5.5in] xl:max-w-[4in]'>{p}</p>
+                    <Link to='/products' className="rounded-3xl mt-2 max-w-max text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Check out</Link>
                 </div>
                 <div className={order === 'left' ? 'xl:ml-[-12vw] 2xl:ml-[-18vw] lg:mr-auto relative' : 'xl:mr-[-12vw] 2xl:mr-[-18vw] lg:ml-auto relative'}>
                     <img className='shadow-outsideShadowPrimary rounded-3xl relative z-10' src={img} alt="" />
@@ -168,8 +168,8 @@ const Steps = () => {
 
 const questions = [
     {
-        question: 'How much time do I have to wait to get the access to the purchased app?',
-        answer: "Usually you'll get your product instantly after you pay for it, but in some instances there can be some delay between purchase and access."
+        question: 'How can I order a product tailored specifically for myself?',
+        answer: "You can reach out to us through our contact form or write via email divideproject.business@gmail.com."
     },
     {
         question: 'How much time do I have to wait to get the access to the purchased app?',
