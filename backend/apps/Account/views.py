@@ -13,5 +13,5 @@ class ChangePasswordView(APIView):
         if user.check_password(current_password):
             user.set_password(new_password)
             user.save()
-            return Response(status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response('password successfully changed', status=status.HTTP_200_OK)
+        return Response('wrong password', status=status.HTTP_400_BAD_REQUEST)
