@@ -30,5 +30,3 @@ class UserProductsView(APIView):
         id = request.data
         products = Order.objects.filter(user=id).values('product__name', 'product__image', 'value', 'created_at')
         return Response(products)
-        
-
