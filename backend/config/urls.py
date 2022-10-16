@@ -35,4 +35,5 @@ urlpatterns = [
     path('', include('apps.Auth.urls')),
     path('', include('apps.Contact.urls')),
     path('', include('apps.Orders.urls')),
+    path('', include('apps.Account.urls')),
 ]

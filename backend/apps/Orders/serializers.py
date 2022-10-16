@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from .models import Order
 from apps.Auth.models import User
+from apps.Product.models import Product
 
 class OrderSerializer(serializers.ModelSerializer):
-    product = serializers.StringRelatedField(many=True, read_only=True)
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     class Meta:
         model = Order
         fields = '__all__'
