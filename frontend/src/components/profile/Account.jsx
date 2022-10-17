@@ -22,7 +22,8 @@ const Password = () => {
         confPassword: '',
     })
 
-    const handleSubmit = async () => {
+    const handleSubmit = async e => {
+        e.preventDefault()
         if(password.newPassword !== password.confPassword) return
         const resp = await axios.post('/api/account/password', JSON.stringify({
             user_id: ID,
@@ -69,7 +70,7 @@ const Password = () => {
                     })} required autoComplete="off" type="password" id="repeatNewPassword" name='repeatNewPassword' />
                 </div>
                 <div className="flex items-center gap-4">
-                    <button className="rounded-3xl text-sm mt-4 max-w-max py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Change password</button>
+                    <button type="submit" className="rounded-3xl text-sm mt-4 max-w-max py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Change password</button>
                     {status ? <span className="text-green-400 animate-ping">✔</span> : status === false && <span className="text-red-400 animate-ping">X</span>}
                 </div>
             </form>
