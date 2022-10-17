@@ -14,7 +14,7 @@ export default function Account() {
 const inputStyles = "px-6 py-2 rounded-3xl bg-[#F5F5F5] focus:bg-[#E9DDF8] border-primary focus:border-[1px] outline-none"
 
 const Password = () => {
-    const { ID } = useSelector(state => state.login.info)
+    const { id } = useSelector(state => state.login.info)
     const [status, setStatus] = useState(undefined)
     const [password, setPassword] = useState({
         password: '',
@@ -24,9 +24,15 @@ const Password = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
+<<<<<<< HEAD
         if(password.newPassword !== password.confPassword) return
+=======
+        if(password.newPassword !== password.confPassword)  return
+        if(password.password === password.newPassword) return
+        print(id)
+>>>>>>> f91251eb1caf2da79fde9346a975ac5a23790a3e
         const resp = await axios.post('/api/account/password', JSON.stringify({
-            user_id: ID,
+            user_id: id,
             current_password: password.password,
             new_password: password.newPassword
         }), {
@@ -86,7 +92,8 @@ const Email = () => {
         confirmEmail: ''
     })
 
-    const handleEmail = () => {
+    const handleEmail = e => {
+        e.preventDefault()
         if(email.newEmail !== email.confirmEmail) return
         axios.post('/api/account/email', JSON.stringify({
             user_id: ID,
