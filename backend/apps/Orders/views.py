@@ -22,8 +22,6 @@ class UserOrdersView(APIView):
 
 class UserAppsView(APIView):
     def post(self, request):
-        current_user = request.user
-        print(current_user.id)
         id = request.data
         return Response(Product.objects.filter(category='apps').filter(order__user=id).values())
 
