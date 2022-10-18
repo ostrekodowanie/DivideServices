@@ -26,6 +26,28 @@ const General = () => {
         phone_number: ''
     })
 
+    useEffect(() => {
+        if(username) setGeneral(prev => {
+            return {
+                ...prev,
+                username: username
+            }
+        })
+        axios.post('/api/orders/user', id, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.data)
+        .then(data => setGeneral(prev => {
+            return {
+                ...prev,
+                name: data.name,
+                surname: data.surname,
+                phone_number: data.phone_number,
+            }
+        }))
+    }, [])
+
     const handleSubmit = async e => {
         e.preventDefault()
         const resp = await axios.patch(`/api/account/${id}`, JSON.stringify(general), {
@@ -43,7 +65,7 @@ const General = () => {
                 <h2 className="font-medium hidden lg:block mb-2 text-xl">General</h2>
                 <div className="flex flex-col gap-2">
                     <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="username">Username</label>
-                    <input className={inputStyles} defaultValue={username} onChange={e => setGeneral(prev => {
+                    <input className={inputStyles} value={general.username} onChange={e => setGeneral(prev => {
                         return {
                             ...prev,
                             username: e.target.value
@@ -52,7 +74,7 @@ const General = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                     <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="name">Name</label>
-                    <input className={inputStyles} onChange={e => setGeneral(prev => {
+                    <input className={inputStyles} value={general.name} onChange={e => setGeneral(prev => {
                         return {
                             ...prev,
                             name: e.target.value
@@ -61,7 +83,7 @@ const General = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                     <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="Surname">Surname</label>
-                    <input className={inputStyles} onChange={e => setGeneral(prev => {
+                    <input className={inputStyles} value={general.surname} onChange={e => setGeneral(prev => {
                         return {
                             ...prev,
                             surname: e.target.value
@@ -70,7 +92,7 @@ const General = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                     <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="phone">Phone Number</label>
-                    <input className={inputStyles} onChange={e => setGeneral(prev => {
+                    <input className={inputStyles} value={general.phone_number} onChange={e => setGeneral(prev => {
                         return {
                             ...prev,
                             phone_number: e.target.value

@@ -81,8 +81,8 @@ const PayPalForm = ({ item }) => {
 
     const handleApprove = async () => {
         const response = await axios.post('/api/orders', {
-            user_id: id,
-            product_id: item.id,
+            user: id,
+            product: item.id,
             value: item.price
         }, {
             headers: {
