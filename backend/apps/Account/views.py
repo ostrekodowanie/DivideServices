@@ -35,7 +35,7 @@ class ChangeEmailView(APIView):
         user = User.objects.get(pk=id)
 
         if User.objects.filter(email=new_email).exists():
-            return Response('user with this email already exists', status=status.HTTP_400_BAD_REQUEST)
+            return Response('User with this email already exists.', status=status.HTTP_400_BAD_REQUEST)
         token = RefreshToken.for_user(user).access_token
         current_site = get_current_site(request).domain
         relativeLink = reverse('change-email')
@@ -44,7 +44,7 @@ class ChangeEmailView(APIView):
         data = {'email_body': email_body, 'to_email': user.email, 'email_subject': 'Email change verification'}
         Util.send_email(data)
 
-        return Response('message sent', status=status.HTTP_200_OK)
+        return Response('Check your current email for the verification message.', status=status.HTTP_200_OK)
 
     def get(self, request):
         new_email = request.GET.get('new-email')
@@ -53,16 +53,15 @@ class ChangeEmailView(APIView):
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
             User.objects.filter(pk=payload['user_id']).update(email=new_email)
-            return Response(new_email, status=status.HTTP_200_OK)
+            return Response({'Email successfully changed.'}, status=status.HTTP_200_OK)
         except jwt.ExpiredSignatureError as identifier:     
-            return Response({'link expired'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'Link expired.'}, status=status.HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError as identifier:
-            return Response({'invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'Invalid token.'}, status=status.HTTP_400_BAD_REQUEST)
 
-class ChangeEmailPatchView(generics.UpdateAPIView):
+class UserProfileView(generics.UpdateAPIView):
     queryset = User.objects.all()
-    serializer_class = EmailChangeSerializer
-
+    serializer_class = UserProfileSerializer
 
 
 
