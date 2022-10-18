@@ -113,10 +113,10 @@ const Email = () => {
     }
 
     useEffect(() => {
-        console.log(location.search)
+        console.log(location)
         if(location.search) {
             let token = location.search.pop()
-            axios.get(`/api/account/email?new_email=?${token}`)
+            axios.get(`/api/account/email/verify?new-email=?${token}`)
                 .then(res => res.data)
                 .then(data => {
                     axios.patch(`/api/account/email/${id}`, JSON.stringify({
