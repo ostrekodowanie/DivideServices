@@ -29,7 +29,6 @@ const loginFromLocalStorage = JSON.parse(localStorage.getItem('login')) ? JSON.p
 }
 
 export default function App() {
-  const [api, setApi] = useState([])
   const dispatch = useDispatch()
   const auth = useSelector(state => state.login)
   const { info } = auth
@@ -37,10 +36,6 @@ export default function App() {
 
   useEffect(() => {
     if(loginFromLocalStorage.id !== '') dispatch(login(loginFromLocalStorage))
-    axios.get('/api/products')
-      .then(res => res.data)
-      .then(data => setApi(data))
-      .catch(err => console.log(err))
   }, [])
   
   useEffect(() => {
@@ -84,13 +79,12 @@ export default function App() {
       <main className="min-h-screen bg-background relative">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/products/*" element={<Products />} />
           <Route path="/payment/*" element={<PayPalScriptProvider options={{"client-id": 'AdORToXVjx2A9wjRlvRmuu93SboFo1PgQWSYQhZ3bCDm8x_KhHMDkYHDML4kYWXjFYdHAsmm08KS6XSV'}}><Payment /></PayPalScriptProvider>} />
           <Route path="/support" element={<Support />} />
           <Route path="/login/*" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/signup/*" element={<PublicRoute><Signup /></PublicRoute>} />
           <Route path="/profile/*" element={<PrivateRoute><Profile /></PrivateRoute>} />
-          {api.map(product => <Route path={`/products/${product.id}`} element={<Product {...product} key={product.id} />} />)}
         </Routes>
       </main>
       <Footer />

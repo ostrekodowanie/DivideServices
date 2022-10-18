@@ -6,6 +6,7 @@ import { useLocation } from "react-router"
 export default function Account() {
     return (
         <div className="flex flex-col lg:p-8 gap-8">
+            <General />
             <Password />
             <Email />
         </div>
@@ -13,6 +14,76 @@ export default function Account() {
 }
 
 const inputStyles = "px-6 py-2 rounded-3xl bg-[#F5F5F5] focus:bg-[#E9DDF8] border-primary focus:border-[1px] outline-none"
+
+const General = () => {
+    const { username } = useSelector(state => state.login.info)
+    const [status, setStatus] = useState(undefined)
+    const [general, setGeneral] = useState({
+        username: '',
+        name: '',
+        surname: '',
+        phone_number: ''
+    })
+
+    const handleSubmit = async e => {
+        e.preventDefault()
+        const resp = await axios.post('/api/account/general', JSON.stringify(general), {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).catch(() => setStatus(false))
+        if(resp.status === 200) return setStatus(true)
+    }
+
+    return (
+        <div className="bg-white flex flex-col rounded-xl">
+            <h2 className="font-medium w-full h-full py-4 px-[8vw] md:px-[12vw] lg:px-6 bg-[#F7F5FA] lg:hidden">Password</h2>
+            <form onSubmit={handleSubmit} className="flex flex-col px-[8vw] md:px-[12vw] lg:px-6 py-6 gap-4 max-w-[6in]">
+                <h2 className="font-medium hidden lg:block mb-2 text-xl">General</h2>
+                <div className="flex flex-col gap-2">
+                    <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="username">Username</label>
+                    <input className={inputStyles} defaultValue={username} onChange={e => setGeneral(prev => {
+                        return {
+                            ...prev,
+                            username: e.target.value
+                        }
+                    })} required autoComplete="off" type="text" id="username" name='username' />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="name">Name</label>
+                    <input className={inputStyles} onChange={e => setGeneral(prev => {
+                        return {
+                            ...prev,
+                            name: e.target.value
+                        }
+                    })} required autoComplete="off" type="text" id="name" name='name' />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="Surname">Surname</label>
+                    <input className={inputStyles} onChange={e => setGeneral(prev => {
+                        return {
+                            ...prev,
+                            surname: e.target.value
+                        }
+                    })} required autoComplete="off" type="text" id="Surname" name='Surname' />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label className="text-[#4A454F] text-sm font-medium ml-6" htmlFor="phone">Phone Number</label>
+                    <input className={inputStyles} onChange={e => setGeneral(prev => {
+                        return {
+                            ...prev,
+                            phone_number: e.target.value
+                        }
+                    })} required autoComplete="off" type="tel" id="phone" name='phone' />
+                </div>
+                <div className="flex items-center gap-4 mt-4">
+                    <button type="submit" className="rounded-3xl text-sm max-w-max py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Change</button>
+                    {status ? <span className="text-green-400 animate-ping">✔</span> : status === false && <span className="text-red-400 animate-ping">X</span>}
+                </div>
+            </form>
+        </div>
+    )
+}
 
 const Password = () => {
     const { id } = useSelector(state => state.login.info)

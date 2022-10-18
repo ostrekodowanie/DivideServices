@@ -3,8 +3,9 @@ import axios from 'axios'
 import Loader from "../components/Loader"
 import cart from '../assets/cart.svg'
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router"
+import { Route, Routes, useNavigate } from "react-router"
 import { Link } from "react-router-dom"
+import Product from "../components/Product"
 
 export default function Products() {
     const [products, setProducts] = useState([])
@@ -18,18 +19,28 @@ export default function Products() {
     }, [])
 
     return (
+        <Routes>
+            {products.map(product => <Route path={`/${product.id}`} key={product.id} element={<Product {...product} />} />)}
+            <Route path="/" element={<ProductsBoard products={products} loading={loading} />} />
+        </Routes>
+    )
+    
+}
+
+const ProductsBoard = ({ products, loading }) => {
+    return (
         <section className="padding py-[1.4in] xl:pt-[1.8in] min-h-screen flex flex-col gap-16">
             {loading && <Loader />}
             <div className="flex flex-col gap-8">
                 <h2 className="text-3xl font-semibold">Templates</h2>
                 <div className="flex flex-col sm:grid grid-cols-autoFit">
-                    {products.filter(product => product.category === 'templates').map(product => <Product {...product} key={product} />)}
+                    {products.filter(product => product.category === 'templates').map(product => <ProductRef {...product} key={product} />)}
                 </div>
             </div>
             <div className="flex flex-col gap-8">
                 <h2 className="text-3xl font-semibold">Applications</h2>
                 <div className="flex flex-col sm:grid grid-cols-autoFit">
-                    {products.filter(product => product.category === 'apps').map(product => <Product {...product} key={product} />)}
+                    {products.filter(product => product.category === 'apps').map(product => <ProductRef {...product} key={product} />)}
                 </div>
             </div>
             <div className="flex flex-col gap-6">
@@ -42,7 +53,7 @@ export default function Products() {
     )
 }
 
-const Product = props => {
+const ProductRef = props => {
     const { logged } = useSelector(state => state.login)
     const navigate = useNavigate()
 
@@ -51,7 +62,7 @@ const Product = props => {
     }
 
     return (
-        <Link className="flex flex-col gap-4 sm:max-w-[4in]" to={`/products/${props.id}`}>
+        <Link className="flex flex-col gap-4 sm:max-w-[4.2in]" to={`/products/${props.id}`}>
             <div className="rounded-2xl relative overflow-hidden shadow-outsideShadowPrimary">
                 <img src={`/images/${props.image.split("/").pop()}`} alt='' />
                 {/* <div className="bg-productShadow absolute inset-0 z-10" /> */}
