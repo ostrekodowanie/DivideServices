@@ -4,7 +4,6 @@ from apps.Auth.models import User
 from apps.Product.models import Product
 
 class OrderSerializer(serializers.ModelSerializer):
-    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     class Meta:
         model = Order
         fields = '__all__'

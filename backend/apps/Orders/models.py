@@ -13,8 +13,8 @@ class Order(models.Model):
 
     def __str__(self):
         return "{} - {} - {} - {} - {} - {}".format(self.pk,
-                                                    self.product,
-                                                    self.user,
+                                                    self.product_id,
+                                                    self.user_id,
                                                     self.value,
                                                     self.created_at,
                                                     self.updated_at)

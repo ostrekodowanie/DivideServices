@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 #Categories
 APPS = 'apps'
@@ -78,9 +79,14 @@ class Product(models.Model):
     category = models.CharField(max_length=255, choices=CATEGORIES)
     details = models.ForeignKey(
         ProductDetail, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return "{} - {}".format(self.pk,
                                 self.name)
+    
+    def save(self, *args, **kwargs):
+        self.slug = '-'.join((slugify(self.name), slugify(self.pk)))
+        super(Product, self).save(*args, **kwargs)
