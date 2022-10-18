@@ -4,6 +4,7 @@ import Account from "../components/profile/Account"
 import MobileMenu from "../components/profile/MobileMenu"
 import MyProducts from "../components/profile/MyProducts"
 import { useSelector } from "react-redux"
+import { useLocation } from "react-router"
 
 export const pages = [
     {
@@ -21,7 +22,8 @@ export const pages = [
 ]
 
 export default function Profile() {
-    const [page, setPage] = useState(pages[0].title)
+    const location = useLocation()
+    const [page, setPage] = useState(location.search ? pages[1].title : pages[0].title)
     const { username } = useSelector(state => state.login.info)
 
     return (
