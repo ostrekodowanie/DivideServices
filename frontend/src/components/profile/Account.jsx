@@ -114,7 +114,7 @@ const Email = () => {
 
     useEffect(() => {
         if(location.search) {
-            axios.get(`/api/account/email/verify${location.search}`)
+            axios.get(`/api/account/email${location.search}`)
                 .then(res => res.data)
                 .then(data => setStatus({
                     data: data,
