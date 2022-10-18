@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useSelector } from 'react-redux'
+import { useLocation } from "react-router"
 
 export default function Account() {
     return (
@@ -24,13 +25,8 @@ const Password = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-<<<<<<< HEAD
-        if(password.newPassword !== password.confPassword) return
-=======
         if(password.newPassword !== password.confPassword)  return
         if(password.password === password.newPassword) return
-        print(id)
->>>>>>> f91251eb1caf2da79fde9346a975ac5a23790a3e
         const resp = await axios.post('/api/account/password', JSON.stringify({
             user_id: id,
             current_password: password.password,
@@ -75,8 +71,8 @@ const Password = () => {
                         }
                     })} required autoComplete="off" type="password" id="repeatNewPassword" name='repeatNewPassword' />
                 </div>
-                <div className="flex items-center gap-4">
-                    <button type="submit" className="rounded-3xl text-sm mt-4 max-w-max py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Change password</button>
+                <div className="flex items-center gap-4 mt-4">
+                    <button type="submit" className="rounded-3xl text-sm max-w-max py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Change password</button>
                     {status ? <span className="text-green-400 animate-ping">✔</span> : status === false && <span className="text-red-400 animate-ping">X</span>}
                 </div>
             </form>
@@ -85,26 +81,41 @@ const Password = () => {
 }
 
 const Email = () => {
-    const { ID } = useSelector(state => state.login.info)
+    const { id } = useSelector(state => state.login.info)
+    const location = useLocation()
     const [status, setStatus] = useState(undefined)
     const [email, setEmail] = useState({
         newEmail: '',
         confirmEmail: ''
     })
 
-    const handleEmail = e => {
+    const handleEmail = async e => {
         e.preventDefault()
         if(email.newEmail !== email.confirmEmail) return
-        axios.post('/api/account/email', JSON.stringify({
-            user_id: ID,
+        const resp = await axios.post('/api/account/email', JSON.stringify({
+            user_id: id,
             new_email: email.newEmail
         }), {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(() => setStatus(true))
-        .catch(() => setStatus(false))
+        }).catch(() => setStatus(false))
+        if(resp.status === 200) return setStatus("Check your current email for the verification message.")
     }
+
+    useEffect(() => {
+        console.log(location.search)
+        if(location.search) {
+            let token = location.search.pop()
+            axios.get(`/api/account/email?new_email=?${token}`)
+                .then(res => res.data)
+                .then(data => {
+                    axios.patch(`/api/account/email/${id}`, JSON.stringify({
+                        email: data.new_email
+                    }))
+                })
+        }
+    }, [])
 
     return (
         <div className="bg-white flex flex-col rounded-xl">
@@ -129,9 +140,9 @@ const Email = () => {
                         }
                     })} required autoComplete="off" type="email" id="confirmNewEmail" name='confirmNewEmail' />
                 </div>
-                <div className="flex items-center gap-4">
-                    <button className="rounded-3xl text-sm mt-4 max-w-max py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Change email</button>
-                    {status ? <span className="text-green-400 animate-ping">✔</span> : status === false && <span className="text-red-400 animate-ping">X</span>}
+                <div className="flex items-center gap-4 mt-4">
+                    <button className="rounded-3xl text-sm max-w-max py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Change email</button>
+                    {status && status !== true ? <span className="text-green-400">{status}</span> : status === false ? <span className="text-red-400 animate-ping">X</span> : <span className="text-green-400 animate-ping">✔</span>}
                 </div>
             </form>
         </div>

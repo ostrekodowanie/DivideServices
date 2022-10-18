@@ -39,7 +39,7 @@ class ChangeEmailView(APIView):
         token = RefreshToken.for_user(user).access_token
         current_site = get_current_site(request).domain
         relativeLink = reverse('change-email')
-        absurl = 'https://' + current_site + relativeLink + '?token=' + str(token)
+        absurl = 'https://' + current_site + relativeLink + '?new-email=' + new_email + '&token=' + str(token)
         email_body = 'Hi ' + user.username + '\nVerify the email change to ' + new_email + ' by clicking the provided link: ' + absurl
         data = {'email_body': email_body, 'to_email': user.email, 'email_subject': 'Email change verification'}
         Util.send_email(data)
@@ -47,10 +47,12 @@ class ChangeEmailView(APIView):
         return Response('message sent', status=status.HTTP_200_OK)
 
     def get(self, request):
+        new_email = request.GET.get('new-email')
         token = request.GET.get('token')
+        
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
-            return Response({'success'}, status=status.HTTP_200_OK)
+            return Response(new_email, status=status.HTTP_200_OK)
         except jwt.ExpiredSignatureError as identifier:     
             return Response({'link expired'}, status=status.HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError as identifier:

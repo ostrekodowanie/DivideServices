@@ -89,7 +89,7 @@ export default function App() {
           <Route path="/support" element={<Support />} />
           <Route path="/login/*" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/signup/*" element={<PublicRoute><Signup /></PublicRoute>} />
-          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+          <Route path="/profile/*" element={<PrivateRoute><Profile /></PrivateRoute>} />
           {api.map(product => <Route path={`/products/${product.id}`} element={<Product {...product} key={product.id} />} />)}
         </Routes>
       </main>
