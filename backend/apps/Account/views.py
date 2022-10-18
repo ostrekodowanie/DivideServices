@@ -52,6 +52,7 @@ class ChangeEmailView(APIView):
         
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            User.objects.filter(pk=payload['user_id']).update(email=new_email)
             return Response(new_email, status=status.HTTP_200_OK)
         except jwt.ExpiredSignatureError as identifier:     
             return Response({'link expired'}, status=status.HTTP_400_BAD_REQUEST)
