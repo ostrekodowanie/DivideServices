@@ -34,7 +34,7 @@ class ChangeEmailView(APIView):
         new_email = request.data['new_email']
         user = User.objects.get(pk=id)
 
-        if User.objects.get(email=new_email):
+        if User.objects.filter(email=new_email).exists():
             return Response('user with this email already exists', status=status.HTTP_400_BAD_REQUEST)
         token = RefreshToken.for_user(user).access_token
         current_site = get_current_site(request).domain
