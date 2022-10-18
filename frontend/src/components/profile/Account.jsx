@@ -16,7 +16,8 @@ export default function Account() {
 const inputStyles = "px-6 py-2 rounded-3xl bg-[#F5F5F5] focus:bg-[#E9DDF8] border-primary focus:border-[1px] outline-none"
 
 const General = () => {
-    const { username } = useSelector(state => state.login.info)
+    const auth = useSelector(state => state.login.info)
+    const { id, username } = auth
     const [status, setStatus] = useState(undefined)
     const [general, setGeneral] = useState({
         username: '',
@@ -27,7 +28,7 @@ const General = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        const resp = await axios.post('/api/account/general', JSON.stringify(general), {
+        const resp = await axios.patch(`/api/account/${id}`, JSON.stringify(general), {
             headers: {
                 'Content-Type': 'application/json'
             }
