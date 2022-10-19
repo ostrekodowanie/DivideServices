@@ -11,12 +11,9 @@ class ProductDetailView(generics.RetrieveAPIView):
     queryset = ProductDetail.objects.all()    
     serializer_class = ProductDetailSerializer
         
-def ImagesUrls(request, slug):
-    obj = Product.objects.get(slug=slug)
-    print(obj)
-    context= {
-        'object': obj
-    }
-    return render(request, 'dist/index.html', context)
+class ProductRetrieveView(generics.RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    lookup_field = 'slug'
 
 
