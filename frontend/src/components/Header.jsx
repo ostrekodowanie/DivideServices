@@ -42,8 +42,6 @@ const Navbar = ({ nav }) => {
     const auth = useSelector(state => state.login)
     const { logged } = auth
 
-    
-
     return (
         <div className={`flex flex-col items-center gap-4 justify-center sm:gap-8 absolute top-0 left-full transition-transform duration-300 h-screen w-full bg-background ${nav ? '-translate-x-full' : ''} sm:flex-row sm:relative sm:h-auto sm:w-auto sm:translate-x-0 sm:left-auto`}>
             <CustomLink className="text-sm" to='/'>Home</CustomLink>

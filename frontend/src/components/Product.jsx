@@ -15,7 +15,7 @@ export default function Product(props) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(`/api/products/${props.details}`)
+        axios.get(`/api/products/details/${props.details}`)
             .then(res => res.data)
             .then(data => setDetails(data))
             .then(() => setLoading(false))
