@@ -95,7 +95,7 @@ const PayPalForm = ({ item }) => {
     return (
         <div className="shadow-outsideShadowPrimary p-4 min-w-[4in] rounded-xl mb-8 relative z-0 flex flex-col gap-12">
             <div className="flex items-center justify-between gap-6">
-                <img className='shadow-outsideShadowPrimary max-w-[2in]' src={item.image} alt="" />
+                <img className='shadow-outsideShadowPrimary max-w-[2in]' src={`/images/${item.image.split("/").pop()}`} alt="" />
                 <div className="flex flex-col gap-1">
                     <h3 className="text-lg font-semibold">{item.name}</h3>
                     <p className="text-[#4A454F]">{item.desc}</p>
