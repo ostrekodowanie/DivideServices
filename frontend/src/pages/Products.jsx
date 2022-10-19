@@ -20,7 +20,7 @@ export default function Products() {
 
     return (
         <Routes>
-            {products.map(product => <Route path={`/${product.name.split(" ").map(w => w.toLowerCase()).join("-")}-${product.id}`} key={product.id} element={<Product {...product} />} />)}
+            {products.map(product => <Route path={`/${product.slug}`} key={product.id} element={<Product {...product} />} />)}
             <Route path="/" element={<ProductsBoard products={products} loading={loading} />} />
         </Routes>
     )
