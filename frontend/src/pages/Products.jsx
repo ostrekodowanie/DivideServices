@@ -20,7 +20,7 @@ export default function Products() {
 
     return (
         <Routes>
-            {products.map(product => <Route path={`/${product.id}`} key={product.id} element={<Product {...product} />} />)}
+            {products.map(product => <Route path={`/${product.name.split(" ").map(w => w.toLowerCase()).join("-")}-${product.id}`} key={product.id} element={<Product {...product} />} />)}
             <Route path="/" element={<ProductsBoard products={products} loading={loading} />} />
         </Routes>
     )
@@ -28,6 +28,9 @@ export default function Products() {
 }
 
 const ProductsBoard = ({ products, loading }) => {
+    useEffect(() => {
+        console.log(products)
+    }, [products])
     return (
         <section className="padding py-[1.4in] xl:pt-[1.8in] min-h-screen flex flex-col gap-16">
             {loading && <Loader />}
@@ -62,7 +65,7 @@ const ProductRef = props => {
     }
 
     return (
-        <Link className="flex flex-col gap-4 sm:max-w-[4.2in]" to={`/products/${props.id}`}>
+        <Link className="flex flex-col gap-4 sm:max-w-[4.2in]" to={`/products/${props.name.split(" ").map(w => w.toLowerCase()).join("-")}-${props.id}`}>
             <div className="rounded-2xl relative overflow-hidden shadow-outsideShadowPrimary">
                 <img src={`/images/${props.image.split("/").pop()}`} alt='' />
                 {/* <div className="bg-productShadow absolute inset-0 z-10" /> */}
