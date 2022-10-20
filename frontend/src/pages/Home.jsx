@@ -51,14 +51,14 @@ const Stats = () => {
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
-                <p className='text-[#FAFAFA] font-semibold text-2xl'>79</p>
+                <p className='text-[#FAFAFA] font-semibold text-2xl'>179</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Products</h3>
-                <p className='text-[#FAFAFA] font-semibold text-2xl'>14</p>
+                <p className='text-[#FAFAFA] font-semibold text-2xl'>134</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
@@ -118,7 +118,7 @@ const Opinions = () => {
                 <div className='rounded-3xl shadow-outsideShadowPrimary p-7 flex flex-col gap-4'>
                     <img className='max-w-full rounded-xl max-h-[3in] object-cover shadow-[0px_4px_60px_rgba(179,126,242,0.15)]' src='/images/invoicegenerator_L2NF32n.PNG' alt="" /> 
                     <h3 className='font-semibold lg:text-xl mt-4'>Invoice Generator</h3>
-                    <p className='text-[#4A454F] leading-loose'>Tiny web application with which you can generate invoices for payments in your business.</p>
+                    <p className='text-[#4A454F] leading-loose'>Small web application with which you can generate invoices for payments in your business.</p>
                     <Link to='/products/invoice-generator-4' className="rounded-3xl mt-2 max-w-max text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Check out</Link>
                 </div>
                 <div className='rounded-3xl shadow-outsideShadowPrimary p-7 flex flex-col gap-4'>
