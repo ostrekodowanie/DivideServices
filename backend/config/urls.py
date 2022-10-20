@@ -31,7 +31,6 @@ urlpatterns = [
     path('payment/proceed', views.index),
     path('payment/success', views.index),
     path('payment/cancel', views.index),
-    path('products/<slug>', views.index),
     path('profile/email/verify', views.index, name='change-email'),
     path('', include('apps.Product.urls')),
     path('', include('apps.Auth.urls')),
