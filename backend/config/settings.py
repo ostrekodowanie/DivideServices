@@ -213,4 +213,4 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
 
 PAYPAL_RECEIVER_EMAIL = 'se6359@gmail.com'
 
-PAYPAL_TEST = True
+PAYPAL_TEST = False
