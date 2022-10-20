@@ -108,21 +108,24 @@ const Opinions = () => {
                     <h3 className='text-[#4A454F] lg:text-lg'>Designed to use on daily basis</h3>
                 </div>
             </div>
-            <div className='flex flex-col lg:flex-row justify-between gap-12'>
-                <div className='rounded-3xl shadow-outsideShadowPrimary p-8 flex flex-col gap-4'>
-                    <div className='w-24 h-24 bg-white rounded-full' />
-                    <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
-                    <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
+            <div className='flex flex-col md:grid grid-cols-3 justify-between gap-10'>
+                <div className='rounded-3xl shadow-outsideShadowPrimary p-7 flex flex-col gap-4 pb-[3rem]'>
+                    <img className='max-w-full rounded-xl max-h-[3in] object-cover shadow-[0px_4px_60px_rgba(179,126,242,0.15)]' src='/images/fashion_project.png' alt="" />
+                    <h3 className='font-semibold lg:text-xl mt-4'>Fashion Template</h3>
+                    <p className='text-[#4A454F] leading-loose'>Fashion website template providing functions like clothing sort, filter and searchbar, login system, cart system, payment system. Designed for potential comercial use.</p>
+                    <Link to='/products/fashion-template-2' className="rounded-3xl mt-2 max-w-max text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Check out</Link>
                 </div>
-                <div className='rounded-3xl shadow-outsideShadowPrimary p-8 flex flex-col gap-4'>
-                    <div className='w-24 h-24 bg-white rounded-full' /> 
-                    <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
-                    <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
+                <div className='rounded-3xl shadow-outsideShadowPrimary p-7 flex flex-col gap-4'>
+                    <img className='max-w-full rounded-xl max-h-[3in] object-cover shadow-[0px_4px_60px_rgba(179,126,242,0.15)]' src='/images/invoicegenerator_L2NF32n.PNG' alt="" /> 
+                    <h3 className='font-semibold lg:text-xl mt-4'>Invoice Generator</h3>
+                    <p className='text-[#4A454F] leading-loose'>Tiny web application with which you can generate invoice for your business, focusing on speed and providing clear user interface with many options available.</p>
+                    <Link to='/products/invoice-generator-4' className="rounded-3xl mt-2 max-w-max text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Check out</Link>
                 </div>
-                <div className='rounded-3xl shadow-outsideShadowPrimary p-8 flex flex-col gap-4'>
-                    <div className='w-24 h-24 bg-white rounded-full' />
-                    <h3 className='font-semibold lg:text-xl'>Sebastian Magnucki</h3>
-                    <p className='text-[#4A454F] leading-loose'><q> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget lectus morbi gravida arcu, urna elit nisl. Suspendisse eleifend odio tempus, mattis enim. </q></p>
+                <div className='rounded-3xl shadow-outsideShadowPrimary p-7 flex flex-col gap-4'>
+                    <img className='max-w-full rounded-xl max-h-[3in] object-cover shadow-[0px_4px_60px_rgba(179,126,242,0.15)]' src='/images/fashion_project.png' alt="" />
+                    <h3 className='font-semibold lg:text-xl mt-4'>ControlJS</h3>
+                    <p className='text-[#4A454F] leading-loose'>Tiny library for animations in ReactJS allowing developers to import a Control component with many properties available to set like opacity, x, y and onScroll.</p>
+                    <a target='_blank' href='https://github.com/ostrekodowanie/ControlJS' className="rounded-3xl mt-2 max-w-max text-sm py-2 px-6 bg-primary text-white hover:bg-[#6C25C3] hover:scale-105 transition duration-[250ms]">Check out</a>
                 </div>
             </div> 
         </section>
