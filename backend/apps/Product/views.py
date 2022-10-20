@@ -3,6 +3,10 @@ from rest_framework import generics
 from .models import Product, ProductDetail
 from .serializers import ProductSerializer, ProductDetailSerializer
 
+def products(request, slug):
+    product = Product.objects.get(slug=slug)
+    return render(request, 'dist/index.html', {'product': product})
+
 class ProductView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
