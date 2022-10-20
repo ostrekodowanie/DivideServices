@@ -51,28 +51,28 @@ const Stats = () => {
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
                 <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
-                <p className='text-[#FAFAFA] font-semibold text-2xl'>941</p>
+                <p className='text-[#FAFAFA] font-semibold text-2xl'>79</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
-                <h3 className='text-[#FAFAFA]/60 font-medium'>Projects</h3>
-                <p className='text-[#FAFAFA] font-semibold text-2xl'>187</p>
+                <h3 className='text-[#FAFAFA]/60 font-medium'>Products</h3>
+                <p className='text-[#FAFAFA] font-semibold text-2xl'>14</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
-                <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
-                <p className='text-[#FAFAFA] font-semibold text-2xl'>12.000</p>
+                <h3 className='text-[#FAFAFA]/60 font-medium'>Libraries</h3>
+                <p className='text-[#FAFAFA] font-semibold text-2xl'>1</p>
             </div>
             <div className='grid grid-cols-auto max-w-max'>
                 <div className='bg-[#ECECEE] rounded-full mr-4 h-16 w-16 flex items-center justify-center row-span-2'>
                     <img className='max-w-[50%] max-h-[50%]' src={activeusers} alt="" />
                 </div>
-                <h3 className='text-[#FAFAFA]/60 font-medium'>Clients</h3>
-                <p className='text-[#FAFAFA] font-semibold text-2xl'>12.000</p>
+                <h3 className='text-[#FAFAFA]/60 font-medium'>Websites</h3>
+                <p className='text-[#FAFAFA] font-semibold text-2xl'>76</p>
             </div>
         </div>
     )

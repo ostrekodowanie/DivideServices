@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux"
 import { login } from "../reducers/auth"
 import jwtDecode from "jwt-decode"
 import Loader from "../components/Loader"
-import contact from '../assets/contact.svg'
+import contact from '../assets/contact.png'
 
 export default function Login() {
     const location = useLocation()
